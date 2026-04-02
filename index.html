@@ -178,17 +178,51 @@
         .nav__cta:hover svg, .btn-primary:hover svg { transform: translateX(2px); }
         .nav__toggle {
             display: none;
-            flex-direction: column;
-            gap: 4px;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 6px 6px 22px;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+        .nav__toggle .icon-circle {
+            width: 28px;
+            height: 28px;
+        }
+        .nav__toggle .icon-circle svg { width: 14px; height: 14px; }
+        .nav__toggle .icon-open { display: block; }
+        .nav__toggle .icon-close { display: none; }
+        .nav__toggle.active .icon-open { display: none; }
+        .nav__toggle.active .icon-close { display: block; }
+        .nav__mobile {
+            display: none;
+            position: fixed;
+            top: 84px;
+            left: 20px;
+            right: 20px;
+            background: var(--bg-white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
+            z-index: 999;
             padding: 8px;
+            flex-direction: column;
+            gap: 2px;
         }
-        .nav__toggle span {
+        .nav__mobile.open { display: flex; }
+        .nav__mobile a {
             display: block;
-            width: 20px;
-            height: 2px;
-            background: var(--text-primary);
-            border-radius: 2px;
+            padding: 16px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-align: center;
+            border-radius: 14px;
+            transition: background 0.2s ease;
         }
+        .nav__mobile a:hover { background: var(--bg); }
 
         /* ========================================
            HERO - Split layout
@@ -502,8 +536,9 @@
         .portfolio__grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 28px 20px;
         }
+        a.portfolio__card { display: block; cursor: pointer; }
         .portfolio__card {
             background: var(--bg-white);
             border: 1px solid var(--border);
@@ -514,8 +549,15 @@
             width: 100%;
             aspect-ratio: 16 / 10;
             border-radius: 12px;
-            position: relative;
             overflow: hidden;
+            position: relative;
+        }
+        .portfolio__card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
         }
         .portfolio__card:nth-child(1) .portfolio__card-image { background: linear-gradient(135deg, #e8e4dc, #d8d4cc); }
         .portfolio__card:nth-child(2) .portfolio__card-image { background: linear-gradient(135deg, #dde4e8, #ccd4d8); }
@@ -523,12 +565,16 @@
         .portfolio__card:nth-child(4) .portfolio__card-image { background: linear-gradient(135deg, #e0dce8, #d0ccd8); }
         .portfolio__card-body { padding: 14px 10px 10px; }
         .portfolio__card-category {
+            display: inline-flex;
+            padding: 6px 16px;
             font-family: var(--font-mono);
             font-size: 11px;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            color: var(--text-tertiary);
-            margin-bottom: 6px;
+            color: var(--text-secondary);
+            background: var(--bg);
+            border-radius: 100px;
+            margin-bottom: 12px;
         }
         .portfolio__card h3 {
             font-family: var(--font-body);
@@ -542,19 +588,6 @@
             line-height: 1.6;
             font-weight: 300;
         }
-        .portfolio__card-stat {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 14px;
-            padding: 6px 14px;
-            background: var(--bg);
-            border-radius: 100px;
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-        .portfolio__card-stat svg { color: #28a060; }
 
 
         /* ========================================
@@ -604,9 +637,28 @@
            FAQ
         ======================================== */
 
+        .faq__layout {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .faq__left h2 {
+            font-family: var(--font-body);
+            font-size: clamp(32px, 4vw, 44px);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .faq__left p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-weight: 300;
+            max-width: 360px;
+            margin-bottom: 28px;
+        }
         .faq__list {
-            max-width: 700px;
-            margin: 0 auto;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -651,60 +703,136 @@
         }
 
         /* ========================================
-           CTA
+           CONTACT
         ======================================== */
-        .cta-section { text-align: center; }
-        .cta-section__inner {
-            padding: 72px 48px;
-            background: var(--bg-dark);
+        .contact__inner {
             border-radius: 28px;
-            position: relative;
             overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #3a3530 0%, #2a2420 30%, #1a1815 60%, #2a1a18 80%, #3a2a28 100%);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 480px;
         }
-        .cta-section__inner::before {
+        .contact__inner::before {
             content: '';
             position: absolute;
-            top: -200px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
+            bottom: -100px;
+            left: -100px;
+            width: 500px;
             height: 400px;
-            background: radial-gradient(ellipse, rgba(255,255,255,0.06) 0%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(180, 80, 60, 0.25) 0%, rgba(120, 60, 40, 0.1) 40%, transparent 70%);
             pointer-events: none;
         }
-        .cta-section h2 {
+        .contact__inner::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: 20%;
+            width: 400px;
+            height: 300px;
+            background: radial-gradient(ellipse, rgba(200, 120, 80, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .contact__left {
+            padding: 56px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+        .contact__left h2 {
             font-family: var(--font-body);
-            font-size: clamp(36px, 4.5vw, 56px);
+            font-size: clamp(32px, 4vw, 48px);
             font-weight: 400;
             letter-spacing: -0.02em;
             color: var(--text-light);
-            margin-bottom: 14px;
-            position: relative;
+            margin-bottom: 12px;
         }
-        .cta-section p {
+        .contact__left p {
             font-size: 16px;
-            color: rgba(255,255,255,0.5);
-            max-width: 420px;
-            margin: 0 auto 32px;
+            color: rgba(255,255,255,0.85);
             font-weight: 300;
+            line-height: 1.6;
+        }
+        .contact__info {
+            margin-top: auto;
+        }
+        .contact__info a {
+            display: block;
+            font-size: 15px;
+            color: rgba(255,255,255,0.6);
+            font-weight: 300;
+            margin-bottom: 4px;
+            transition: color 0.2s ease;
+        }
+        .contact__info a:hover { color: var(--text-light); }
+        .contact__right {
+            padding: 40px;
+            display: flex;
+            align-items: center;
             position: relative;
         }
-        .cta-section .btn-cta {
+        .contact__form {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            padding: 36px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .contact__field label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        .contact__field input,
+        .contact__field textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--text-primary);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        .contact__field input::placeholder,
+        .contact__field textarea::placeholder {
+            color: var(--text-tertiary);
+        }
+        .contact__field input:focus,
+        .contact__field textarea:focus {
+            border-color: var(--text-primary);
+        }
+        .contact__field textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .contact__submit {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 14px 32px;
-            background: var(--text-light);
-            color: var(--bg-dark);
-            font-size: 15px;
+            gap: 8px;
+            padding: 7px 7px 7px 24px;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            font-size: 14px;
             font-weight: 500;
             border-radius: 100px;
-            transition: background 0.2s ease, transform 0.2s ease;
-            position: relative;
+            transition: background 0.2s ease;
+            align-self: flex-start;
         }
-        .cta-section .btn-cta:hover { background: #eee; transform: translateY(-2px); }
-        .cta-section .btn-cta svg { transition: transform 0.2s ease; }
-        .cta-section .btn-cta:hover svg { transform: translateX(3px); }
+        .contact__submit:hover { background: #222; }
+        .contact__submit .icon-circle { width: 32px; height: 32px; }
 
         /* ========================================
            FOOTER
@@ -773,7 +901,7 @@
            RESPONSIVE
         ======================================== */
         @media (max-width: 1024px) {
-            .hero__grid { grid-template-columns: 1fr; gap: 48px; }
+            .hero__grid { display: flex; flex-direction: column-reverse; gap: 32px; }
             .hero__visual { max-width: 500px; }
             .hero__stats-card { right: 0; }
             .services__tabs { flex-wrap: wrap; }
@@ -786,17 +914,48 @@
             .container { padding: 0 20px; }
             .section-gap { padding: 56px 0; }
             .nav__links { display: none; }
+            .nav__cta { display: none; }
             .nav__toggle { display: flex; }
-            .nav { padding: 10px 12px 10px 20px; }
-            .hero { padding: 120px 0 40px; }
-            .hero__stats-card { position: relative; bottom: auto; right: auto; margin-top: 20px; width: 100%; }
+            .nav { padding: 10px 8px 10px 20px; }
+            .hero { padding: 100px 0 40px; }
+            .hero__visual {
+                position: relative;
+                width: 100%;
+            }
+            .hero__card {
+                width: 100%;
+                aspect-ratio: 1 / 0.7;
+                border: 1px solid var(--border);
+            }
+            .hero__stats-card {
+                position: absolute;
+                bottom: -20px;
+                right: -10px;
+                width: 45%;
+                aspect-ratio: 1 / 0.85;
+                border: 1px solid var(--border);
+            }
             .process__grid { grid-template-columns: 1fr; }
+            .services__tabs {
+                flex-direction: column;
+                border-radius: 20px;
+                padding: 8px;
+                gap: 4px;
+            }
+            .services__tab { border-radius: 14px; padding: 14px 20px; }
+            .services__panel { grid-template-columns: 1fr; }
+            .services__panel-text { padding: 20px 16px; }
             .portfolio__grid { grid-template-columns: 1fr; }
             .testimonials__grid { grid-template-columns: 1fr; }
+            .faq__layout { grid-template-columns: 1fr; gap: 32px; }
+            .contact__inner { grid-template-columns: 1fr; }
+            .contact__left { padding: 32px 24px 20px; }
+            .contact__right { padding: 0 16px 24px; }
+            .contact__info { margin-top: 24px; }
+            .contact__form { padding: 28px 24px; }
             .footer__grid { grid-template-columns: 1fr; gap: 28px; }
             .footer__bottom { flex-direction: column; gap: 14px; text-align: center; }
             .hero__buttons { flex-direction: column; align-items: flex-start; }
-            .cta-section__inner { padding: 56px 28px; }
         }
     </style>
 </head>
@@ -804,10 +963,9 @@
     <!-- Shared SVG symbols -->
     <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
         <symbol id="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
-        <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+
         <symbol id="icon-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
         <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
-        <symbol id="icon-chevron-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></symbol>
     </svg>
 
     <!-- NAVIGATION - Floating pill -->
@@ -824,9 +982,19 @@
                 <span class="icon-circle"><svg width="14" height="14"><use href="#icon-arrow"/></svg></span>
             </a>
             <button class="nav__toggle" id="navToggle" aria-label="Menu">
-                <span></span><span></span><span></span>
+                Menu
+                <span class="icon-circle">
+                    <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                    <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
             </button>
         </nav>
+        <div class="nav__mobile" id="navMobile">
+            <a href="#services">Services</a>
+            <a href="#work">Work</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact us</a>
+        </div>
     </div>
 
     <!-- HERO - Split layout -->
@@ -987,49 +1155,33 @@
                     <div class="portfolio__card-body">
                         <div class="portfolio__card-category">E-commerce</div>
                         <h3>Lumina Skincare</h3>
-                        <p>Complete rebrand and Shopify build for a DTC skincare startup.</p>
-                        <div class="portfolio__card-stat">
-                            <svg width="12" height="12"><use href="#icon-chevron-up"/></svg>
-                            +180% conversions
-                        </div>
+                        <p>Online store with custom Shopify build for a DTC skincare startup.</p>
                     </div>
                 </div>
+                <a href="https://studioapp.co/" target="_blank" rel="noopener" class="portfolio__card hover-lift animate-on-scroll">
+                    <div class="portfolio__card-image"><img src="studioapp.png" alt="StudioApp"></div>
+                    <div class="portfolio__card-body">
+                        <div class="portfolio__card-category">SaaS Landing</div>
+                        <h3>StudioApp</h3>
+                        <p>SaaS platform and landing page for tattoo and piercing studio management.</p>
+                    </div>
+                </a>
                 <div class="portfolio__card hover-lift animate-on-scroll">
                     <div class="portfolio__card-image"></div>
                     <div class="portfolio__card-body">
-                        <div class="portfolio__card-category">SaaS</div>
-                        <h3>Vaultline</h3>
-                        <p>Marketing site and docs portal for a fintech security platform.</p>
-                        <div class="portfolio__card-stat">
-                            <svg width="12" height="12"><use href="#icon-chevron-up"/></svg>
-                            +240% demo requests
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio__card hover-lift animate-on-scroll">
-                    <div class="portfolio__card-image"></div>
-                    <div class="portfolio__card-body">
-                        <div class="portfolio__card-category">Agency</div>
+                        <div class="portfolio__card-category">Portfolio</div>
                         <h3>Northpeak Studio</h3>
                         <p>Portfolio and booking system for a creative production house.</p>
-                        <div class="portfolio__card-stat">
-                            <svg width="12" height="12"><use href="#icon-chevron-up"/></svg>
-                            +90% inbound leads
-                        </div>
                     </div>
                 </div>
-                <div class="portfolio__card hover-lift animate-on-scroll">
-                    <div class="portfolio__card-image"></div>
+                <a href="https://tattooverseconvention.com/" target="_blank" rel="noopener" class="portfolio__card hover-lift animate-on-scroll">
+                    <div class="portfolio__card-image"><img src="tattooverse.png" alt="Tattooverse"></div>
                     <div class="portfolio__card-body">
-                        <div class="portfolio__card-category">Health &amp; Wellness</div>
-                        <h3>MindPath</h3>
-                        <p>Appointment platform and content hub for a therapy network.</p>
-                        <div class="portfolio__card-stat">
-                            <svg width="12" height="12"><use href="#icon-chevron-up"/></svg>
-                            +320% bookings
-                        </div>
+                        <div class="portfolio__card-category">Events Website</div>
+                        <h3>Tattooverse</h3>
+                        <p>Convention platform for Spain's biggest tattoo events with ticketing and artist showcases.</p>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -1102,10 +1254,12 @@
     <!-- FAQ -->
     <section class="faq section-gap" id="faq">
         <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="mono-label">Frequently asked</span>
-                <h2>Your questions, answered</h2>
-            </div>
+            <div class="faq__layout">
+                <div class="faq__left animate-on-scroll">
+                    <h2>Your questions, answered</h2>
+                    <p>Get quick answers to the most common questions about our services and process.</p>
+                    <a href="#contact" class="btn-secondary">Contact us</a>
+                </div>
             <div class="faq__list">
                 <div class="faq__item animate-on-scroll">
                     <button class="faq__question">What types of businesses do you work with?<svg width="18" height="18"><use href="#icon-plus"/></svg></button>
@@ -1128,20 +1282,45 @@
                     <div class="faq__answer"><div class="faq__answer-inner">It starts with a free discovery call where we learn about your goals. Then we send a proposal with scope, timeline, and pricing. Once approved, we kick off with a strategy session and get moving immediately.</div></div>
                 </div>
             </div>
+            </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-section section-gap" id="contact">
+    <!-- CONTACT -->
+    <section class="section-gap" id="contact">
         <div class="container">
-            <div class="cta-section__inner animate-on-scroll">
-                <h2>Start your journey</h2>
-                <p>Book a free discovery call. No pressure, no pitch decks. Just a conversation about what your brand needs.</p>
-                <a href="#" class="btn-cta">
-                    Contact us
-                    <svg width="16" height="16"><use href="#icon-arrow"/></svg>
-                </a>
+        <div class="contact__inner animate-on-scroll">
+            <div class="contact__left">
+                <div>
+                    <h2>Start your journey</h2>
+                    <p>Let's start building something great together.</p>
+                </div>
+                <div class="contact__info">
+                    <a href="mailto:hello@weweb.agency">hello@weweb.agency</a>
+                    <a href="tel:+34600000000">+34 600 000 000</a>
+                </div>
             </div>
+            <div class="contact__right">
+                <form class="contact__form">
+                    <div class="contact__field">
+                        <label>Name</label>
+                        <input type="text" placeholder="Jane Smith">
+                    </div>
+                    <div class="contact__field">
+                        <label>Email</label>
+                        <input type="email" placeholder="jane@company.com">
+                    </div>
+                    <div class="contact__field">
+                        <label>Message</label>
+                        <textarea placeholder="Enter your message"></textarea>
+                    </div>
+                    <button type="submit" class="contact__submit">
+                        Submit
+                        <span class="icon-circle"><svg width="14" height="14"><use href="#icon-arrow"/></svg></span>
+                    </button>
+                </form>
+            </div>
+        </div>
         </div>
     </section>
 
@@ -1214,6 +1393,20 @@
                 if (!document.hidden) { rafId = requestAnimationFrame(tick); }
             });
         })();
+
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMobile = document.getElementById('navMobile');
+        navToggle.addEventListener('click', () => {
+            navMobile.classList.toggle('open');
+            navToggle.classList.toggle('active');
+        });
+        navMobile.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMobile.classList.remove('open');
+                navToggle.classList.remove('active');
+            });
+        });
 
         // Service tabs
         const allTabs = document.querySelectorAll('.services__tab');
