@@ -7,6 +7,7 @@
     <meta name="description" content="WeWeb Agency partners with ambitious brands to design and develop high-performance websites that convert visitors into customers.">
 
     <!-- Fonts -->
+    <link rel="icon" href="logo white.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Fragment+Mono&display=swap" rel="stylesheet">
@@ -120,7 +121,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 12px 10px 24px;
+            padding: 10px 12px 10px 16px;
             background: var(--bg-white);
             border-radius: 100px;
             box-shadow: var(--shadow-lg);
@@ -129,10 +130,17 @@
             transition: box-shadow 0.3s ease;
         }
         .nav__brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-family: var(--font-body);
             font-size: 22px;
             color: var(--text-primary);
             white-space: nowrap;
+        }
+        .nav__brand img {
+            height: 24px;
+            width: auto;
         }
         .nav__links {
             display: flex;
@@ -604,6 +612,8 @@
             background: var(--bg-white);
             border: 1px solid var(--border);
             border-radius: 20px;
+            display: flex;
+            flex-direction: column;
         }
         .testimonial-card__stars { display: flex; gap: 3px; margin-bottom: 18px; color: #F0B020; }
         .testimonial-card__text {
@@ -614,7 +624,7 @@
             font-style: italic;
             margin-bottom: 22px;
         }
-        .testimonial-card__author { display: flex; align-items: center; gap: 12px; }
+        .testimonial-card__author { display: flex; align-items: center; gap: 12px; margin-top: auto; }
         .testimonial-card__avatar {
             width: 38px;
             height: 38px;
@@ -626,10 +636,18 @@
             font-size: 15px;
             color: var(--text-light);
             flex-shrink: 0;
+            overflow: hidden;
         }
-        .testimonial-card__avatar--1 { background: #e07b5a; }
         .testimonial-card__avatar--2 { background: #7b68ee; }
         .testimonial-card__avatar--3 { background: #5aa0e0; }
+        .testimonial-card__avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 10% 20%;
+            border-radius: 50%;
+            transform: scale(1.3);
+        }
         .testimonial-card__name { font-size: 14px; font-weight: 500; }
         .testimonial-card__role { font-size: 12px; color: var(--text-tertiary); font-weight: 300; }
 
@@ -851,6 +869,13 @@
             font-family: var(--font-body);
             font-size: 22px;
             margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer__brand img {
+            width: 24px;
+            height: 24px;
         }
         .footer__desc {
             font-size: 14px;
@@ -971,7 +996,7 @@
     <!-- NAVIGATION - Floating pill -->
     <div class="nav-wrap">
         <nav class="nav" id="nav">
-            <a href="#" class="nav__brand">WeWeb</a>
+            <a href="#" class="nav__brand"><img src="weweb logo + text.svg" alt="WeWeb"></a>
             <ul class="nav__links">
                 <li><a href="#services">Services</a></li>
                 <li><a href="#work">Work</a></li>
@@ -1150,14 +1175,14 @@
                 <h2>Success stories</h2>
             </div>
             <div class="portfolio__grid">
-                <div class="portfolio__card hover-lift animate-on-scroll">
-                    <div class="portfolio__card-image"></div>
+                <a href="https://nanaweddings.com/" target="_blank" rel="noopener" class="portfolio__card hover-lift animate-on-scroll">
+                    <div class="portfolio__card-image"><img src="nanaweddings.png" alt="Nana Weddings"></div>
                     <div class="portfolio__card-body">
-                        <div class="portfolio__card-category">E-commerce</div>
-                        <h3>Lumina Skincare</h3>
-                        <p>Online store with custom Shopify build for a DTC skincare startup.</p>
+                        <div class="portfolio__card-category">Wedding Planner</div>
+                        <h3>Nana Weddings</h3>
+                        <p>Editorial website for a wedding planner and content creator based in Spain.</p>
                     </div>
-                </div>
+                </a>
                 <a href="https://studioapp.co/" target="_blank" rel="noopener" class="portfolio__card hover-lift animate-on-scroll">
                     <div class="portfolio__card-image"><img src="studioapp.png" alt="StudioApp"></div>
                     <div class="portfolio__card-body">
@@ -1166,14 +1191,14 @@
                         <p>SaaS platform and landing page for tattoo and piercing studio management.</p>
                     </div>
                 </a>
-                <div class="portfolio__card hover-lift animate-on-scroll">
-                    <div class="portfolio__card-image"></div>
+                <a href="https://www.vilaseo.com/" target="_blank" rel="noopener" class="portfolio__card hover-lift animate-on-scroll">
+                    <div class="portfolio__card-image"><img src="vilaseo.png" alt="Vilaseo"></div>
                     <div class="portfolio__card-body">
-                        <div class="portfolio__card-category">Portfolio</div>
-                        <h3>Northpeak Studio</h3>
-                        <p>Portfolio and booking system for a creative production house.</p>
+                        <div class="portfolio__card-category">Marketing Agency</div>
+                        <h3>Vilaseo</h3>
+                        <p>Digital marketing agency website focused on KOLs and influencer campaigns.</p>
                     </div>
-                </div>
+                </a>
                 <a href="https://tattooverseconvention.com/" target="_blank" rel="noopener" class="portfolio__card hover-lift animate-on-scroll">
                     <div class="portfolio__card-image"><img src="tattooverse.png" alt="Tattooverse"></div>
                     <div class="portfolio__card-body">
@@ -1204,12 +1229,12 @@
                         <svg width="15" height="15"><use href="#icon-star"/></svg>
                         <svg width="15" height="15"><use href="#icon-star"/></svg>
                     </div>
-                    <p class="testimonial-card__text">"WeWeb transformed our online presence. Our conversion rate tripled within the first month of launching the new site."</p>
+                    <p class="testimonial-card__text">"Working with WeWeb was a game changer for VilaSEO. They nailed our vision from day one and delivered a site that truly represents our brand."</p>
                     <div class="testimonial-card__author">
-                        <div class="testimonial-card__avatar testimonial-card__avatar--1">A</div>
+                        <div class="testimonial-card__avatar"><img src="roger-martinez.png" alt="Roger Martínez"></div>
                         <div>
-                            <div class="testimonial-card__name">Ana Reyes</div>
-                            <div class="testimonial-card__role">CEO, Lumina Skincare</div>
+                            <div class="testimonial-card__name">Roger Martínez</div>
+                            <div class="testimonial-card__role">CEO, VilaSEO</div>
                         </div>
                     </div>
                 </div>
@@ -1329,7 +1354,7 @@
         <div class="container">
             <div class="footer__grid">
                 <div>
-                    <div class="footer__brand">WeWeb</div>
+                    <div class="footer__brand"><img src="logo black.png" alt="WeWeb">WeWeb</div>
                     <p class="footer__desc">We design and build websites that help ambitious brands grow faster.</p>
                 </div>
                 <div class="footer__col">
