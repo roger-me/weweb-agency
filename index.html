@@ -273,7 +273,7 @@
         .hero__text { animation: fadeUp 0.8s var(--ease-out) both; }
         .hero h1 {
             font-family: var(--font-body);
-            font-size: clamp(36px, 4.5vw, 56px);
+            font-size: clamp(32px, 3.5vw, 46px);
             line-height: 1.15;
             font-weight: 400;
             letter-spacing: -0.02em;
@@ -403,7 +403,8 @@
             display: block;
             filter: grayscale(100%);
         }
-        .brands__item img[alt="DOT Tattoo Studio"] { height: 12px; }
+        .brands__item img[alt="DOT Tattoo Studio"] { height: 16px; }
+        .brands__item img[alt="VilaSEO"] { height: 22px; }
         .brands__item img[alt="Alta"] { height: 22px; }
         .brands__item img[alt="Partner"] { height: 38px; }
 
@@ -939,11 +940,15 @@
             align-items: center;
             gap: 8px;
             font-size: 14px;
-            color: var(--text-secondary);
-            font-weight: 300;
-            transition: color 0.2s ease;
+            color: var(--text-light);
+            font-weight: 500;
+            padding: 8px 20px 8px 8px;
+            background: var(--bg-dark);
+            border-radius: 100px;
+            transition: background 0.2s ease, transform 0.2s ease;
         }
-        .footer__email:hover { color: var(--text-primary); }
+        .footer__email svg { background: var(--bg-white); color: var(--bg-dark); border-radius: 50%; padding: 6px; width: 28px; height: 28px; }
+        .footer__email:hover { background: #222; transform: translateY(-1px); }
 
         /* ========================================
            RESPONSIVE
@@ -965,6 +970,9 @@
             .nav__cta { display: none; }
             .nav__toggle { display: flex; }
             .nav { padding: 10px 8px 10px 20px; }
+            .nav__toggle { margin-left: auto; }
+            .nav > .lang-toggle { display: none; }
+            .nav__mobile .lang-toggle { margin-top: 8px; align-self: center; }
             .hero { padding: 100px 0 40px; }
             .hero__visual {
                 position: relative;
@@ -997,11 +1005,15 @@
             .testimonials__grid { grid-template-columns: 1fr; }
             .faq__layout { grid-template-columns: 1fr; gap: 32px; }
             .contact__inner { grid-template-columns: 1fr; }
-            .contact__left { padding: 32px 24px 20px; }
-            .contact__right { padding: 0 16px 24px; }
+            .contact__left { padding: 32px 24px 24px; }
+            .contact__right { padding: 0 24px 24px; }
             .contact__info { margin-top: 24px; }
             .contact__form { padding: 28px 24px; }
-            .footer__grid { grid-template-columns: 1fr; gap: 28px; }
+            .footer__grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+            .footer__grid > div:first-child { grid-column: 1 / -1; }
+            .footer__desc { max-width: none; }
+            .footer__col { display: flex; gap: 24px; align-items: start; }
+            .footer__col h4 { margin-bottom: 0; min-width: 70px; padding-top: 2px; }
             .footer__bottom { flex-direction: column; gap: 14px; text-align: center; }
             .hero__buttons { flex-direction: column; align-items: flex-start; }
         }
@@ -1046,6 +1058,10 @@
             <a href="#work" data-i18n="nav.work">Work</a>
             <a href="#faq">FAQ</a>
             <a href="#contact" data-i18n="nav.contact">Contact us</a>
+            <div class="lang-toggle" id="langToggleMobile">
+                <button data-lang="es">ES</button>
+                <button class="active" data-lang="en">EN</button>
+            </div>
         </div>
     </div>
 
@@ -1432,6 +1448,12 @@
                 navToggle.classList.remove('active');
             });
         });
+        document.addEventListener('click', (e) => {
+            if (navMobile.classList.contains('open') && !navMobile.contains(e.target) && !navToggle.contains(e.target)) {
+                navMobile.classList.remove('open');
+                navToggle.classList.remove('active');
+            }
+        });
 
         // Service tabs
         const allTabs = document.querySelectorAll('.services__tab');
@@ -1739,14 +1761,18 @@
             });
         }
 
-        // Language toggle
-        document.querySelectorAll('#langToggle button').forEach(function(btn) {
+        // Language toggle (both desktop and mobile)
+        var allLangBtns = document.querySelectorAll('.lang-toggle button');
+        function setActiveLang(lang) {
+            allLangBtns.forEach(function(b) {
+                b.classList.toggle('active', b.dataset.lang === lang);
+            });
+            applyTranslations(lang);
+            localStorage.setItem('weweb-lang', lang);
+        }
+        allLangBtns.forEach(function(btn) {
             btn.addEventListener('click', function() {
-                var lang = btn.dataset.lang;
-                document.querySelectorAll('#langToggle button').forEach(function(b) { b.classList.remove('active'); });
-                btn.classList.add('active');
-                applyTranslations(lang);
-                localStorage.setItem('weweb-lang', lang);
+                setActiveLang(btn.dataset.lang);
             });
         });
 
@@ -1758,10 +1784,7 @@
                 saved = browserLang.startsWith('es') ? 'es' : 'en';
             }
             if (translations[saved]) {
-                document.querySelectorAll('#langToggle button').forEach(function(b) { b.classList.remove('active'); });
-                var activeBtn = document.querySelector('#langToggle button[data-lang="' + saved + '"]');
-                if (activeBtn) activeBtn.classList.add('active');
-                applyTranslations(saved);
+                setActiveLang(saved);
             }
         })();
     </script>
