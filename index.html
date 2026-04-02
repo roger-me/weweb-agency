@@ -296,10 +296,11 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 7px 7px 7px 28px;
+            padding: 6px 6px 6px 28px;
             background: var(--bg-dark);
             color: var(--text-light);
             font-size: 15px;
+            height: 48px;
             font-weight: 500;
             border-radius: 100px;
             transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
@@ -313,13 +314,14 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 14px 28px;
+            padding: 0 28px;
             background: transparent;
             color: var(--text-primary);
             font-size: 15px;
             font-weight: 500;
             border-radius: 100px;
             border: 1px solid var(--border-hover);
+            height: 48px;
             transition: border-color 0.2s ease, background 0.2s ease;
         }
         .btn-secondary:hover {
@@ -394,19 +396,16 @@
             margin-right: 64px;
             transition: opacity 0.3s ease;
         }
-        .brands__item:hover { opacity: 0.6; }
-        .brands__item svg {
-            width: 28px;
-            height: 28px;
-            color: var(--text-primary);
+        .brands__item:hover { opacity: 0.5; }
+        .brands__item img {
+            height: 24px;
+            width: auto;
+            display: block;
+            filter: grayscale(100%);
         }
-        .brands__item span {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--text-primary);
-            white-space: nowrap;
-            letter-spacing: -0.01em;
-        }
+        .brands__item img[alt="DOT Tattoo Studio"] { height: 12px; }
+        .brands__item img[alt="Alta"] { height: 22px; }
+        .brands__item img[alt="Partner"] { height: 38px; }
 
         /* ========================================
            PROCESS SECTION
@@ -888,7 +887,7 @@
         }
         .footer__grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr;
             gap: 40px;
             margin-bottom: 56px;
         }
@@ -935,19 +934,16 @@
             border-top: 1px solid var(--border);
         }
         .footer__copy { font-size: 13px; color: var(--text-tertiary); font-weight: 300; }
-        .footer__socials { display: flex; gap: 12px; }
-        .footer__socials a {
-            display: flex;
+        .footer__email {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
+            gap: 8px;
+            font-size: 14px;
             color: var(--text-secondary);
-            transition: border-color 0.2s ease, color 0.2s ease;
+            font-weight: 300;
+            transition: color 0.2s ease;
         }
-        .footer__socials a:hover { border-color: var(--text-primary); color: var(--text-primary); }
+        .footer__email:hover { color: var(--text-primary); }
 
         /* ========================================
            RESPONSIVE
@@ -1079,30 +1075,12 @@
     <!-- BRANDS CAROUSEL -->
     <section class="brands">
         <div class="brands__track" id="brandsTrack">
-            <div class="brands__item">
-                <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>
-                <span>BoxMedia</span>
-            </div>
-            <div class="brands__item">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                <span>NovaTech</span>
-            </div>
-            <div class="brands__item">
-                <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5" stroke="white" stroke-width="2" fill="none"/></svg>
-                <span>Pluto Inc</span>
-            </div>
-            <div class="brands__item">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z"/><circle cx="17" cy="17" r="3"/></svg>
-                <span>VitaHealth</span>
-            </div>
-            <div class="brands__item">
-                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5"/></svg>
-                <span>Meridian</span>
-            </div>
-            <div class="brands__item">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                <span>Clockwork</span>
-            </div>
+            <div class="brands__item"><img src="brand-vilaseo.svg" alt="VilaSEO"></div>
+            <div class="brands__item"><img src="brand-dot.svg" alt="DOT Tattoo Studio"></div>
+            <div class="brands__item"><img src="brand-alta.svg" alt="Alta"></div>
+            <div class="brands__item"><img src="brand-4.avif" alt="Partner"></div>
+            <div class="brands__item"><img src="brand-vilaseo.svg" alt="VilaSEO"></div>
+            <div class="brands__item"><img src="brand-dot.svg" alt="DOT Tattoo Studio"></div>
         </div>
     </section>
 
@@ -1391,17 +1369,9 @@
                 <div class="footer__col">
                     <h4 data-i18n="footer.pages">Pages</h4>
                     <ul>
-                        <li><a href="#process" data-i18n="footer.process">Process</a></li>
                         <li><a href="#services" data-i18n="footer.services">Services</a></li>
                         <li><a href="#work" data-i18n="footer.work">Work</a></li>
-                        </ul>
-                </div>
-                <div class="footer__col">
-                    <h4 data-i18n="footer.company">Company</h4>
-                    <ul>
-                        <li><a href="#" data-i18n="footer.about">About</a></li>
-                        <li><a href="#" data-i18n="footer.careers">Careers</a></li>
-                        <li><a href="#" data-i18n="footer.blog">Blog</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                         <li><a href="#contact" data-i18n="footer.contact">Contact</a></li>
                     </ul>
                 </div>
@@ -1416,11 +1386,10 @@
             </div>
             <div class="footer__bottom">
                 <div class="footer__copy" data-i18n="footer.copy">&copy; 2026 WeWeb Agency. All rights reserved.</div>
-                <div class="footer__socials">
-                    <a href="#" aria-label="X/Twitter"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-                    <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-                    <a href="#" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
-                </div>
+                <a href="mailto:hello@weweb.agency" class="footer__email">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    hello@weweb.agency
+                </a>
             </div>
         </div>
     </footer>
