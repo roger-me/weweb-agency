@@ -9,7 +9,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,700&family=Fragment+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Fragment+Mono&display=swap" rel="stylesheet">
 
     <style>
         /* ========================================
@@ -18,7 +18,6 @@
         :root {
             --bg: #F3F1EC;
             --bg-white: #ffffff;
-            --bg-card: #ffffff;
             --bg-dark: #111111;
             --border: rgba(0, 0, 0, 0.08);
             --border-hover: rgba(0, 0, 0, 0.15);
@@ -26,10 +25,6 @@
             --text-secondary: #555550;
             --text-tertiary: #999990;
             --text-light: #ffffff;
-            --accent: #111111;
-            --accent-soft: #E8E5DC;
-            --highlight: #FFF3B0;
-            --font-display: 'Albert Sans', system-ui, sans-serif;
             --font-body: 'Albert Sans', system-ui, sans-serif;
             --font-mono: 'Fragment Mono', monospace;
             --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -67,7 +62,29 @@
             text-transform: uppercase;
             color: var(--text-tertiary);
         }
-        .section-gap { padding: 120px 0; }
+        .section-gap { padding: 80px 0; }
+        .section-header { text-align: center; margin-bottom: 36px; }
+        .section-header h2 {
+            font-family: var(--font-body);
+            font-size: clamp(36px, 4vw, 52px);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-top: 14px;
+        }
+        .section-header p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 480px;
+            margin: 14px auto 0;
+            font-weight: 300;
+        }
+        .hover-lift {
+            transition: transform 0.4s var(--ease-out), box-shadow 0.4s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
 
         /* ========================================
            ANIMATIONS
@@ -76,7 +93,6 @@
             from { opacity: 0; transform: translateY(24px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* scroll-left handled by JS */
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(24px);
@@ -103,7 +119,7 @@
         .nav {
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: space-between;
             padding: 10px 12px 10px 24px;
             background: var(--bg-white);
             border-radius: 100px;
@@ -113,10 +129,9 @@
             transition: box-shadow 0.3s ease;
         }
         .nav__brand {
-            font-family: var(--font-display);
+            font-family: var(--font-body);
             font-size: 22px;
             color: var(--text-primary);
-            margin-right: auto;
             white-space: nowrap;
         }
         .nav__links {
@@ -124,11 +139,10 @@
             align-items: center;
             gap: 28px;
             list-style: none;
-            margin-right: 8px;
         }
         .nav__links a {
             font-size: 14px;
-            font-weight: 400;
+            font-weight: 600;
             color: var(--text-secondary);
             transition: color 0.2s ease;
             white-space: nowrap;
@@ -138,7 +152,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 22px;
+            padding: 6px 6px 6px 22px;
             background: var(--bg-dark);
             color: var(--text-light);
             font-size: 14px;
@@ -148,8 +162,20 @@
             white-space: nowrap;
         }
         .nav__cta:hover { background: #222; transform: translateY(-1px); }
-        .nav__cta svg { transition: transform 0.2s ease; }
-        .nav__cta:hover svg { transform: translateX(2px); }
+        .icon-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg-white);
+            color: var(--bg-dark);
+            flex-shrink: 0;
+        }
+        .nav__cta .icon-circle { width: 28px; height: 28px; }
+        .nav__cta svg, .btn-primary svg { transition: transform 0.2s ease; }
+        .nav__cta:hover svg, .btn-primary:hover svg { transform: translateX(2px); }
         .nav__toggle {
             display: none;
             flex-direction: column;
@@ -179,7 +205,7 @@
         }
         .hero__text { animation: fadeUp 0.8s var(--ease-out) both; }
         .hero h1 {
-            font-family: var(--font-display);
+            font-family: var(--font-body);
             font-size: clamp(44px, 5.5vw, 72px);
             line-height: 1.05;
             font-weight: 400;
@@ -203,7 +229,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 14px 28px;
+            padding: 7px 7px 7px 28px;
             background: var(--bg-dark);
             color: var(--text-light);
             font-size: 15px;
@@ -216,8 +242,6 @@
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
         }
-        .btn-primary svg { transition: transform 0.2s ease; }
-        .btn-primary:hover svg { transform: translateX(3px); }
         .btn-secondary {
             display: inline-flex;
             align-items: center;
@@ -245,88 +269,9 @@
             background: var(--bg-white);
             border-radius: 20px;
             box-shadow: var(--shadow-xl);
-            padding: 28px;
             width: 100%;
             aspect-ratio: 1 / 0.9;
-            display: flex;
-            flex-direction: column;
         }
-        .hero__card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 24px;
-        }
-        .hero__card-title {
-            font-family: var(--font-body);
-            font-size: 18px;
-            font-weight: 600;
-        }
-        .hero__card-badge {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--text-tertiary);
-            padding: 4px 12px;
-            border: 1px solid var(--border);
-            border-radius: 100px;
-        }
-        .hero__card-rows {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-        .hero__card-row {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 16px 0;
-            border-bottom: 1px solid var(--border);
-        }
-        .hero__card-row:last-child { border-bottom: none; }
-        .hero__card-row--highlight {
-            background: var(--highlight);
-            margin: 0 -28px;
-            padding: 16px 28px;
-            border-radius: 12px;
-            border-bottom: none;
-        }
-        .hero__card-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-display);
-            font-size: 16px;
-            font-weight: 400;
-            color: var(--text-light);
-            flex-shrink: 0;
-        }
-        .hero__card-avatar--1 { background: #e07b5a; }
-        .hero__card-avatar--2 { background: #7b68ee; }
-        .hero__card-avatar--3 { background: #e0a83e; }
-        .hero__card-info h4 { font-size: 14px; font-weight: 500; }
-        .hero__card-info span { font-size: 12px; color: var(--text-tertiary); font-weight: 300; }
-        .hero__card-actions {
-            margin-left: auto;
-            display: flex;
-            gap: 12px;
-            color: var(--text-tertiary);
-        }
-        .hero__card-footer {
-            margin-top: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-        .hero__card-footer svg { color: var(--text-tertiary); }
-
-        /* Floating stats card */
         .hero__stats-card {
             position: absolute;
             bottom: -20px;
@@ -334,64 +279,9 @@
             background: var(--bg-white);
             border-radius: 16px;
             box-shadow: var(--shadow-xl);
-            padding: 22px 26px;
             width: 260px;
+            aspect-ratio: 1 / 0.85;
             animation: fadeUp 0.8s var(--ease-out) 0.4s both;
-        }
-        .hero__stats-card-label {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 4px;
-        }
-        .hero__stats-card-label span:first-child {
-            font-size: 12px;
-            color: var(--text-tertiary);
-        }
-        .hero__stats-card-label span:last-child {
-            font-size: 11px;
-            color: #e05a5a;
-            font-weight: 500;
-        }
-        .hero__stats-card-value {
-            font-family: var(--font-body);
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-        .hero__stats-bars {
-            display: flex;
-            align-items: flex-end;
-            gap: 6px;
-            height: 60px;
-        }
-        .hero__stats-bar {
-            flex: 1;
-            border-radius: 4px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            gap: 2px;
-            height: 100%;
-        }
-        .hero__stats-bar-seg {
-            border-radius: 3px;
-            width: 100%;
-        }
-        .bar-yellow { background: #F0D468; }
-        .bar-pink { background: #F0A0A0; }
-        .bar-blue { background: #A0D4E8; }
-        .hero__stats-days {
-            display: flex;
-            gap: 6px;
-            margin-top: 8px;
-        }
-        .hero__stats-days span {
-            flex: 1;
-            text-align: center;
-            font-size: 10px;
-            color: var(--text-tertiary);
-            font-family: var(--font-mono);
         }
 
         /* ========================================
@@ -454,13 +344,28 @@
         /* ========================================
            PROCESS SECTION
         ======================================== */
-        .process__header { text-align: center; margin-bottom: 64px; }
-        .process__header h2 {
-            font-family: var(--font-display);
-            font-size: clamp(36px, 4vw, 52px);
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            margin-top: 14px;
+        .process__screenshot {
+            position: relative;
+            margin-bottom: 48px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .process__screenshot-inner {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+        }
+        .process__screenshot::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to bottom, transparent, var(--bg));
+            pointer-events: none;
         }
         .process__grid {
             display: grid;
@@ -468,37 +373,36 @@
             gap: 20px;
         }
         .process__card {
-            padding: 36px 30px;
             background: var(--bg-white);
             border: 1px solid var(--border);
             border-radius: 20px;
-            transition: transform 0.4s var(--ease-out), box-shadow 0.4s ease;
+            padding: 14px;
         }
-        .process__card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-        }
-        .process__step {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--text-tertiary);
-            margin-bottom: 20px;
-        }
-        .process__icon {
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg);
+        .process__card-image {
+            width: 100%;
+            aspect-ratio: 16 / 10;
             border-radius: 12px;
-            margin-bottom: 20px;
-            color: var(--text-primary);
+            overflow: hidden;
+        }
+        .process__card-image-inner {
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            transition: transform 0.6s var(--ease-out);
+        }
+        .process__card:hover .process__card-image-inner {
+            transform: scale(1.05);
+        }
+        .process__card:nth-child(1) .process__card-image-inner { background: linear-gradient(135deg, #e8e4dc, #d8d4cc); }
+        .process__card:nth-child(2) .process__card-image-inner { background: linear-gradient(135deg, #dde4e8, #ccd4d8); }
+        .process__card:nth-child(3) .process__card-image-inner { background: linear-gradient(135deg, #e4e0d4, #d4d0c4); }
+        .process__card-bottom {
+            padding: 14px 10px 10px;
         }
         .process__card h3 {
-            font-family: var(--font-display);
+            font-family: var(--font-body);
             font-size: 24px;
-            font-weight: 400;
+            font-weight: 600;
             margin-bottom: 10px;
         }
         .process__card p {
@@ -509,140 +413,92 @@
         }
 
         /* ========================================
-           SERVICES SECTION
+           SERVICES SECTION - Tabbed
         ======================================== */
-        .services__header { text-align: center; margin-bottom: 64px; }
-        .services__header h2 {
-            font-family: var(--font-display);
-            font-size: clamp(36px, 4vw, 52px);
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            margin-top: 14px;
+        .services__tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            background: #F2ECE5;
+            border-radius: 100px;
+            padding: 6px;
         }
-        .services__header p {
-            font-size: 16px;
-            color: var(--text-secondary);
-            max-width: 480px;
-            margin: 14px auto 0;
-            font-weight: 300;
-        }
-        .services__bento {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-        .service-card {
-            padding: 40px 36px;
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            transition: transform 0.4s var(--ease-out), box-shadow 0.4s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-        }
-        .service-card__icon {
-            width: 48px;
-            height: 48px;
+        .services__tab {
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--bg);
-            border-radius: 14px;
-            margin-bottom: 24px;
+            gap: 10px;
+            padding: 16px 24px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-radius: 100px;
+            transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            white-space: nowrap;
+        }
+        .services__tab:hover:not(.active) {
             color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.4);
         }
-        .service-card h3 {
-            font-family: var(--font-display);
-            font-size: 26px;
+        .services__tab.active {
+            background: var(--bg-white);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-md);
+        }
+        .services__tab svg { width: 18px; height: 18px; flex-shrink: 0; }
+        .services__panel {
+            display: none;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 14px;
+            animation: fadeUp 0.4s var(--ease-out) both;
+        }
+        .services__panel.active { display: grid; }
+        .services__panel-image {
+            width: 100%;
+            aspect-ratio: 4 / 3.5;
+            background: var(--bg);
+            border-radius: 18px;
+        }
+        .services__panel-text {
+            padding: 24px 32px 24px 0;
+        }
+        .services__panel-chip {
+            display: inline-flex;
+            padding: 6px 16px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            background: var(--bg);
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+        .services__panel h3 {
+            font-family: var(--font-body);
+            font-size: clamp(28px, 3vw, 38px);
             font-weight: 400;
-            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 16px;
         }
-        .service-card p {
+        .services__panel p {
             font-size: 15px;
             color: var(--text-secondary);
             line-height: 1.7;
             font-weight: 300;
-            max-width: 360px;
         }
-        .service-card__tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 20px;
-        }
-        .service-card__tag {
-            padding: 5px 14px;
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--text-secondary);
-            background: var(--bg);
-            border-radius: 100px;
-        }
-        .service-card--featured {
-            grid-column: 1 / -1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-        .service-card--featured .service-card__visual {
-            height: 280px;
-            background: var(--bg);
-            border-radius: 16px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        .mock-browser__bar {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 12px 16px;
-            background: var(--bg-white);
-            border-bottom: 1px solid var(--border);
-        }
-        .mock-browser__dot { width: 8px; height: 8px; border-radius: 50%; }
-        .mock-browser__dot:nth-child(1) { background: #ff5f57; }
-        .mock-browser__dot:nth-child(2) { background: #ffbd2e; }
-        .mock-browser__dot:nth-child(3) { background: #28c840; }
-        .mock-browser__url {
-            flex: 1;
-            margin-left: 12px;
-            padding: 4px 12px;
-            background: var(--bg);
-            border-radius: 6px;
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--text-tertiary);
-        }
-        .mock-browser__content {
-            flex: 1;
-            padding: 16px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-        .mock-block {
-            border-radius: 8px;
-            background: rgba(0,0,0,0.04);
-        }
-        .mock-block--accent { background: rgba(0,0,0,0.08); }
-        .mock-block--wide { grid-column: 1 / -1; }
-        .mock-block--tall { grid-row: span 2; }
 
         /* ========================================
            PORTFOLIO
         ======================================== */
-        .portfolio__header { text-align: center; margin-bottom: 64px; }
-        .portfolio__header h2 {
-            font-family: var(--font-display);
-            font-size: clamp(36px, 4vw, 52px);
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            margin-top: 14px;
-        }
+
         .portfolio__grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -652,36 +508,20 @@
             background: var(--bg-white);
             border: 1px solid var(--border);
             border-radius: 20px;
-            overflow: hidden;
-            transition: transform 0.4s var(--ease-out), box-shadow 0.4s ease;
-        }
-        .portfolio__card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
+            padding: 14px;
         }
         .portfolio__card-image {
-            height: 200px;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            border-radius: 12px;
             position: relative;
+            overflow: hidden;
         }
-        .portfolio__card:nth-child(1) .portfolio__card-image { background: linear-gradient(135deg, #e8e4dc 0%, #d8d4cc 100%); }
-        .portfolio__card:nth-child(2) .portfolio__card-image { background: linear-gradient(135deg, #dde4e8 0%, #ccd4d8 100%); }
-        .portfolio__card:nth-child(3) .portfolio__card-image { background: linear-gradient(135deg, #e4e0d4 0%, #d4d0c4 100%); }
-        .portfolio__card:nth-child(4) .portfolio__card-image { background: linear-gradient(135deg, #e0dce8 0%, #d0ccd8 100%); }
-        .portfolio__card-image .mock-el {
-            position: absolute;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.6);
-            box-shadow: var(--shadow-sm);
-        }
-        .portfolio__card:nth-child(1) .mock-el:nth-child(1) { top: 24px; left: 24px; width: 55%; height: 45%; }
-        .portfolio__card:nth-child(1) .mock-el:nth-child(2) { top: 24px; right: 24px; width: 30%; height: 65%; }
-        .portfolio__card:nth-child(2) .mock-el:nth-child(1) { top: 28px; left: 50%; transform: translateX(-50%); width: 75%; height: 45%; }
-        .portfolio__card:nth-child(2) .mock-el:nth-child(2) { bottom: 24px; left: 24px; width: 38%; height: 25%; }
-        .portfolio__card:nth-child(3) .mock-el:nth-child(1) { top: 20px; left: 20px; width: 42%; height: 60%; }
-        .portfolio__card:nth-child(3) .mock-el:nth-child(2) { top: 36px; right: 20px; width: 38%; height: 48%; }
-        .portfolio__card:nth-child(4) .mock-el:nth-child(1) { top: 24px; left: 50%; transform: translateX(-50%); width: 65%; height: 30%; }
-        .portfolio__card:nth-child(4) .mock-el:nth-child(2) { bottom: 20px; left: 24px; right: 24px; height: 35%; }
-        .portfolio__card-body { padding: 24px 28px 28px; }
+        .portfolio__card:nth-child(1) .portfolio__card-image { background: linear-gradient(135deg, #e8e4dc, #d8d4cc); }
+        .portfolio__card:nth-child(2) .portfolio__card-image { background: linear-gradient(135deg, #dde4e8, #ccd4d8); }
+        .portfolio__card:nth-child(3) .portfolio__card-image { background: linear-gradient(135deg, #e4e0d4, #d4d0c4); }
+        .portfolio__card:nth-child(4) .portfolio__card-image { background: linear-gradient(135deg, #e0dce8, #d0ccd8); }
+        .portfolio__card-body { padding: 14px 10px 10px; }
         .portfolio__card-category {
             font-family: var(--font-mono);
             font-size: 11px;
@@ -691,9 +531,9 @@
             margin-bottom: 6px;
         }
         .portfolio__card h3 {
-            font-family: var(--font-display);
+            font-family: var(--font-body);
             font-size: 22px;
-            font-weight: 400;
+            font-weight: 600;
             margin-bottom: 6px;
         }
         .portfolio__card p {
@@ -707,7 +547,7 @@
             align-items: center;
             gap: 6px;
             margin-top: 14px;
-            padding: 5px 12px;
+            padding: 6px 14px;
             background: var(--bg);
             border-radius: 100px;
             font-family: var(--font-mono);
@@ -716,148 +556,11 @@
         }
         .portfolio__card-stat svg { color: #28a060; }
 
-        /* ========================================
-           PRICING
-        ======================================== */
-        .pricing__header { text-align: center; margin-bottom: 64px; }
-        .pricing__header h2 {
-            font-family: var(--font-display);
-            font-size: clamp(36px, 4vw, 52px);
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            margin-top: 14px;
-        }
-        .pricing__header p {
-            font-size: 16px;
-            color: var(--text-secondary);
-            max-width: 440px;
-            margin: 14px auto 0;
-            font-weight: 300;
-        }
-        .pricing__grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            align-items: start;
-        }
-        .pricing__card {
-            padding: 36px 30px;
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            transition: transform 0.4s var(--ease-out), box-shadow 0.4s ease;
-        }
-        .pricing__card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-        }
-        .pricing__card--popular {
-            background: var(--bg-dark);
-            color: var(--text-light);
-            border-color: transparent;
-            box-shadow: var(--shadow-xl);
-        }
-        .pricing__card--popular:hover { box-shadow: var(--shadow-xl); }
-        .pricing__card--popular .pricing__desc { color: rgba(255,255,255,0.5); }
-        .pricing__card--popular .pricing__period { color: rgba(255,255,255,0.4); }
-        .pricing__card--popular .pricing__features li { color: rgba(255,255,255,0.6); }
-        .pricing__card--popular .pricing__features li svg { color: rgba(255,255,255,0.4); }
-        .pricing__badge {
-            display: inline-flex;
-            padding: 4px 12px;
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: var(--bg-dark);
-            background: var(--text-light);
-            border-radius: 100px;
-            margin-bottom: 16px;
-        }
-        .pricing__tier {
-            font-family: var(--font-display);
-            font-size: 24px;
-            font-weight: 400;
-            margin-bottom: 6px;
-        }
-        .pricing__desc {
-            font-size: 14px;
-            color: var(--text-secondary);
-            font-weight: 300;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        .pricing__price {
-            display: flex;
-            align-items: baseline;
-            gap: 4px;
-            margin-bottom: 28px;
-        }
-        .pricing__amount {
-            font-family: var(--font-display);
-            font-size: 44px;
-            font-weight: 400;
-            letter-spacing: -0.02em;
-        }
-        .pricing__period {
-            font-family: var(--font-mono);
-            font-size: 13px;
-            color: var(--text-tertiary);
-        }
-        .pricing__features {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 28px;
-        }
-        .pricing__features li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
-            color: var(--text-secondary);
-            font-weight: 300;
-        }
-        .pricing__features li svg { flex-shrink: 0; color: var(--text-tertiary); }
-        .pricing__cta {
-            display: block;
-            width: 100%;
-            padding: 13px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 500;
-            border-radius: 100px;
-            transition: all 0.2s ease;
-        }
-        .pricing__cta--dark {
-            background: var(--bg-dark);
-            color: var(--text-light);
-        }
-        .pricing__cta--dark:hover { background: #222; }
-        .pricing__cta--light {
-            background: var(--text-light);
-            color: var(--bg-dark);
-        }
-        .pricing__cta--light:hover { background: #f0f0f0; }
-        .pricing__cta--outline {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border-hover);
-        }
-        .pricing__cta--outline:hover { border-color: var(--text-primary); }
 
         /* ========================================
            TESTIMONIALS
         ======================================== */
-        .testimonials__header { text-align: center; margin-bottom: 64px; }
-        .testimonials__header h2 {
-            font-family: var(--font-display);
-            font-size: clamp(36px, 4vw, 52px);
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            margin-top: 14px;
-        }
+
         .testimonials__grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -868,11 +571,6 @@
             background: var(--bg-white);
             border: 1px solid var(--border);
             border-radius: 20px;
-            transition: transform 0.4s var(--ease-out), box-shadow 0.4s ease;
-        }
-        .testimonial-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
         }
         .testimonial-card__stars { display: flex; gap: 3px; margin-bottom: 18px; color: #F0B020; }
         .testimonial-card__text {
@@ -891,7 +589,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: var(--font-display);
+            font-family: var(--font-body);
             font-size: 15px;
             color: var(--text-light);
             flex-shrink: 0;
@@ -905,14 +603,7 @@
         /* ========================================
            FAQ
         ======================================== */
-        .faq__header { text-align: center; margin-bottom: 56px; }
-        .faq__header h2 {
-            font-family: var(--font-display);
-            font-size: clamp(36px, 4vw, 52px);
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            margin-top: 14px;
-        }
+
         .faq__list {
             max-width: 700px;
             margin: 0 auto;
@@ -982,7 +673,7 @@
             pointer-events: none;
         }
         .cta-section h2 {
-            font-family: var(--font-display);
+            font-family: var(--font-body);
             font-size: clamp(36px, 4.5vw, 56px);
             font-weight: 400;
             letter-spacing: -0.02em;
@@ -1029,7 +720,7 @@
             margin-bottom: 56px;
         }
         .footer__brand {
-            font-family: var(--font-display);
+            font-family: var(--font-body);
             font-size: 22px;
             margin-bottom: 12px;
         }
@@ -1085,14 +776,15 @@
             .hero__grid { grid-template-columns: 1fr; gap: 48px; }
             .hero__visual { max-width: 500px; }
             .hero__stats-card { right: 0; }
-            .services__bento { grid-template-columns: 1fr; }
-            .service-card--featured { grid-template-columns: 1fr; }
-            .pricing__grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .services__tabs { flex-wrap: wrap; }
+            .services__tab { flex: auto; font-size: 13px; padding: 10px 14px; }
+            .services__panel { grid-template-columns: 1fr; }
+            .services__panel-text { padding: 16px 16px 20px; }
             .footer__grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 768px) {
             .container { padding: 0 20px; }
-            .section-gap { padding: 80px 0; }
+            .section-gap { padding: 56px 0; }
             .nav__links { display: none; }
             .nav__toggle { display: flex; }
             .nav { padding: 10px 12px 10px 20px; }
@@ -1109,6 +801,14 @@
     </style>
 </head>
 <body>
+    <!-- Shared SVG symbols -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+        <symbol id="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+        <symbol id="icon-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+        <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+        <symbol id="icon-chevron-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></symbol>
+    </svg>
 
     <!-- NAVIGATION - Floating pill -->
     <div class="nav-wrap">
@@ -1117,11 +817,11 @@
             <ul class="nav__links">
                 <li><a href="#services">Services</a></li>
                 <li><a href="#work">Work</a></li>
-                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
             </ul>
             <a href="#contact" class="nav__cta">
                 Contact us
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <span class="icon-circle"><svg width="14" height="14"><use href="#icon-arrow"/></svg></span>
             </a>
             <button class="nav__toggle" id="navToggle" aria-label="Menu">
                 <span></span><span></span><span></span>
@@ -1139,98 +839,14 @@
                     <div class="hero__buttons">
                         <a href="#contact" class="btn-primary">
                             Get started
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            <span class="icon-circle"><svg width="14" height="14"><use href="#icon-arrow"/></svg></span>
                         </a>
                         <a href="#contact" class="btn-secondary">Contact us</a>
                     </div>
                 </div>
                 <div class="hero__visual">
-                    <div class="hero__card">
-                        <div class="hero__card-header">
-                            <span class="hero__card-title">Customers</span>
-                            <span class="hero__card-badge">Sort by Newest</span>
-                        </div>
-                        <div class="hero__card-rows">
-                            <div class="hero__card-row hero__card-row--highlight">
-                                <div class="hero__card-avatar hero__card-avatar--1">M</div>
-                                <div class="hero__card-info">
-                                    <h4>Maggie Johnson</h4>
-                                    <span>Oasis Organic Inc.</span>
-                                </div>
-                                <div class="hero__card-actions">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-                                </div>
-                            </div>
-                            <div class="hero__card-row">
-                                <div class="hero__card-avatar hero__card-avatar--2">C</div>
-                                <div class="hero__card-info">
-                                    <h4>Chris Friedkly</h4>
-                                    <span>Supermarket Villanova</span>
-                                </div>
-                            </div>
-                            <div class="hero__card-row">
-                                <div class="hero__card-avatar hero__card-avatar--3">G</div>
-                                <div class="hero__card-info">
-                                    <h4>Gael Harry</h4>
-                                    <span>New York Finest Fruits</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hero__card-footer">
-                            All customers
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 4 4 4-4"/></svg>
-                        </div>
-                    </div>
-                    <!-- Floating stats card -->
-                    <div class="hero__stats-card">
-                        <div class="hero__stats-card-label">
-                            <span>Daily Average</span>
-                            <span>+30m this week</span>
-                        </div>
-                        <div class="hero__stats-card-value">2h 20m</div>
-                        <div class="hero__stats-bars">
-                            <div class="hero__stats-bar">
-                                <div class="hero__stats-bar-seg bar-blue" style="height:18%"></div>
-                                <div class="hero__stats-bar-seg bar-pink" style="height:22%"></div>
-                                <div class="hero__stats-bar-seg bar-yellow" style="height:35%"></div>
-                            </div>
-                            <div class="hero__stats-bar">
-                                <div class="hero__stats-bar-seg bar-blue" style="height:15%"></div>
-                                <div class="hero__stats-bar-seg bar-pink" style="height:25%"></div>
-                                <div class="hero__stats-bar-seg bar-yellow" style="height:30%"></div>
-                            </div>
-                            <div class="hero__stats-bar">
-                                <div class="hero__stats-bar-seg bar-blue" style="height:20%"></div>
-                                <div class="hero__stats-bar-seg bar-pink" style="height:20%"></div>
-                                <div class="hero__stats-bar-seg bar-yellow" style="height:40%"></div>
-                            </div>
-                            <div class="hero__stats-bar">
-                                <div class="hero__stats-bar-seg bar-blue" style="height:12%"></div>
-                                <div class="hero__stats-bar-seg bar-pink" style="height:28%"></div>
-                                <div class="hero__stats-bar-seg bar-yellow" style="height:25%"></div>
-                            </div>
-                            <div class="hero__stats-bar">
-                                <div class="hero__stats-bar-seg bar-blue" style="height:22%"></div>
-                                <div class="hero__stats-bar-seg bar-pink" style="height:18%"></div>
-                                <div class="hero__stats-bar-seg bar-yellow" style="height:38%"></div>
-                            </div>
-                            <div class="hero__stats-bar">
-                                <div class="hero__stats-bar-seg bar-blue" style="height:16%"></div>
-                                <div class="hero__stats-bar-seg bar-pink" style="height:24%"></div>
-                                <div class="hero__stats-bar-seg bar-yellow" style="height:20%"></div>
-                            </div>
-                            <div class="hero__stats-bar">
-                                <div class="hero__stats-bar-seg bar-blue" style="height:18%"></div>
-                                <div class="hero__stats-bar-seg bar-pink" style="height:16%"></div>
-                                <div class="hero__stats-bar-seg bar-yellow" style="height:28%"></div>
-                            </div>
-                        </div>
-                        <div class="hero__stats-days">
-                            <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
-                        </div>
-                    </div>
+                    <div class="hero__card"></div>
+                    <div class="hero__stats-card"></div>
                 </div>
             </div>
         </div>
@@ -1269,34 +885,30 @@
     <!-- PROCESS -->
     <section class="process section-gap" id="process">
         <div class="container">
-            <div class="process__header animate-on-scroll">
-                <span class="mono-label">How we work</span>
-                <h2>Simple process,<br>exceptional results</h2>
+            <div class="process__screenshot animate-on-scroll">
+                <div class="process__screenshot-inner"></div>
             </div>
             <div class="process__grid">
-                <div class="process__card animate-on-scroll">
-                    <div class="process__step">01</div>
-                    <div class="process__icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                <div class="process__card hover-lift animate-on-scroll">
+                    <div class="process__card-image"><div class="process__card-image-inner"></div></div>
+                    <div class="process__card-bottom">
+                        <h3>Easy setup</h3>
+                        <p>Create your workspace and invite your team. Get everything ready in minutes.</p>
                     </div>
-                    <h3>Discovery</h3>
-                    <p>We dig into your brand, audience, and goals. Strategy sessions, competitor analysis, and a clear roadmap before any design begins.</p>
                 </div>
-                <div class="process__card animate-on-scroll">
-                    <div class="process__step">02</div>
-                    <div class="process__icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>
+                <div class="process__card hover-lift animate-on-scroll">
+                    <div class="process__card-image"><div class="process__card-image-inner"></div></div>
+                    <div class="process__card-bottom">
+                        <h3>Collaborate</h3>
+                        <p>Assign tasks and keep communication clear. Everyone stays aligned.</p>
                     </div>
-                    <h3>Design</h3>
-                    <p>Wireframes evolve into pixel-perfect mockups. Every page crafted for impact, clarity, and conversion with your feedback at each step.</p>
                 </div>
-                <div class="process__card animate-on-scroll">
-                    <div class="process__step">03</div>
-                    <div class="process__icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                <div class="process__card hover-lift animate-on-scroll">
+                    <div class="process__card-image"><div class="process__card-image-inner"></div></div>
+                    <div class="process__card-bottom">
+                        <h3>Track growth</h3>
+                        <p>Use dashboards to monitor progress, trends, and what matters most.</p>
                     </div>
-                    <h3>Develop &amp; Launch</h3>
-                    <p>Clean, performant code. Rigorous QA. Seamless handoff. We launch your site and stick around to make sure everything runs perfectly.</p>
                 </div>
             </div>
         </div>
@@ -1305,66 +917,58 @@
     <!-- SERVICES -->
     <section class="services section-gap" id="services">
         <div class="container">
-            <div class="services__header animate-on-scroll">
-                <span class="mono-label">What we do</span>
+            <div class="section-header animate-on-scroll">
                 <h2>Built for high performance</h2>
                 <p>Everything your brand needs to stand out online and convert at scale.</p>
             </div>
-            <div class="services__bento">
-                <div class="service-card service-card--featured animate-on-scroll">
-                    <div>
-                        <div class="service-card__icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-                        </div>
-                        <h3>Web Design &amp; Development</h3>
-                        <p>Custom websites built from scratch. Responsive, fast, and designed to convert. From landing pages to complex platforms.</p>
-                        <div class="service-card__tags">
-                            <span class="service-card__tag">React</span>
-                            <span class="service-card__tag">Next.js</span>
-                            <span class="service-card__tag">Webflow</span>
-                            <span class="service-card__tag">WordPress</span>
-                            <span class="service-card__tag">Headless CMS</span>
-                        </div>
-                    </div>
-                    <div class="service-card__visual">
-                        <div class="mock-browser__bar">
-                            <span class="mock-browser__dot"></span>
-                            <span class="mock-browser__dot"></span>
-                            <span class="mock-browser__dot"></span>
-                            <span class="mock-browser__url">yoursite.com</span>
-                        </div>
-                        <div class="mock-browser__content">
-                            <div class="mock-block mock-block--wide" style="height:40px"></div>
-                            <div class="mock-block mock-block--accent mock-block--tall"></div>
-                            <div class="mock-block"></div>
-                            <div class="mock-block"></div>
-                            <div class="mock-block mock-block--wide" style="height:32px"></div>
-                        </div>
-                    </div>
+            <div class="services__tabs animate-on-scroll" id="serviceTabs">
+                <button class="services__tab active" data-tab="web">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                    Web design
+                </button>
+                <button class="services__tab" data-tab="brand">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>
+                    Brand identity
+                </button>
+                <button class="services__tab" data-tab="seo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                    SEO &amp; Performance
+                </button>
+                <button class="services__tab" data-tab="dev">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    Development
+                </button>
+            </div>
+            <div class="services__panel active" data-panel="web">
+                <div class="services__panel-image" style="background: linear-gradient(135deg, #e8e4dc, #d8d4cc)"></div>
+                <div class="services__panel-text">
+                    <span class="services__panel-chip">Web design</span>
+                    <h3>Custom websites that convert visitors into customers</h3>
+                    <p>From landing pages to complex platforms, we design and build responsive, fast websites tailored to your brand and optimized for results.</p>
                 </div>
-                <div class="service-card animate-on-scroll">
-                    <div class="service-card__icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>
-                    </div>
-                    <h3>Brand Identity</h3>
-                    <p>Logo, color systems, typography, and guidelines that give your brand a distinct and memorable presence.</p>
-                    <div class="service-card__tags">
-                        <span class="service-card__tag">Logo design</span>
-                        <span class="service-card__tag">Brand book</span>
-                        <span class="service-card__tag">Visual identity</span>
-                    </div>
+            </div>
+            <div class="services__panel" data-panel="brand">
+                <div class="services__panel-image" style="background: linear-gradient(135deg, #dde4e8, #ccd4d8)"></div>
+                <div class="services__panel-text">
+                    <span class="services__panel-chip">Brand identity</span>
+                    <h3>A distinct presence that makes your brand unforgettable</h3>
+                    <p>Logo, color systems, typography, and comprehensive brand guidelines that give your brand a memorable and cohesive visual identity.</p>
                 </div>
-                <div class="service-card animate-on-scroll">
-                    <div class="service-card__icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-                    </div>
-                    <h3>SEO &amp; Performance</h3>
-                    <p>Technical SEO, Core Web Vitals optimization, and content strategy that gets your site found and keeps it fast.</p>
-                    <div class="service-card__tags">
-                        <span class="service-card__tag">Technical SEO</span>
-                        <span class="service-card__tag">Speed audit</span>
-                        <span class="service-card__tag">Analytics</span>
-                    </div>
+            </div>
+            <div class="services__panel" data-panel="seo">
+                <div class="services__panel-image" style="background: linear-gradient(135deg, #e4e0d4, #d4d0c4)"></div>
+                <div class="services__panel-text">
+                    <span class="services__panel-chip">SEO &amp; Performance</span>
+                    <h3>Get found, load fast, and rank higher</h3>
+                    <p>Technical SEO, Core Web Vitals optimization, and content strategy that drives organic traffic and keeps your site performing at its best.</p>
+                </div>
+            </div>
+            <div class="services__panel" data-panel="dev">
+                <div class="services__panel-image" style="background: linear-gradient(135deg, #dce0e8, #c8ccd8)"></div>
+                <div class="services__panel-text">
+                    <span class="services__panel-chip">Development</span>
+                    <h3>Clean, performant code built to scale</h3>
+                    <p>React, Next.js, WordPress, headless CMS. We choose the right stack for your needs and deliver production-ready code with rigorous QA.</p>
                 </div>
             </div>
         </div>
@@ -1373,55 +977,55 @@
     <!-- PORTFOLIO -->
     <section class="portfolio section-gap" id="work">
         <div class="container">
-            <div class="portfolio__header animate-on-scroll">
+            <div class="section-header animate-on-scroll">
                 <span class="mono-label">Selected work</span>
                 <h2>Success stories</h2>
             </div>
             <div class="portfolio__grid">
-                <div class="portfolio__card animate-on-scroll">
-                    <div class="portfolio__card-image"><div class="mock-el"></div><div class="mock-el"></div></div>
+                <div class="portfolio__card hover-lift animate-on-scroll">
+                    <div class="portfolio__card-image"></div>
                     <div class="portfolio__card-body">
                         <div class="portfolio__card-category">E-commerce</div>
                         <h3>Lumina Skincare</h3>
                         <p>Complete rebrand and Shopify build for a DTC skincare startup.</p>
                         <div class="portfolio__card-stat">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                            <svg width="12" height="12"><use href="#icon-chevron-up"/></svg>
                             +180% conversions
                         </div>
                     </div>
                 </div>
-                <div class="portfolio__card animate-on-scroll">
-                    <div class="portfolio__card-image"><div class="mock-el"></div><div class="mock-el"></div></div>
+                <div class="portfolio__card hover-lift animate-on-scroll">
+                    <div class="portfolio__card-image"></div>
                     <div class="portfolio__card-body">
                         <div class="portfolio__card-category">SaaS</div>
                         <h3>Vaultline</h3>
                         <p>Marketing site and docs portal for a fintech security platform.</p>
                         <div class="portfolio__card-stat">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                            <svg width="12" height="12"><use href="#icon-chevron-up"/></svg>
                             +240% demo requests
                         </div>
                     </div>
                 </div>
-                <div class="portfolio__card animate-on-scroll">
-                    <div class="portfolio__card-image"><div class="mock-el"></div><div class="mock-el"></div></div>
+                <div class="portfolio__card hover-lift animate-on-scroll">
+                    <div class="portfolio__card-image"></div>
                     <div class="portfolio__card-body">
                         <div class="portfolio__card-category">Agency</div>
                         <h3>Northpeak Studio</h3>
                         <p>Portfolio and booking system for a creative production house.</p>
                         <div class="portfolio__card-stat">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                            <svg width="12" height="12"><use href="#icon-chevron-up"/></svg>
                             +90% inbound leads
                         </div>
                     </div>
                 </div>
-                <div class="portfolio__card animate-on-scroll">
-                    <div class="portfolio__card-image"><div class="mock-el"></div><div class="mock-el"></div></div>
+                <div class="portfolio__card hover-lift animate-on-scroll">
+                    <div class="portfolio__card-image"></div>
                     <div class="portfolio__card-body">
                         <div class="portfolio__card-category">Health &amp; Wellness</div>
                         <h3>MindPath</h3>
                         <p>Appointment platform and content hub for a therapy network.</p>
                         <div class="portfolio__card-stat">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                            <svg width="12" height="12"><use href="#icon-chevron-up"/></svg>
                             +320% bookings
                         </div>
                     </div>
@@ -1430,84 +1034,23 @@
         </div>
     </section>
 
-    <!-- PRICING -->
-    <section class="pricing section-gap" id="pricing">
-        <div class="container">
-            <div class="pricing__header animate-on-scroll">
-                <span class="mono-label">Transparent pricing</span>
-                <h2>Flexible plans</h2>
-                <p>Clear pricing with no surprises. Pick the scope that fits your goals.</p>
-            </div>
-            <div class="pricing__grid">
-                <div class="pricing__card animate-on-scroll">
-                    <div class="pricing__tier">Starter</div>
-                    <div class="pricing__desc">For early-stage brands that need a strong online presence fast.</div>
-                    <div class="pricing__price">
-                        <span class="pricing__amount">$2.5k</span>
-                        <span class="pricing__period">one-time</span>
-                    </div>
-                    <ul class="pricing__features">
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Up to 5 pages</li>
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Mobile responsive</li>
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Basic SEO setup</li>
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>CMS integration</li>
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>2 rounds of revisions</li>
-                    </ul>
-                    <a href="#contact" class="pricing__cta pricing__cta--outline">Get started</a>
-                </div>
-                <div class="pricing__card pricing__card--popular animate-on-scroll">
-                    <div class="pricing__badge">Most popular</div>
-                    <div class="pricing__tier">Growth</div>
-                    <div class="pricing__desc">For scaling brands that need a site built to convert and grow.</div>
-                    <div class="pricing__price">
-                        <span class="pricing__amount">$6k</span>
-                        <span class="pricing__period">one-time</span>
-                    </div>
-                    <ul class="pricing__features">
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Up to 12 pages</li>
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Custom animations</li>
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Advanced SEO strategy</li>
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Performance optimization</li>
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Analytics dashboard</li>
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>30 days post-launch support</li>
-                    </ul>
-                    <a href="#contact" class="pricing__cta pricing__cta--light">Get started</a>
-                </div>
-                <div class="pricing__card animate-on-scroll">
-                    <div class="pricing__tier">Enterprise</div>
-                    <div class="pricing__desc">For established brands that need a full-scale digital partner.</div>
-                    <div class="pricing__price">
-                        <span class="pricing__amount">Custom</span>
-                    </div>
-                    <ul class="pricing__features">
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Unlimited pages</li>
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Full brand identity</li>
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Custom integrations</li>
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Dedicated project manager</li>
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ongoing retainer support</li>
-                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Priority SLA</li>
-                    </ul>
-                    <a href="#contact" class="pricing__cta pricing__cta--outline">Schedule a call</a>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- TESTIMONIALS -->
     <section class="testimonials section-gap">
         <div class="container">
-            <div class="testimonials__header animate-on-scroll">
+            <div class="section-header animate-on-scroll">
                 <span class="mono-label">What clients say</span>
                 <h2>Trusted by founders<br>who build fast</h2>
             </div>
             <div class="testimonials__grid">
-                <div class="testimonial-card animate-on-scroll">
+                <div class="testimonial-card hover-lift animate-on-scroll">
                     <div class="testimonial-card__stars">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
                     </div>
                     <p class="testimonial-card__text">"WeWeb transformed our online presence. Our conversion rate tripled within the first month of launching the new site."</p>
                     <div class="testimonial-card__author">
@@ -1518,13 +1061,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card animate-on-scroll">
+                <div class="testimonial-card hover-lift animate-on-scroll">
                     <div class="testimonial-card__stars">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
                     </div>
                     <p class="testimonial-card__text">"They didn't just build us a website. They understood our product deeply and designed an experience that actually sells."</p>
                     <div class="testimonial-card__author">
@@ -1535,13 +1078,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card animate-on-scroll">
+                <div class="testimonial-card hover-lift animate-on-scroll">
                     <div class="testimonial-card__stars">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
                     </div>
                     <p class="testimonial-card__text">"Fastest turnaround I've ever seen. From kickoff to live site in 3 weeks, and the quality blew us away."</p>
                     <div class="testimonial-card__author">
@@ -1559,29 +1102,29 @@
     <!-- FAQ -->
     <section class="faq section-gap" id="faq">
         <div class="container">
-            <div class="faq__header animate-on-scroll">
+            <div class="section-header animate-on-scroll">
                 <span class="mono-label">Frequently asked</span>
                 <h2>Your questions, answered</h2>
             </div>
             <div class="faq__list">
                 <div class="faq__item animate-on-scroll">
-                    <button class="faq__question">What types of businesses do you work with?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                    <button class="faq__question">What types of businesses do you work with?<svg width="18" height="18"><use href="#icon-plus"/></svg></button>
                     <div class="faq__answer"><div class="faq__answer-inner">We work with startups, scale-ups, and established brands across SaaS, e-commerce, health, finance, and creative industries. If you have ambition and need a website that performs, we're a good fit.</div></div>
                 </div>
                 <div class="faq__item animate-on-scroll">
-                    <button class="faq__question">How long does a typical project take?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                    <button class="faq__question">How long does a typical project take?<svg width="18" height="18"><use href="#icon-plus"/></svg></button>
                     <div class="faq__answer"><div class="faq__answer-inner">Most projects launch within 3 to 6 weeks depending on scope. Starter projects can go live in as little as 2 weeks. We'll give you a clear timeline during our discovery call.</div></div>
                 </div>
                 <div class="faq__item animate-on-scroll">
-                    <button class="faq__question">Do you offer ongoing support after launch?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                    <button class="faq__question">Do you offer ongoing support after launch?<svg width="18" height="18"><use href="#icon-plus"/></svg></button>
                     <div class="faq__answer"><div class="faq__answer-inner">Yes. Every plan includes post-launch support. Growth plans get 30 days, and Enterprise clients get ongoing retainer support. We also offer standalone maintenance packages.</div></div>
                 </div>
                 <div class="faq__item animate-on-scroll">
-                    <button class="faq__question">Can you work with our existing brand guidelines?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                    <button class="faq__question">Can you work with our existing brand guidelines?<svg width="18" height="18"><use href="#icon-plus"/></svg></button>
                     <div class="faq__answer"><div class="faq__answer-inner">Absolutely. We love working within established brand systems. Send us your brand book and we'll build something that feels native to your identity while pushing the design forward.</div></div>
                 </div>
                 <div class="faq__item animate-on-scroll">
-                    <button class="faq__question">What does the onboarding process look like?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+                    <button class="faq__question">What does the onboarding process look like?<svg width="18" height="18"><use href="#icon-plus"/></svg></button>
                     <div class="faq__answer"><div class="faq__answer-inner">It starts with a free discovery call where we learn about your goals. Then we send a proposal with scope, timeline, and pricing. Once approved, we kick off with a strategy session and get moving immediately.</div></div>
                 </div>
             </div>
@@ -1595,8 +1138,8 @@
                 <h2>Start your journey</h2>
                 <p>Book a free discovery call. No pressure, no pitch decks. Just a conversation about what your brand needs.</p>
                 <a href="#" class="btn-cta">
-                    Book a call
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    Contact us
+                    <svg width="16" height="16"><use href="#icon-arrow"/></svg>
                 </a>
             </div>
         </div>
@@ -1616,8 +1159,7 @@
                         <li><a href="#process">Process</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#work">Work</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                    </ul>
+                        </ul>
                 </div>
                 <div class="footer__col">
                     <h4>Company</h4>
@@ -1653,30 +1195,48 @@
         (function() {
             const track = document.getElementById('brandsTrack');
             const items = Array.from(track.children);
-            // Clone items 3x so there's always enough to fill the view
             for (let i = 0; i < 3; i++) {
                 items.forEach(item => track.appendChild(item.cloneNode(true)));
             }
             let pos = 0;
-            const speed = 0.5; // px per frame
+            let rafId;
+            const speed = 0.5;
+            const setWidth = items.reduce((sum, el) => sum + el.offsetWidth + 64, 0);
             function tick() {
                 pos += speed;
-                // Width of one original set of items
-                const setWidth = items.reduce((sum, el) => sum + el.offsetWidth + 64, 0);
                 if (pos >= setWidth) pos -= setWidth;
                 track.style.transform = 'translate3d(' + (-pos) + 'px, 0, 0)';
-                requestAnimationFrame(tick);
+                rafId = requestAnimationFrame(tick);
             }
-            requestAnimationFrame(tick);
+            rafId = requestAnimationFrame(tick);
+            document.addEventListener('visibilitychange', () => {
+                cancelAnimationFrame(rafId);
+                if (!document.hidden) { rafId = requestAnimationFrame(tick); }
+            });
         })();
 
-        // Scroll animations
+        // Service tabs
+        const allTabs = document.querySelectorAll('.services__tab');
+        const allPanels = document.querySelectorAll('.services__panel');
+        allTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                allTabs.forEach(t => t.classList.remove('active'));
+                allPanels.forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                document.querySelector('[data-panel="' + tab.dataset.tab + '"]').classList.add('active');
+            });
+        });
+
+        // Scroll animations - pre-build sibling index map
+        const siblingIndexMap = new Map();
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            const siblings = Array.from(el.parentElement.querySelectorAll('.animate-on-scroll'));
+            siblingIndexMap.set(el, siblings.indexOf(el));
+        });
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const parent = entry.target.parentElement;
-                    const siblings = Array.from(parent.querySelectorAll('.animate-on-scroll'));
-                    const index = siblings.indexOf(entry.target);
+                    const index = siblingIndexMap.get(entry.target) || 0;
                     entry.target.style.transitionDelay = `${index * 0.08}s`;
                     entry.target.classList.add('visible');
                     observer.unobserve(entry.target);
@@ -1697,10 +1257,13 @@
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
-                const target = document.querySelector(anchor.getAttribute('href'));
-                if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-            });
+            const target = document.querySelector(anchor.getAttribute('href'));
+            if (target) {
+                anchor.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
         });
     </script>
 </body>
