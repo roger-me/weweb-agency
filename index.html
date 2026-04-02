@@ -6,6 +6,13 @@
     <title>WeWeb Agency - We Build Websites That Drive Growth</title>
     <meta name="description" content="WeWeb Agency partners with ambitious brands to design and develop high-performance websites that convert visitors into customers.">
 
+    <!-- OG / Social -->
+    <meta property="og:title" content="WeWeb Agency - We Build Websites That Drive Growth">
+    <meta property="og:description" content="WeWeb Agency partners with ambitious brands to design and develop high-performance websites that convert visitors into customers.">
+    <meta property="og:image" content="https://weweb-agency.vercel.app/logo-black.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
     <!-- Fonts -->
     <link rel="icon" href="logo-white.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -335,22 +342,11 @@
             animation: fadeUp 0.8s var(--ease-out) 0.15s both;
         }
         .hero__card {
-            background: var(--bg-white);
+            background: url('hero-2.png') center/cover no-repeat;
             border-radius: 20px;
             box-shadow: var(--shadow-xl);
             width: 100%;
             aspect-ratio: 1 / 0.9;
-        }
-        .hero__stats-card {
-            position: absolute;
-            bottom: -20px;
-            right: -30px;
-            background: var(--bg-white);
-            border-radius: 16px;
-            box-shadow: var(--shadow-xl);
-            width: 260px;
-            aspect-ratio: 1 / 0.85;
-            animation: fadeUp 0.8s var(--ease-out) 0.4s both;
         }
 
         /* ========================================
@@ -381,11 +377,15 @@
             right: 0;
             background: linear-gradient(270deg, var(--bg), transparent);
         }
+        @keyframes scroll-brands {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
         .brands__track {
             display: flex;
             align-items: center;
             width: max-content;
-            will-change: transform;
+            animation: scroll-brands 20s linear infinite;
         }
         .brands__item {
             display: flex;
@@ -418,7 +418,7 @@
             overflow: hidden;
         }
         .process__screenshot-inner {
-            background: var(--bg-white);
+            background: url('hero-3.png') center 40%/120% no-repeat;
             border: 1px solid var(--border);
             border-radius: 20px;
             width: 100%;
@@ -956,7 +956,6 @@
         @media (max-width: 1024px) {
             .hero__grid { display: flex; flex-direction: column-reverse; gap: 32px; }
             .hero__visual { max-width: 500px; }
-            .hero__stats-card { right: 0; }
             .services__tabs { flex-wrap: wrap; }
             .services__tab { flex: auto; font-size: 13px; padding: 10px 14px; }
             .services__panel { grid-template-columns: 1fr; }
@@ -981,14 +980,6 @@
             .hero__card {
                 width: 100%;
                 aspect-ratio: 1 / 0.7;
-                border: 1px solid var(--border);
-            }
-            .hero__stats-card {
-                position: absolute;
-                bottom: -20px;
-                right: -10px;
-                width: 45%;
-                aspect-ratio: 1 / 0.85;
                 border: 1px solid var(--border);
             }
             .process__grid { grid-template-columns: 1fr; }
@@ -1082,7 +1073,6 @@
                 </div>
                 <div class="hero__visual">
                     <div class="hero__card"></div>
-                    <div class="hero__stats-card"></div>
                 </div>
             </div>
         </div>
@@ -1411,28 +1401,11 @@
     </footer>
 
     <script>
-        // Brands carousel - JS driven infinite loop
+        // Brands carousel - duplicate items for seamless CSS loop
         (function() {
             const track = document.getElementById('brandsTrack');
             const items = Array.from(track.children);
-            for (let i = 0; i < 3; i++) {
-                items.forEach(item => track.appendChild(item.cloneNode(true)));
-            }
-            let pos = 0;
-            let rafId;
-            const speed = 0.5;
-            const setWidth = items.reduce((sum, el) => sum + el.offsetWidth + 64, 0);
-            function tick() {
-                pos += speed;
-                if (pos >= setWidth) pos -= setWidth;
-                track.style.transform = 'translate3d(' + (-pos) + 'px, 0, 0)';
-                rafId = requestAnimationFrame(tick);
-            }
-            rafId = requestAnimationFrame(tick);
-            document.addEventListener('visibilitychange', () => {
-                cancelAnimationFrame(rafId);
-                if (!document.hidden) { rafId = requestAnimationFrame(tick); }
-            });
+            items.forEach(item => track.appendChild(item.cloneNode(true)));
         })();
 
         // Mobile nav toggle
