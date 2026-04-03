@@ -292,7 +292,22 @@
             max-width: 440px;
             line-height: 1.7;
             font-weight: 300;
+            margin-bottom: 20px;
+        }
+        .hero__stats {
+            font-size: 14px;
+            color: var(--text-secondary);
+            max-width: 440px;
+            line-height: 1.7;
+            font-weight: 300;
             margin-bottom: 36px;
+        }
+        .ph-icon {
+            width: 14px;
+            height: 14px;
+            display: inline-block;
+            vertical-align: -1px;
+            color: inherit;
         }
         .hero__buttons {
             display: flex;
@@ -609,6 +624,17 @@
             border-radius: 100px;
             margin-bottom: 12px;
         }
+        .portfolio__card-result {
+            display: inline-flex;
+            padding: 6px 14px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.04em;
+            color: var(--text-light);
+            background: var(--bg-dark);
+            border-radius: 100px;
+            margin-top: 10px;
+        }
         .portfolio__card h3 {
             font-family: var(--font-body);
             font-size: 22px;
@@ -675,6 +701,19 @@
         }
         .testimonial-card__name { font-size: 14px; font-weight: 500; }
         .testimonial-card__role { font-size: 12px; color: var(--text-tertiary); font-weight: 300; }
+        .testimonials__footer {
+            text-align: center;
+            margin-top: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .testimonials__trust {
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
 
         /* ========================================
            FAQ
@@ -1061,14 +1100,15 @@
         <div class="container">
             <div class="hero__grid">
                 <div class="hero__text">
-                    <h1 data-i18n="hero.title">Strategy and growth for modern brands</h1>
-                    <p class="hero__sub" data-i18n="hero.sub">WeWeb partners with startups to streamline operations, elevate team performance, and build a foundation for lasting success.</p>
+                    <h1 data-i18n="hero.title">Creamos webs para negocios que quieren vender m&aacute;s</h1>
+                    <p class="hero__sub" data-i18n="hero.sub">Nos encargamos de todo: dise&ntilde;o, desarrollo y estrategia para que tu web venda.</p>
+                    <p class="hero__stats"><svg class="ph-icon" viewBox="0 0 256 256"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,91l59.46-5.15,23.21-55.36a16.4,16.4,0,0,1,28.5,0l23.21,55.36L224.92,91a16.46,16.46,0,0,1,9.37,23.85Z" fill="currentColor"/></svg> <span data-i18n="hero.stat1">+50 webs entregados</span> <svg class="ph-icon" viewBox="0 0 256 256"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,91l59.46-5.15,23.21-55.36a16.4,16.4,0,0,1,28.5,0l23.21,55.36L224.92,91a16.46,16.46,0,0,1,9.37,23.85Z" fill="currentColor"/></svg> <span data-i18n="hero.stat2">Clientes en Barcelona y toda Espa&ntilde;a</span> <svg class="ph-icon" viewBox="0 0 256 256"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,91l59.46-5.15,23.21-55.36a16.4,16.4,0,0,1,28.5,0l23.21,55.36L224.92,91a16.46,16.46,0,0,1,9.37,23.85Z" fill="currentColor"/></svg> <span data-i18n="hero.stat3">Proceso f&aacute;cil y sin complicaciones</span></p>
                     <div class="hero__buttons">
                         <a href="#contact" class="btn-primary">
-                            <span data-i18n="hero.cta">Get started</span>
+                            <span data-i18n="hero.cta">Quiero una web</span>
                             <span class="icon-circle"><svg width="14" height="14"><use href="#icon-arrow"/></svg></span>
                         </a>
-                        <a href="#contact" class="btn-secondary" data-i18n="nav.contact">Contact us</a>
+                        <a href="#contact" class="btn-secondary" data-i18n="hero.secondary">Programar llamada</a>
                     </div>
                 </div>
                 <div class="hero__visual">
@@ -1100,22 +1140,22 @@
                 <div class="process__card hover-lift animate-on-scroll">
                     <div class="process__card-image"><div class="process__card-image-inner"></div></div>
                     <div class="process__card-bottom">
-                        <h3 data-i18n="process.1.title">Easy setup</h3>
-                        <p data-i18n="process.1.desc">Create your workspace and invite your team. Get everything ready in minutes.</p>
+                        <h3 data-i18n="process.1.title">Estrategia</h3>
+                        <p data-i18n="process.1.desc">Definimos una web pensada para vender. Analizamos tu negocio, tu cliente y estructuramos la web para convertir visitas en oportunidades reales.</p>
                     </div>
                 </div>
                 <div class="process__card hover-lift animate-on-scroll">
                     <div class="process__card-image"><div class="process__card-image-inner"></div></div>
                     <div class="process__card-bottom">
-                        <h3 data-i18n="process.2.title">Collaborate</h3>
-                        <p data-i18n="process.2.desc">Assign tasks and keep communication clear. Everyone stays aligned.</p>
+                        <h3 data-i18n="process.2.title">Dise&ntilde;o y desarrollo</h3>
+                        <p data-i18n="process.2.desc">Creamos una web clara, r&aacute;pida y enfocada en acci&oacute;n. Dise&ntilde;amos una experiencia de usuario ideal para conseguir el objetivo del sitio.</p>
                     </div>
                 </div>
                 <div class="process__card hover-lift animate-on-scroll">
                     <div class="process__card-image"><div class="process__card-image-inner"></div></div>
                     <div class="process__card-bottom">
-                        <h3 data-i18n="process.3.title">Track growth</h3>
-                        <p data-i18n="process.3.desc">Use dashboards to monitor progress, trends, and what matters most.</p>
+                        <h3 data-i18n="process.3.title">Optimizaci&oacute;n</h3>
+                        <p data-i18n="process.3.desc">Convertimos visitas en clientes. Trabajamos el SEO de la p&aacute;gina para que tu web no solo se vea bien, sino que genere resultados.</p>
                     </div>
                 </div>
             </div>
@@ -1126,57 +1166,57 @@
     <section class="services section-gap" id="services">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <h2 data-i18n="services.title">Built for high performance</h2>
-                <p data-i18n="services.sub">Everything your brand needs to stand out online and convert at scale.</p>
+                <h2 data-i18n="services.title">No solo dise&ntilde;amos webs "bonitas".</h2>
+                <p data-i18n="services.sub">Dise&ntilde;amos webs que convencen, generan confianza y convierten visitas en clientes.</p>
             </div>
             <div class="services__tabs animate-on-scroll" id="serviceTabs">
                 <button class="services__tab active" data-tab="web">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-                    <span data-i18n="services.tab.web">Web design</span>
+                    <span data-i18n="services.tab.web">Dise&ntilde;o web a medida</span>
                 </button>
                 <button class="services__tab" data-tab="brand">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>
-                    <span data-i18n="services.tab.brand">Brand identity</span>
+                    <span data-i18n="services.tab.brand">Copywriting comercial</span>
                 </button>
                 <button class="services__tab" data-tab="seo">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-                    <span data-i18n="services.tab.seo">SEO &amp; Performance</span>
+                    <span data-i18n="services.tab.seo">SEO y rendimiento</span>
                 </button>
                 <button class="services__tab" data-tab="dev">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                    <span data-i18n="services.tab.dev">Development</span>
+                    <span data-i18n="services.tab.dev">Desarrollo sin l&iacute;mites</span>
                 </button>
             </div>
             <div class="services__panel active" data-panel="web">
                 <div class="services__panel-image" style="background: linear-gradient(135deg, #e8e4dc, #d8d4cc)"></div>
                 <div class="services__panel-text">
-                    <span class="services__panel-chip" data-i18n="services.panel.web.chip">Web design</span>
-                    <h3 data-i18n="services.panel.web.title">Custom websites that convert visitors into customers</h3>
-                    <p data-i18n="services.panel.web.desc">From landing pages to complex platforms, we design and build responsive, fast websites tailored to your brand and optimized for results.</p>
+                    <span class="services__panel-chip" data-i18n="services.panel.web.chip">Dise&ntilde;o web a medida</span>
+                    <h3 data-i18n="services.panel.web.title">Webs a medida pensadas para vender</h3>
+                    <p data-i18n="services.panel.web.desc">Dise&ntilde;amos desde p&aacute;ginas corporativas hasta tiendas online, siempre con un objetivo claro: convertir visitas en clientes. Cada web est&aacute; adaptada a tu negocio, tu cliente y tus objetivos.</p>
                 </div>
             </div>
             <div class="services__panel" data-panel="brand">
                 <div class="services__panel-image" style="background: linear-gradient(135deg, #dde4e8, #ccd4d8)"></div>
                 <div class="services__panel-text">
-                    <span class="services__panel-chip" data-i18n="services.panel.brand.chip">Brand identity</span>
-                    <h3 data-i18n="services.panel.brand.title">A distinct presence that makes your brand unforgettable</h3>
-                    <p data-i18n="services.panel.brand.desc">Logo, color systems, typography, and comprehensive brand guidelines that give your brand a memorable and cohesive visual identity.</p>
+                    <span class="services__panel-chip" data-i18n="services.panel.brand.chip">Copywriting comercial</span>
+                    <h3 data-i18n="services.panel.brand.title">Textos que convierten visitas en clientes</h3>
+                    <p data-i18n="services.panel.brand.desc">No basta con una web bonita. Escribimos cada mensaje de forma estrat&eacute;gica para captar atenci&oacute;n, generar confianza y guiar al usuario hacia la acci&oacute;n.</p>
                 </div>
             </div>
             <div class="services__panel" data-panel="seo">
                 <div class="services__panel-image" style="background: linear-gradient(135deg, #e4e0d4, #d4d0c4)"></div>
                 <div class="services__panel-text">
-                    <span class="services__panel-chip" data-i18n="services.panel.seo.chip">SEO &amp; Performance</span>
-                    <h3 data-i18n="services.panel.seo.title">Get found, load fast, and rank higher</h3>
-                    <p data-i18n="services.panel.seo.desc">Technical SEO, Core Web Vitals optimization, and content strategy that drives organic traffic and keeps your site performing at its best.</p>
+                    <span class="services__panel-chip" data-i18n="services.panel.seo.chip">SEO y rendimiento</span>
+                    <h3 data-i18n="services.panel.seo.title">Dise&ntilde;adas para posicionar</h3>
+                    <p data-i18n="services.panel.seo.desc">Desde el primer momento, tu web se construye con una base SEO s&oacute;lida para que puedas destacar por encima de tu competencia, atraer tr&aacute;fico y convertirlo en clientes.</p>
                 </div>
             </div>
             <div class="services__panel" data-panel="dev">
                 <div class="services__panel-image" style="background: linear-gradient(135deg, #dce0e8, #c8ccd8)"></div>
                 <div class="services__panel-text">
-                    <span class="services__panel-chip" data-i18n="services.panel.dev.chip">Development</span>
-                    <h3 data-i18n="services.panel.dev.title">Clean, performant code built to scale</h3>
-                    <p data-i18n="services.panel.dev.desc">React, Next.js, WordPress, headless CMS. We choose the right stack for your needs and deliver production-ready code with rigorous QA.</p>
+                    <span class="services__panel-chip" data-i18n="services.panel.dev.chip">Desarrollo sin l&iacute;mites</span>
+                    <h3 data-i18n="services.panel.dev.title">Creamos lo que tu negocio necesita</h3>
+                    <p data-i18n="services.panel.dev.desc">Desde webs sencillas hasta plataformas complejas. Nos adaptamos a cualquier necesidad para que tu web no tenga l&iacute;mites a medida que tu negocio crece.</p>
                 </div>
             </div>
         </div>
@@ -1186,8 +1226,8 @@
     <section class="portfolio section-gap" id="work">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <span class="mono-label" data-i18n="portfolio.label">Selected work</span>
-                <h2 data-i18n="portfolio.title">Success stories</h2>
+                <span class="mono-label" data-i18n="portfolio.label">Resultados reales</span>
+                <h2 data-i18n="portfolio.title">Webs que ya est&aacute;n generando resultados</h2>
             </div>
             <div class="portfolio__grid">
                 <a href="https://nanaweddings.com/" target="_blank" rel="noopener" class="portfolio__card hover-lift animate-on-scroll">
@@ -1195,23 +1235,26 @@
                     <div class="portfolio__card-body">
                         <div class="portfolio__card-category" data-i18n="portfolio.nana.category">Wedding Planner</div>
                         <h3>Nana Weddings</h3>
-                        <p data-i18n="portfolio.nana.desc">Editorial website for a wedding planner and content creator based in Spain.</p>
+                        <p data-i18n="portfolio.nana.desc">Web dise&ntilde;ada para posicionar su marca y generar nuevas oportunidades de clientes de forma constante.</p>
+                        <div class="portfolio__card-result" data-i18n="portfolio.nana.result">+35% m&aacute;s solicitudes</div>
                     </div>
                 </a>
                 <a href="https://studioapp.co/" target="_blank" rel="noopener" class="portfolio__card hover-lift animate-on-scroll">
                     <div class="portfolio__card-image"><img src="studioapp.png" alt="StudioApp"></div>
                     <div class="portfolio__card-body">
                         <div class="portfolio__card-category" data-i18n="portfolio.studio.category">SaaS Landing</div>
-                        <h3>StudioApp</h3>
-                        <p data-i18n="portfolio.studio.desc">SaaS platform and landing page for tattoo and piercing studio management.</p>
+                        <h3>Studioapp</h3>
+                        <p data-i18n="portfolio.studio.desc">Landing enfocada en explicar el producto y convertir visitas en registros de nuevos usuarios.</p>
+                        <div class="portfolio__card-result" data-i18n="portfolio.studio.result">+220 leads en 2025 vs 2024</div>
                     </div>
                 </a>
-                <a href="https://www.vilaseo.com/" target="_blank" rel="noopener" class="portfolio__card hover-lift animate-on-scroll">
-                    <div class="portfolio__card-image"><img src="vilaseo.png" alt="Vilaseo"></div>
+                <a href="https://dev.laserlight.es/" target="_blank" rel="noopener" class="portfolio__card hover-lift animate-on-scroll">
+                    <div class="portfolio__card-image"><img src="laserlight.png" alt="Laserlight"></div>
                     <div class="portfolio__card-body">
-                        <div class="portfolio__card-category" data-i18n="portfolio.vilaseo.category">Marketing Agency</div>
-                        <h3>Vilaseo</h3>
-                        <p data-i18n="portfolio.vilaseo.desc">Digital marketing agency website focused on KOLs and influencer campaigns.</p>
+                        <div class="portfolio__card-category" data-i18n="portfolio.laser.category">E-Commerce</div>
+                        <h3>Laserlight</h3>
+                        <p data-i18n="portfolio.laser.desc">Web en desarrollo.</p>
+                        <div class="portfolio__card-result" data-i18n="portfolio.laser.result">+28% de conversi&oacute;n vs anterior web</div>
                     </div>
                 </a>
                 <a href="https://tattooverseconvention.com/" target="_blank" rel="noopener" class="portfolio__card hover-lift animate-on-scroll">
@@ -1219,7 +1262,8 @@
                     <div class="portfolio__card-body">
                         <div class="portfolio__card-category" data-i18n="portfolio.tattoo.category">Events Website</div>
                         <h3>Tattooverse</h3>
-                        <p data-i18n="portfolio.tattoo.desc">Convention platform for Spain's biggest tattoo events with ticketing and artist showcases.</p>
+                        <p data-i18n="portfolio.tattoo.desc">Plataforma enfocada en atraer tr&aacute;fico, vender entradas y dar visibilidad a artistas y eventos.</p>
+                        <div class="portfolio__card-result" data-i18n="portfolio.tattoo.result">+10.000 usuarios activos durante eventos</div>
                     </div>
                 </a>
             </div>
@@ -1232,8 +1276,8 @@
     <section class="testimonials section-gap">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <span class="mono-label" data-i18n="testimonials.label">What clients say</span>
-                <h2 data-i18n="testimonials.title">Trusted by founders<br>who build fast</h2>
+                <span class="mono-label" data-i18n="testimonials.label">Testimonios</span>
+                <h2 data-i18n="testimonials.title">As&iacute; ha cambiado su negocio despu&eacute;s de lanzar su web</h2>
             </div>
             <div class="testimonials__grid">
                 <div class="testimonial-card hover-lift animate-on-scroll">
@@ -1244,7 +1288,7 @@
                         <svg width="15" height="15"><use href="#icon-star"/></svg>
                         <svg width="15" height="15"><use href="#icon-star"/></svg>
                     </div>
-                    <p class="testimonial-card__text" data-i18n="testimonials.1.quote">"Working with WeWeb was a game changer for VilaSEO. They nailed our vision from day one and delivered a site that truly represents our brand."</p>
+                    <p class="testimonial-card__text" data-i18n="testimonials.1.quote">"Desde el lanzamiento, hemos empezado a recibir solicitudes de clientes cada semana. La web refleja perfectamente nuestra marca y convierte mucho mejor."</p>
                     <div class="testimonial-card__author">
                         <div class="testimonial-card__avatar"><img src="roger-martinez.png" alt="Roger Martínez"></div>
                         <div>
@@ -1261,7 +1305,7 @@
                         <svg width="15" height="15"><use href="#icon-star"/></svg>
                         <svg width="15" height="15"><use href="#icon-star"/></svg>
                     </div>
-                    <p class="testimonial-card__text" data-i18n="testimonials.2.quote">"They didn't just build us a website. They understood our product deeply and designed an experience that actually sells."</p>
+                    <p class="testimonial-card__text" data-i18n="testimonials.2.quote">"Consiguieron explicar nuestro producto de forma clara y desde el lanzamiento hemos aumentado los registros de usuarios."</p>
                     <div class="testimonial-card__author">
                         <div class="testimonial-card__avatar testimonial-card__avatar--2">M</div>
                         <div>
@@ -1278,7 +1322,7 @@
                         <svg width="15" height="15"><use href="#icon-star"/></svg>
                         <svg width="15" height="15"><use href="#icon-star"/></svg>
                     </div>
-                    <p class="testimonial-card__text" data-i18n="testimonials.3.quote">"Fastest turnaround I've ever seen. From kickoff to live site in 3 weeks, and the quality blew us away."</p>
+                    <p class="testimonial-card__text" data-i18n="testimonials.3.quote">"En solo 3 semanas ten&iacute;amos una web lista que ya est&aacute; generando contactos y oportunidades de negocio."</p>
                     <div class="testimonial-card__author">
                         <div class="testimonial-card__avatar testimonial-card__avatar--3">S</div>
                         <div>
@@ -1288,6 +1332,13 @@
                     </div>
                 </div>
             </div>
+            <div class="testimonials__footer animate-on-scroll">
+                <p class="testimonials__trust" data-i18n="testimonials.trust"><svg class="ph-icon" viewBox="0 0 256 256"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,91l59.46-5.15,23.21-55.36a16.4,16.4,0,0,1,28.5,0l23.21,55.36L224.92,91a16.46,16.46,0,0,1,9.37,23.85Z" fill="currentColor"/></svg> <span data-i18n="testimonials.trust.text">M&aacute;s de 50 proyectos entregados con alta satisfacci&oacute;n</span></p>
+                <a href="#contact" class="btn-primary">
+                    <span data-i18n="testimonials.cta">Programar una llamada</span>
+                    <span class="icon-circle"><svg width="14" height="14"><use href="#icon-arrow"/></svg></span>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1296,30 +1347,54 @@
         <div class="container">
             <div class="faq__layout">
                 <div class="faq__left animate-on-scroll">
-                    <h2 data-i18n="faq.title">Your questions, answered</h2>
-                    <p data-i18n="faq.desc">Get quick answers to the most common questions about our services and process.</p>
-                    <a href="#contact" class="btn-secondary" data-i18n="faq.cta">Contact us</a>
+                    <h2 data-i18n="faq.title">Preguntas frecuentes</h2>
+                    <p data-i18n="faq.desc">Resolvemos tus dudas sobre nuestro proceso, servicios y c&oacute;mo podemos ayudarte.</p>
+                    <a href="#contact" class="btn-secondary" data-i18n="faq.cta">Programar una llamada</a>
                 </div>
             <div class="faq__list">
                 <div class="faq__item animate-on-scroll">
-                    <button class="faq__question"><span data-i18n="faq.q1">What types of businesses do you work with?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
-                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a1">We work with startups, scale-ups, and established brands across SaaS, e-commerce, health, finance, and creative industries. If you have ambition and need a website that performs, we're a good fit.</div></div>
+                    <button class="faq__question"><span data-i18n="faq.q1">&iquest;Con qu&eacute; tipo de empresas trabaj&aacute;is?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a1">Trabajamos con negocios que quieren crecer: desde empresas locales hasta marcas digitales y startups. Si tu objetivo es atraer m&aacute;s clientes o vender m&aacute;s online, podemos ayudarte.</div></div>
                 </div>
                 <div class="faq__item animate-on-scroll">
-                    <button class="faq__question"><span data-i18n="faq.q2">How long does a typical project take?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
-                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a2">Most projects launch within 3 to 6 weeks depending on scope. Starter projects can go live in as little as 2 weeks. We'll give you a clear timeline during our discovery call.</div></div>
+                    <button class="faq__question"><span data-i18n="faq.q2">&iquest;Cu&aacute;nto dura un proyecto t&iacute;pico?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a2">La mayor&iacute;a de proyectos se entregan en 2 a 4 semanas, dependiendo del alcance. Priorizamos rapidez sin sacrificar calidad, para que empieces a generar resultados cuanto antes.</div></div>
                 </div>
                 <div class="faq__item animate-on-scroll">
-                    <button class="faq__question"><span data-i18n="faq.q3">Do you offer ongoing support after launch?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
-                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a3">Yes. Every plan includes post-launch support. Growth plans get 30 days, and Enterprise clients get ongoing retainer support. We also offer standalone maintenance packages.</div></div>
+                    <button class="faq__question"><span data-i18n="faq.q3">&iquest;Inclu&iacute;s el copywriting o tengo que aportar los textos?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a3">Nos encargamos de los textos. Analizamos tu negocio y escribimos cada secci&oacute;n con un enfoque comercial para atraer, convencer y convertir visitas en clientes.</div></div>
                 </div>
                 <div class="faq__item animate-on-scroll">
-                    <button class="faq__question"><span data-i18n="faq.q4">Can you work with our existing brand guidelines?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
-                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a4">Absolutely. We love working within established brand systems. Send us your brand book and we'll build something that feels native to your identity while pushing the design forward.</div></div>
+                    <button class="faq__question"><span data-i18n="faq.q4">&iquest;Trabaj&aacute;is con tiendas online (ecommerce)?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a4">S&iacute;. Dise&ntilde;amos tanto webs corporativas como tiendas online, siempre enfocadas en facilitar la compra y aumentar las conversiones.</div></div>
                 </div>
                 <div class="faq__item animate-on-scroll">
-                    <button class="faq__question"><span data-i18n="faq.q5">What does the onboarding process look like?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
-                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a5">It starts with a free discovery call where we learn about your goals. Then we send a proposal with scope, timeline, and pricing. Once approved, we kick off with a strategy session and get moving immediately.</div></div>
+                    <button class="faq__question"><span data-i18n="faq.q5">&iquest;La web estar&aacute; optimizada para SEO?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a5">S&iacute;. Desde el inicio estructuramos la web con una base SEO s&oacute;lida, optimizada para posicionar en Google y atraer tr&aacute;fico de calidad.</div></div>
+                </div>
+                <div class="faq__item animate-on-scroll">
+                    <button class="faq__question"><span data-i18n="faq.q6">&iquest;Pod&eacute;is trabajar con nuestra marca actual?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a6">Por supuesto. Podemos adaptarnos a tu identidad actual o ayudarte a mejorarla si es necesario, manteniendo coherencia en toda la web.</div></div>
+                </div>
+                <div class="faq__item animate-on-scroll">
+                    <button class="faq__question"><span data-i18n="faq.q7">&iquest;Ofrec&eacute;is soporte despu&eacute;s del lanzamiento?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a7">S&iacute;. Podemos seguir trabajando contigo para optimizar la web, hacer mejoras o acompa&ntilde;arte en el crecimiento digital de tu negocio.</div></div>
+                </div>
+                <div class="faq__item animate-on-scroll">
+                    <button class="faq__question"><span data-i18n="faq.q8">&iquest;Qu&eacute; necesito para empezar?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a8">Solo necesitamos entender tu negocio y objetivos. A partir de ah&iacute;, nos encargamos de todo el proceso para que no tengas que preocuparte por nada t&eacute;cnico.</div></div>
+                </div>
+                <div class="faq__item animate-on-scroll">
+                    <button class="faq__question"><span data-i18n="faq.q9">&iquest;Qu&eacute; diferencia vuestro servicio de otras agencias?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a9">No solo dise&ntilde;amos webs bonitas. Creamos webs pensadas para vender, combinando estrategia, dise&ntilde;o, copywriting y desarrollo en un mismo proceso.</div></div>
+                </div>
+                <div class="faq__item animate-on-scroll">
+                    <button class="faq__question"><span data-i18n="faq.q10">&iquest;Cu&aacute;nto cuesta una web?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a10">Cada proyecto es diferente, pero trabajamos con presupuestos claros seg&uacute;n objetivos y alcance. Escr&iacute;benos y te damos una propuesta adaptada a tu caso.</div></div>
+                </div>
+                <div class="faq__item animate-on-scroll">
+                    <button class="faq__question"><span data-i18n="faq.q11">&iquest;Y si no estoy seguro de si necesito una web nueva?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a11">Podemos revisarlo contigo sin compromiso y ver si realmente necesitas una nueva web o mejorar la actual.</div></div>
                 </div>
             </div>
             </div>
@@ -1493,75 +1568,97 @@
                 "nav.menu": "Menu",
 
                 // Hero
-                "hero.title": "Strategy and growth for modern brands",
-                "hero.sub": "WeWeb partners with startups to streamline operations, elevate team performance, and build a foundation for lasting success.",
-                "hero.cta": "Get started",
+                "hero.title": "We build websites for businesses that want to sell more",
+                "hero.sub": "We take care of everything: design, development and strategy to make your website sell.",
+                "hero.stat1": "+50 websites delivered",
+                "hero.stat2": "Clients in Barcelona and all of Spain",
+                "hero.stat3": "Easy and hassle-free process",
+                "hero.cta": "I want a website",
+                "hero.secondary": "Schedule a call",
 
                 // Process
-                "process.1.title": "Easy setup",
-                "process.1.desc": "Create your workspace and invite your team. Get everything ready in minutes.",
-                "process.2.title": "Collaborate",
-                "process.2.desc": "Assign tasks and keep communication clear. Everyone stays aligned.",
-                "process.3.title": "Track growth",
-                "process.3.desc": "Use dashboards to monitor progress, trends, and what matters most.",
+                "process.1.title": "Strategy",
+                "process.1.desc": "We define a website designed to sell. We analyze your business, your customer and structure the site to turn visits into real opportunities.",
+                "process.2.title": "Design & development",
+                "process.2.desc": "We create a clean, fast website focused on action. We design the ideal user experience to achieve the site's goal.",
+                "process.3.title": "Optimization",
+                "process.3.desc": "We turn visits into customers. We work on the page's SEO so your website not only looks good, but generates results.",
 
                 // Services
-                "services.title": "Built for high performance",
-                "services.sub": "Everything your brand needs to stand out online and convert at scale.",
-                "services.tab.web": "Web design",
-                "services.tab.brand": "Brand identity",
-                "services.tab.seo": "SEO & Performance",
-                "services.tab.dev": "Development",
-                "services.panel.web.chip": "Web design",
-                "services.panel.web.title": "Custom websites that convert visitors into customers",
-                "services.panel.web.desc": "From landing pages to complex platforms, we design and build responsive, fast websites tailored to your brand and optimized for results.",
-                "services.panel.brand.chip": "Brand identity",
-                "services.panel.brand.title": "A distinct presence that makes your brand unforgettable",
-                "services.panel.brand.desc": "Logo, color systems, typography, and comprehensive brand guidelines that give your brand a memorable and cohesive visual identity.",
-                "services.panel.seo.chip": "SEO & Performance",
-                "services.panel.seo.title": "Get found, load fast, and rank higher",
-                "services.panel.seo.desc": "Technical SEO, Core Web Vitals optimization, and content strategy that drives organic traffic and keeps your site performing at its best.",
-                "services.panel.dev.chip": "Development",
-                "services.panel.dev.title": "Clean, performant code built to scale",
-                "services.panel.dev.desc": "React, Next.js, WordPress, headless CMS. We choose the right stack for your needs and deliver production-ready code with rigorous QA.",
+                "services.title": "We don't just design \"pretty\" websites.",
+                "services.sub": "We design websites that convince, build trust and turn visits into customers.",
+                "services.tab.web": "Custom web design",
+                "services.tab.brand": "Commercial copywriting",
+                "services.tab.seo": "SEO & performance",
+                "services.tab.dev": "Unlimited development",
+                "services.panel.web.chip": "Custom web design",
+                "services.panel.web.title": "Custom websites designed to sell",
+                "services.panel.web.desc": "We design everything from corporate pages to online stores, always with a clear goal: turning visits into customers. Each website is tailored to your business, your customer and your goals.",
+                "services.panel.brand.chip": "Commercial copywriting",
+                "services.panel.brand.title": "Copy that turns visits into customers",
+                "services.panel.brand.desc": "A beautiful website isn't enough. We write every message strategically to capture attention, build trust and guide users toward action.",
+                "services.panel.seo.chip": "SEO & performance",
+                "services.panel.seo.title": "Designed to rank",
+                "services.panel.seo.desc": "From day one, your website is built with a solid SEO foundation so you can stand out above your competition, attract traffic and turn it into customers.",
+                "services.panel.dev.chip": "Unlimited development",
+                "services.panel.dev.title": "We build what your business needs",
+                "services.panel.dev.desc": "From simple websites to complex platforms. We adapt to any need so your website has no limits as your business grows.",
 
                 // Portfolio
-                "portfolio.label": "Selected work",
-                "portfolio.title": "Success stories",
+                "portfolio.label": "Real results",
+                "portfolio.title": "Websites already generating results",
                 "portfolio.nana.category": "Wedding Planner",
-                "portfolio.nana.desc": "Editorial website for a wedding planner and content creator based in Spain.",
+                "portfolio.nana.desc": "Website designed to position her brand and generate new client opportunities consistently.",
+                "portfolio.nana.result": "+35% more inquiries",
                 "portfolio.studio.category": "SaaS Landing",
-                "portfolio.studio.desc": "SaaS platform and landing page for tattoo and piercing studio management.",
-                "portfolio.vilaseo.category": "Marketing Agency",
-                "portfolio.vilaseo.desc": "Digital marketing agency website focused on KOLs and influencer campaigns.",
+                "portfolio.studio.desc": "Landing page focused on explaining the product and converting visits into new user sign-ups.",
+                "portfolio.studio.result": "+220 leads in 2025 vs 2024",
+                "portfolio.laser.category": "E-Commerce",
+                "portfolio.laser.desc": "Website in development.",
+                "portfolio.laser.result": "+28% conversion vs previous website",
                 "portfolio.tattoo.category": "Events Website",
-                "portfolio.tattoo.desc": "Convention platform for Spain's biggest tattoo events with ticketing and artist showcases.",
+                "portfolio.tattoo.desc": "Platform focused on attracting traffic, selling tickets and giving visibility to artists and events.",
+                "portfolio.tattoo.result": "+10,000 active users during events",
 
                 // Testimonials
-                "testimonials.label": "What clients say",
-                "testimonials.title.line1": "Trusted by founders",
-                "testimonials.title.line2": "who build fast",
-                "testimonials.1.quote": "\u201CWorking with WeWeb was a game changer for VilaSEO. They nailed our vision from day one and delivered a site that truly represents our brand.\u201D",
+                "testimonials.label": "Testimonials",
+                "testimonials.title.line1": "How their business changed",
+                "testimonials.title.line2": "after launching their website",
+                "testimonials.1.quote": "\u201CSince the launch, we've started receiving client inquiries every week. The website perfectly reflects our brand and converts much better.\u201D",
                 "testimonials.1.role": "CEO, VilaSEO",
-                "testimonials.2.quote": "\u201CThey didn\u2019t just build us a website. They understood our product deeply and designed an experience that actually sells.\u201D",
+                "testimonials.2.quote": "\u201CThey managed to explain our product clearly and since the launch we've increased user sign-ups.\u201D",
                 "testimonials.2.role": "CTO, Vaultline",
-                "testimonials.3.quote": "\u201CFastest turnaround I\u2019ve ever seen. From kickoff to live site in 3 weeks, and the quality blew us away.\u201D",
+                "testimonials.3.quote": "\u201CIn just 3 weeks we had a website ready that is already generating contacts and business opportunities.\u201D",
                 "testimonials.3.role": "Founder, MindPath",
+                "testimonials.trust.text": "Over 50 projects delivered with high satisfaction",
+                "testimonials.cta": "Schedule a call",
 
                 // FAQ
-                "faq.title": "Your questions, answered",
-                "faq.desc": "Get quick answers to the most common questions about our services and process.",
-                "faq.cta": "Contact us",
+                "faq.title": "Frequently asked questions",
+                "faq.desc": "We answer your questions about our process, services and how we can help you.",
+                "faq.cta": "Schedule a call",
                 "faq.q1": "What types of businesses do you work with?",
-                "faq.a1": "We work with startups, scale-ups, and established brands across SaaS, e-commerce, health, finance, and creative industries. If you have ambition and need a website that performs, we\u2019re a good fit.",
+                "faq.a1": "We work with businesses that want to grow: from local companies to digital brands and startups. If your goal is to attract more clients or sell more online, we can help.",
                 "faq.q2": "How long does a typical project take?",
-                "faq.a2": "Most projects launch within 3 to 6 weeks depending on scope. Starter projects can go live in as little as 2 weeks. We\u2019ll give you a clear timeline during our discovery call.",
-                "faq.q3": "Do you offer ongoing support after launch?",
-                "faq.a3": "Yes. Every plan includes post-launch support. Growth plans get 30 days, and Enterprise clients get ongoing retainer support. We also offer standalone maintenance packages.",
-                "faq.q4": "Can you work with our existing brand guidelines?",
-                "faq.a4": "Absolutely. We love working within established brand systems. Send us your brand book and we\u2019ll build something that feels native to your identity while pushing the design forward.",
-                "faq.q5": "What does the onboarding process look like?",
-                "faq.a5": "It starts with a free discovery call where we learn about your goals. Then we send a proposal with scope, timeline, and pricing. Once approved, we kick off with a strategy session and get moving immediately.",
+                "faq.a2": "Most projects are delivered in 2 to 4 weeks, depending on scope. We prioritize speed without sacrificing quality, so you can start generating results as soon as possible.",
+                "faq.q3": "Do you include copywriting or do I need to provide the text?",
+                "faq.a3": "We take care of the copy. We analyze your business and write every section with a commercial focus to attract, convince and convert visits into customers.",
+                "faq.q4": "Do you work with online stores (ecommerce)?",
+                "faq.a4": "Yes. We design both corporate websites and online stores, always focused on making purchasing easy and increasing conversions.",
+                "faq.q5": "Will the website be optimized for SEO?",
+                "faq.a5": "Yes. From the start we structure the website with a solid SEO foundation, optimized to rank on Google and attract quality traffic.",
+                "faq.q6": "Can you work with our existing brand?",
+                "faq.a6": "Of course. We can adapt to your current identity or help you improve it if needed, maintaining consistency across the entire website.",
+                "faq.q7": "Do you offer support after launch?",
+                "faq.a7": "Yes. We can continue working with you to optimize the website, make improvements or support your digital growth.",
+                "faq.q8": "What do I need to get started?",
+                "faq.a8": "We just need to understand your business and goals. From there, we handle the entire process so you don't have to worry about anything technical.",
+                "faq.q9": "What sets your service apart from other agencies?",
+                "faq.a9": "We don't just design pretty websites. We create websites designed to sell, combining strategy, design, copywriting and development in one process.",
+                "faq.q10": "How much does a website cost?",
+                "faq.a10": "Every project is different, but we work with clear budgets based on goals and scope. Write to us and we'll give you a proposal tailored to your case.",
+                "faq.q11": "What if I'm not sure I need a new website?",
+                "faq.a11": "We can review it with you, no strings attached, and see if you really need a new website or just improvements to your current one.",
 
                 // Contact
                 "contact.title": "Start your journey",
@@ -1599,75 +1696,97 @@
                 "nav.menu": "Men\u00fa",
 
                 // Hero
-                "hero.title": "Estrategia y crecimiento para marcas modernas",
-                "hero.sub": "WeWeb colabora con startups para optimizar operaciones, potenciar el rendimiento del equipo y construir una base para el \u00e9xito duradero.",
-                "hero.cta": "Empezar",
+                "hero.title": "Creamos webs para negocios que quieren vender m\u00e1s",
+                "hero.sub": "Nos encargamos de todo: dise\u00f1o, desarrollo y estrategia para que tu web venda.",
+                "hero.stat1": "+50 webs entregados",
+                "hero.stat2": "Clientes en Barcelona y toda Espa\u00f1a",
+                "hero.stat3": "Proceso f\u00e1cil y sin complicaciones",
+                "hero.cta": "Quiero una web",
+                "hero.secondary": "Programar llamada",
 
                 // Process
-                "process.1.title": "Configuraci\u00f3n sencilla",
-                "process.1.desc": "Crea tu espacio de trabajo e invita a tu equipo. Ten todo listo en minutos.",
-                "process.2.title": "Colabora",
-                "process.2.desc": "Asigna tareas y mant\u00e9n la comunicaci\u00f3n clara. Todo el equipo alineado.",
-                "process.3.title": "Mide el crecimiento",
-                "process.3.desc": "Usa paneles para supervisar el progreso, las tendencias y lo que m\u00e1s importa.",
+                "process.1.title": "Estrategia",
+                "process.1.desc": "Definimos una web pensada para vender. Analizamos tu negocio, tu cliente y estructuramos la web para convertir visitas en oportunidades reales.",
+                "process.2.title": "Dise\u00f1o y desarrollo",
+                "process.2.desc": "Creamos una web clara, r\u00e1pida y enfocada en acci\u00f3n. Dise\u00f1amos una experiencia de usuario ideal para conseguir el objetivo del sitio.",
+                "process.3.title": "Optimizaci\u00f3n",
+                "process.3.desc": "Convertimos visitas en clientes. Trabajamos el SEO de la p\u00e1gina para que tu web no solo se vea bien, sino que genere resultados.",
 
                 // Services
-                "services.title": "Creado para un alto rendimiento",
-                "services.sub": "Todo lo que tu marca necesita para destacar online y convertir a gran escala.",
-                "services.tab.web": "Dise\u00f1o web",
-                "services.tab.brand": "Identidad de marca",
+                "services.title": "No solo dise\u00f1amos webs \"bonitas\".",
+                "services.sub": "Dise\u00f1amos webs que convencen, generan confianza y convierten visitas en clientes.",
+                "services.tab.web": "Dise\u00f1o web a medida",
+                "services.tab.brand": "Copywriting comercial",
                 "services.tab.seo": "SEO y rendimiento",
-                "services.tab.dev": "Desarrollo",
-                "services.panel.web.chip": "Dise\u00f1o web",
-                "services.panel.web.title": "Webs a medida que convierten visitantes en clientes",
-                "services.panel.web.desc": "Desde landing pages hasta plataformas complejas, dise\u00f1amos y desarrollamos sitios web responsivos, r\u00e1pidos y adaptados a tu marca, optimizados para resultados.",
-                "services.panel.brand.chip": "Identidad de marca",
-                "services.panel.brand.title": "Una presencia \u00fanica que hace tu marca inolvidable",
-                "services.panel.brand.desc": "Logotipo, sistemas de color, tipograf\u00eda y directrices de marca completas que aportan a tu marca una identidad visual memorable y coherente.",
+                "services.tab.dev": "Desarrollo sin l\u00edmites",
+                "services.panel.web.chip": "Dise\u00f1o web a medida",
+                "services.panel.web.title": "Webs a medida pensadas para vender",
+                "services.panel.web.desc": "Dise\u00f1amos desde p\u00e1ginas corporativas hasta tiendas online, siempre con un objetivo claro: convertir visitas en clientes. Cada web est\u00e1 adaptada a tu negocio, tu cliente y tus objetivos.",
+                "services.panel.brand.chip": "Copywriting comercial",
+                "services.panel.brand.title": "Textos que convierten visitas en clientes",
+                "services.panel.brand.desc": "No basta con una web bonita. Escribimos cada mensaje de forma estrat\u00e9gica para captar atenci\u00f3n, generar confianza y guiar al usuario hacia la acci\u00f3n.",
                 "services.panel.seo.chip": "SEO y rendimiento",
-                "services.panel.seo.title": "Que te encuentren, carga r\u00e1pida y mejor posicionamiento",
-                "services.panel.seo.desc": "SEO t\u00e9cnico, optimizaci\u00f3n de Core Web Vitals y estrategia de contenidos que impulsa el tr\u00e1fico org\u00e1nico y mantiene tu sitio rindiendo al m\u00e1ximo.",
-                "services.panel.dev.chip": "Desarrollo",
-                "services.panel.dev.title": "C\u00f3digo limpio y eficiente, preparado para escalar",
-                "services.panel.dev.desc": "React, Next.js, WordPress, headless CMS. Elegimos la tecnolog\u00eda adecuada para vuestras necesidades y entregamos c\u00f3digo listo para producci\u00f3n con control de calidad riguroso.",
+                "services.panel.seo.title": "Dise\u00f1adas para posicionar",
+                "services.panel.seo.desc": "Desde el primer momento, tu web se construye con una base SEO s\u00f3lida para que puedas destacar por encima de tu competencia, atraer tr\u00e1fico y convertirlo en clientes.",
+                "services.panel.dev.chip": "Desarrollo sin l\u00edmites",
+                "services.panel.dev.title": "Creamos lo que tu negocio necesita",
+                "services.panel.dev.desc": "Desde webs sencillas hasta plataformas complejas. Nos adaptamos a cualquier necesidad para que tu web no tenga l\u00edmites a medida que tu negocio crece.",
 
                 // Portfolio
-                "portfolio.label": "Proyectos destacados",
-                "portfolio.title": "Casos de \u00e9xito",
+                "portfolio.label": "Resultados reales",
+                "portfolio.title": "Webs que ya est\u00e1n generando resultados",
                 "portfolio.nana.category": "Wedding Planner",
-                "portfolio.nana.desc": "Web editorial para una wedding planner y creadora de contenido con base en Espa\u00f1a.",
-                "portfolio.studio.category": "Landing SaaS",
-                "portfolio.studio.desc": "Plataforma SaaS y landing page para la gesti\u00f3n de estudios de tatuaje y piercing.",
-                "portfolio.vilaseo.category": "Agencia de marketing",
-                "portfolio.vilaseo.desc": "Web de agencia de marketing digital especializada en KOLs y campa\u00f1as con influencers.",
+                "portfolio.nana.desc": "Web dise\u00f1ada para posicionar su marca y generar nuevas oportunidades de clientes de forma constante.",
+                "portfolio.nana.result": "+35% m\u00e1s solicitudes",
+                "portfolio.studio.category": "SaaS Landing",
+                "portfolio.studio.desc": "Landing enfocada en explicar el producto y convertir visitas en registros de nuevos usuarios.",
+                "portfolio.studio.result": "+220 leads en 2025 vs 2024",
+                "portfolio.laser.category": "E-Commerce",
+                "portfolio.laser.desc": "Web en desarrollo.",
+                "portfolio.laser.result": "+28% de conversi\u00f3n vs anterior web",
                 "portfolio.tattoo.category": "Web de eventos",
-                "portfolio.tattoo.desc": "Plataforma para los eventos de tatuaje m\u00e1s grandes de Espa\u00f1a, con venta de entradas y showcases de artistas.",
+                "portfolio.tattoo.desc": "Plataforma enfocada en atraer tr\u00e1fico, vender entradas y dar visibilidad a artistas y eventos.",
+                "portfolio.tattoo.result": "+10.000 usuarios activos durante eventos",
 
                 // Testimonials
-                "testimonials.label": "Lo que dicen nuestros clientes",
-                "testimonials.title.line1": "La confianza de fundadores",
-                "testimonials.title.line2": "que construyen r\u00e1pido",
-                "testimonials.1.quote": "\u201CTrabajar con WeWeb fue un antes y un despu\u00e9s para VilaSEO. Captaron nuestra visi\u00f3n desde el primer d\u00eda y entregaron un sitio que representa fielmente nuestra marca.\u201D",
+                "testimonials.label": "Testimonios",
+                "testimonials.title.line1": "As\u00ed ha cambiado su negocio",
+                "testimonials.title.line2": "despu\u00e9s de lanzar su web",
+                "testimonials.1.quote": "\u201CDesde el lanzamiento, hemos empezado a recibir solicitudes de clientes cada semana. La web refleja perfectamente nuestra marca y convierte mucho mejor.\u201D",
                 "testimonials.1.role": "CEO, VilaSEO",
-                "testimonials.2.quote": "\u201CNo solo nos hicieron una web. Entendieron nuestro producto en profundidad y dise\u00f1aron una experiencia que realmente vende.\u201D",
+                "testimonials.2.quote": "\u201CConsiguieron explicar nuestro producto de forma clara y desde el lanzamiento hemos aumentado los registros de usuarios.\u201D",
                 "testimonials.2.role": "CTO, Vaultline",
-                "testimonials.3.quote": "\u201CLa entrega m\u00e1s r\u00e1pida que he visto. Del kickoff a la web en producci\u00f3n en 3 semanas, y la calidad nos dej\u00f3 impresionados.\u201D",
+                "testimonials.3.quote": "\u201CEn solo 3 semanas ten\u00edamos una web lista que ya est\u00e1 generando contactos y oportunidades de negocio.\u201D",
                 "testimonials.3.role": "Fundadora, MindPath",
+                "testimonials.trust.text": "M\u00e1s de 50 proyectos entregados con alta satisfacci\u00f3n",
+                "testimonials.cta": "Programar una llamada",
 
                 // FAQ
-                "faq.title": "Tus preguntas, resueltas",
-                "faq.desc": "Respuestas r\u00e1pidas a las preguntas m\u00e1s frecuentes sobre nuestros servicios y proceso.",
-                "faq.cta": "Cont\u00e1ctanos",
+                "faq.title": "Preguntas frecuentes",
+                "faq.desc": "Resolvemos tus dudas sobre nuestro proceso, servicios y c\u00f3mo podemos ayudarte.",
+                "faq.cta": "Programar una llamada",
                 "faq.q1": "\u00bfCon qu\u00e9 tipo de empresas trabaj\u00e1is?",
-                "faq.a1": "Trabajamos con startups, scale-ups y marcas consolidadas en sectores como SaaS, e-commerce, salud, finanzas e industrias creativas. Si ten\u00e9is ambici\u00f3n y necesit\u00e1is una web que rinda, encajamos bien.",
+                "faq.a1": "Trabajamos con negocios que quieren crecer: desde empresas locales hasta marcas digitales y startups. Si tu objetivo es atraer m\u00e1s clientes o vender m\u00e1s online, podemos ayudarte.",
                 "faq.q2": "\u00bfCu\u00e1nto dura un proyecto t\u00edpico?",
-                "faq.a2": "La mayor\u00eda de proyectos se lanzan en 3 a 6 semanas seg\u00fan el alcance. Los proyectos m\u00e1s sencillos pueden estar listos en solo 2 semanas. Os daremos un calendario claro en la llamada de descubrimiento.",
-                "faq.q3": "\u00bfOfrec\u00e9is soporte continuo despu\u00e9s del lanzamiento?",
-                "faq.a3": "S\u00ed. Todos los planes incluyen soporte post-lanzamiento. Los planes Growth incluyen 30 d\u00edas, y los clientes Enterprise cuentan con soporte continuo. Tambi\u00e9n ofrecemos paquetes de mantenimiento independientes.",
-                "faq.q4": "\u00bfPod\u00e9is trabajar con nuestras directrices de marca existentes?",
-                "faq.a4": "Por supuesto. Nos encanta trabajar dentro de sistemas de marca establecidos. Enviadnos vuestro brand book y construiremos algo que se sienta nativo a vuestra identidad, llevando el dise\u00f1o un paso m\u00e1s all\u00e1.",
-                "faq.q5": "\u00bfC\u00f3mo es el proceso de incorporaci\u00f3n?",
-                "faq.a5": "Empieza con una llamada de descubrimiento gratuita donde conocemos vuestros objetivos. Despu\u00e9s enviamos una propuesta con alcance, calendario y presupuesto. Una vez aprobada, arrancamos con una sesi\u00f3n de estrategia y nos ponemos en marcha de inmediato.",
+                "faq.a2": "La mayor\u00eda de proyectos se entregan en 2 a 4 semanas, dependiendo del alcance. Priorizamos rapidez sin sacrificar calidad, para que empieces a generar resultados cuanto antes.",
+                "faq.q3": "\u00bfInclu\u00eds el copywriting o tengo que aportar los textos?",
+                "faq.a3": "Nos encargamos de los textos. Analizamos tu negocio y escribimos cada secci\u00f3n con un enfoque comercial para atraer, convencer y convertir visitas en clientes.",
+                "faq.q4": "\u00bfTrabaj\u00e1is con tiendas online (ecommerce)?",
+                "faq.a4": "S\u00ed. Dise\u00f1amos tanto webs corporativas como tiendas online, siempre enfocadas en facilitar la compra y aumentar las conversiones.",
+                "faq.q5": "\u00bfLa web estar\u00e1 optimizada para SEO?",
+                "faq.a5": "S\u00ed. Desde el inicio estructuramos la web con una base SEO s\u00f3lida, optimizada para posicionar en Google y atraer tr\u00e1fico de calidad.",
+                "faq.q6": "\u00bfPod\u00e9is trabajar con nuestra marca actual?",
+                "faq.a6": "Por supuesto. Podemos adaptarnos a tu identidad actual o ayudarte a mejorarla si es necesario, manteniendo coherencia en toda la web.",
+                "faq.q7": "\u00bfOfrec\u00e9is soporte despu\u00e9s del lanzamiento?",
+                "faq.a7": "S\u00ed. Podemos seguir trabajando contigo para optimizar la web, hacer mejoras o acompa\u00f1arte en el crecimiento digital de tu negocio.",
+                "faq.q8": "\u00bfQu\u00e9 necesito para empezar?",
+                "faq.a8": "Solo necesitamos entender tu negocio y objetivos. A partir de ah\u00ed, nos encargamos de todo el proceso para que no tengas que preocuparte por nada t\u00e9cnico.",
+                "faq.q9": "\u00bfQu\u00e9 diferencia vuestro servicio de otras agencias?",
+                "faq.a9": "No solo dise\u00f1amos webs bonitas. Creamos webs pensadas para vender, combinando estrategia, dise\u00f1o, copywriting y desarrollo en un mismo proceso.",
+                "faq.q10": "\u00bfCu\u00e1nto cuesta una web?",
+                "faq.a10": "Cada proyecto es diferente, pero trabajamos con presupuestos claros seg\u00fan objetivos y alcance. Escr\u00edbenos y te damos una propuesta adaptada a tu caso.",
+                "faq.q11": "\u00bfY si no estoy seguro de si necesito una web nueva?",
+                "faq.a11": "Podemos revisarlo contigo sin compromiso y ver si realmente necesitas una nueva web o mejorar la actual.",
 
                 // Contact
                 "contact.title": "Empieza tu proyecto",
