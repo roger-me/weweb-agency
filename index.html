@@ -562,7 +562,9 @@
             aspect-ratio: 4 / 3.5;
             background: var(--bg);
             border-radius: 18px;
+            overflow: hidden;
         }
+        .services__panel-image img { width: 100%; height: 100%; object-fit: cover; }
         .services__panel-text {
             padding: 24px 32px 24px 0;
         }
@@ -1210,7 +1212,7 @@
             </div>
             <div class="services__panels-wrapper">
             <div class="services__panel active" data-panel="web">
-                <div class="services__panel-image" style="background: linear-gradient(135deg, #e8e4dc, #d8d4cc)"></div>
+                <div class="services__panel-image"><img src="service-1-web.png" alt="Custom web design"></div>
                 <div class="services__panel-text">
                     <span class="services__panel-chip" data-i18n="services.panel.web.chip">Dise&ntilde;o web a medida</span>
                     <h3 data-i18n="services.panel.web.title">Webs a medida pensadas para vender</h3>
@@ -1218,7 +1220,7 @@
                 </div>
             </div>
             <div class="services__panel" data-panel="brand">
-                <div class="services__panel-image" style="background: linear-gradient(135deg, #dde4e8, #ccd4d8)"></div>
+                <div class="services__panel-image"><img src="service-2-brand.png" alt="Commercial copywriting"></div>
                 <div class="services__panel-text">
                     <span class="services__panel-chip" data-i18n="services.panel.brand.chip">Copywriting comercial</span>
                     <h3 data-i18n="services.panel.brand.title">Textos que convierten visitas en clientes</h3>
@@ -1226,7 +1228,7 @@
                 </div>
             </div>
             <div class="services__panel" data-panel="seo">
-                <div class="services__panel-image" style="background: linear-gradient(135deg, #e4e0d4, #d4d0c4)"></div>
+                <div class="services__panel-image"><img src="service-3-seo.png" alt="SEO & performance"></div>
                 <div class="services__panel-text">
                     <span class="services__panel-chip" data-i18n="services.panel.seo.chip">SEO y rendimiento</span>
                     <h3 data-i18n="services.panel.seo.title">Dise&ntilde;adas para posicionar</h3>
@@ -1234,7 +1236,7 @@
                 </div>
             </div>
             <div class="services__panel" data-panel="dev">
-                <div class="services__panel-image" style="background: linear-gradient(135deg, #dce0e8, #c8ccd8)"></div>
+                <div class="services__panel-image"><img src="service-4-dev.png" alt="Unlimited development"></div>
                 <div class="services__panel-text">
                     <span class="services__panel-chip" data-i18n="services.panel.dev.chip">Desarrollo sin l&iacute;mites</span>
                     <h3 data-i18n="services.panel.dev.title">Creamos lo que tu negocio necesita</h3>
