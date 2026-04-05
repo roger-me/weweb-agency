@@ -1012,8 +1012,10 @@
         @media (max-width: 1024px) {
             .hero__grid { display: flex; flex-direction: column-reverse; gap: 32px; }
             .hero__visual { max-width: 500px; }
-            .services__tabs { flex-wrap: wrap; }
-            .services__tab { flex: auto; font-size: 13px; padding: 10px 14px; }
+            .services__tabs { flex-wrap: wrap; border-radius: 16px; padding: 6px; gap: 4px; }
+            .services__tabs-indicator { display: none; }
+            .services__tab { flex: auto; font-size: 13px; padding: 10px 14px; border-radius: 10px; }
+            .services__tab.active { background: var(--bg-white); }
             .services__panel { grid-template-columns: 1fr; }
             .services__panel-text { padding: 16px 16px 20px; }
             .footer__grid { grid-template-columns: 1fr 1fr; }
@@ -1041,13 +1043,13 @@
             .process__grid { grid-template-columns: 1fr; }
             .services__tabs {
                 flex-direction: column;
-                border-radius: 20px;
-                padding: 8px;
+                border-radius: 16px;
+                padding: 6px;
                 gap: 4px;
             }
             .services__tabs-indicator { display: none; }
-            .services__tab { border-radius: 14px; padding: 14px 20px; }
-            .services__tab.active { background: var(--bg-white); box-shadow: var(--shadow-md); }
+            .services__tab { border-radius: 10px; padding: 14px; justify-content: flex-start; }
+            .services__tab.active { background: var(--bg-white); }
             .services__panel { grid-template-columns: 1fr; }
             .services__panel-text { padding: 8px 16px 20px; }
             .portfolio__grid { grid-template-columns: 1fr; }
@@ -1514,7 +1516,7 @@
 
         function moveIndicator(tab) {
             indicator.style.width = tab.offsetWidth + 'px';
-            indicator.style.transform = 'translateX(' + (tab.offsetLeft - 6) + 'px)';
+            indicator.style.transform = 'translateX(' + tab.offsetLeft + 'px)';
         }
         moveIndicator(document.querySelector('.services__tab.active'));
         window.addEventListener('resize', () => moveIndicator(document.querySelector('.services__tab.active')));
