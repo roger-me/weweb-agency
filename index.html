@@ -47,6 +47,7 @@
            RESET & BASE
         ======================================== */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        .hidden { display: none; }
         html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
         body {
             font-family: var(--font-body);
@@ -466,18 +467,15 @@
             border-radius: 12px;
             overflow: hidden;
         }
-        .process__card-image-inner {
+        .process__card-image img {
             width: 100%;
             height: 100%;
-            background: var(--bg);
+            object-fit: cover;
             transition: transform 0.6s var(--ease-out);
         }
-        .process__card:hover .process__card-image-inner {
+        .process__card:hover .process__card-image img {
             transform: scale(1.05);
         }
-        .process__card:nth-child(1) .process__card-image-inner { background: linear-gradient(135deg, #e8e4dc, #d8d4cc); }
-        .process__card:nth-child(2) .process__card-image-inner { background: linear-gradient(135deg, #dde4e8, #ccd4d8); }
-        .process__card:nth-child(3) .process__card-image-inner { background: linear-gradient(135deg, #e4e0d4, #d4d0c4); }
         .process__card-bottom {
             padding: 14px 10px 10px;
         }
@@ -504,6 +502,18 @@
             background: #F2ECE5;
             border-radius: 100px;
             padding: 6px;
+            position: relative;
+        }
+        .services__tabs-indicator {
+            position: absolute;
+            top: 6px;
+            bottom: 6px;
+            left: 0;
+            background: var(--bg-white);
+            border-radius: 100px;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 0;
         }
         .services__tab {
             flex: 1;
@@ -518,19 +528,23 @@
             border-radius: 100px;
             transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
             white-space: nowrap;
+            position: relative;
+            z-index: 1;
         }
         .services__tab:hover:not(.active) {
             color: var(--text-primary);
             background: rgba(255, 255, 255, 0.4);
         }
         .services__tab.active {
-            background: var(--bg-white);
             color: var(--text-primary);
-            box-shadow: var(--shadow-md);
         }
         .services__tab svg { width: 18px; height: 18px; flex-shrink: 0; }
+        .services__panels-wrapper {
+            display: grid;
+        }
         .services__panel {
-            display: none;
+            grid-area: 1 / 1;
+            display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             align-items: center;
@@ -538,9 +552,11 @@
             border: 1px solid var(--border);
             border-radius: 24px;
             padding: 14px;
-            animation: fadeUp 0.4s var(--ease-out) both;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
         }
-        .services__panel.active { display: grid; }
+        .services__panel.active { opacity: 1; visibility: visible; }
         .services__panel-image {
             width: 100%;
             aspect-ratio: 4 / 3.5;
@@ -1029,9 +1045,11 @@
                 padding: 8px;
                 gap: 4px;
             }
+            .services__tabs-indicator { display: none; }
             .services__tab { border-radius: 14px; padding: 14px 20px; }
+            .services__tab.active { background: var(--bg-white); box-shadow: var(--shadow-md); }
             .services__panel { grid-template-columns: 1fr; }
-            .services__panel-text { padding: 20px 16px; }
+            .services__panel-text { padding: 8px 16px 20px; }
             .portfolio__grid { grid-template-columns: 1fr; }
             .testimonials__grid { grid-template-columns: 1fr; }
             .faq__layout { grid-template-columns: 1fr; gap: 32px; }
@@ -1134,26 +1152,26 @@
     <!-- PROCESS -->
     <section class="process section-gap" id="process">
         <div class="container">
-            <div class="process__screenshot animate-on-scroll">
+            <div class="process__screenshot animate-on-scroll hidden">
                 <div class="process__screenshot-inner"></div>
             </div>
             <div class="process__grid">
                 <div class="process__card hover-lift animate-on-scroll">
-                    <div class="process__card-image"><div class="process__card-image-inner"></div></div>
+                    <div class="process__card-image"><img src="process-strategy.jpg" alt="Strategy"></div>
                     <div class="process__card-bottom">
                         <h3 data-i18n="process.1.title">Estrategia</h3>
                         <p data-i18n="process.1.desc">Definimos una web pensada para vender. Analizamos tu negocio, tu cliente y estructuramos la web para convertir visitas en oportunidades reales.</p>
                     </div>
                 </div>
                 <div class="process__card hover-lift animate-on-scroll">
-                    <div class="process__card-image"><div class="process__card-image-inner"></div></div>
+                    <div class="process__card-image"><img src="process-design.jpg" alt="Design"></div>
                     <div class="process__card-bottom">
                         <h3 data-i18n="process.2.title">Dise&ntilde;o y desarrollo</h3>
                         <p data-i18n="process.2.desc">Creamos una web clara, r&aacute;pida y enfocada en acci&oacute;n. Dise&ntilde;amos una experiencia de usuario ideal para conseguir el objetivo del sitio.</p>
                     </div>
                 </div>
                 <div class="process__card hover-lift animate-on-scroll">
-                    <div class="process__card-image"><div class="process__card-image-inner"></div></div>
+                    <div class="process__card-image"><img src="process-optimization.jpg" alt="Optimization"></div>
                     <div class="process__card-bottom">
                         <h3 data-i18n="process.3.title">Optimizaci&oacute;n</h3>
                         <p data-i18n="process.3.desc">Convertimos visitas en clientes. Trabajamos el SEO de la p&aacute;gina para que tu web no solo se vea bien, sino que genere resultados.</p>
@@ -1188,6 +1206,7 @@
                     <span data-i18n="services.tab.dev">Desarrollo sin l&iacute;mites</span>
                 </button>
             </div>
+            <div class="services__panels-wrapper">
             <div class="services__panel active" data-panel="web">
                 <div class="services__panel-image" style="background: linear-gradient(135deg, #e8e4dc, #d8d4cc)"></div>
                 <div class="services__panel-text">
@@ -1219,6 +1238,7 @@
                     <h3 data-i18n="services.panel.dev.title">Creamos lo que tu negocio necesita</h3>
                     <p data-i18n="services.panel.dev.desc">Desde webs sencillas hasta plataformas complejas. Nos adaptamos a cualquier necesidad para que tu web no tenga l&iacute;mites a medida que tu negocio crece.</p>
                 </div>
+            </div>
             </div>
         </div>
     </section>
@@ -1366,36 +1386,16 @@
                     <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a3">Nos encargamos de los textos. Analizamos tu negocio y escribimos cada secci&oacute;n con un enfoque comercial para atraer, convencer y convertir visitas en clientes.</div></div>
                 </div>
                 <div class="faq__item animate-on-scroll">
-                    <button class="faq__question"><span data-i18n="faq.q4">&iquest;Trabaj&aacute;is con tiendas online (ecommerce)?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
-                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a4">S&iacute;. Dise&ntilde;amos tanto webs corporativas como tiendas online, siempre enfocadas en facilitar la compra y aumentar las conversiones.</div></div>
-                </div>
-                <div class="faq__item animate-on-scroll">
                     <button class="faq__question"><span data-i18n="faq.q5">&iquest;La web estar&aacute; optimizada para SEO?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
                     <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a5">S&iacute;. Desde el inicio estructuramos la web con una base SEO s&oacute;lida, optimizada para posicionar en Google y atraer tr&aacute;fico de calidad.</div></div>
-                </div>
-                <div class="faq__item animate-on-scroll">
-                    <button class="faq__question"><span data-i18n="faq.q6">&iquest;Pod&eacute;is trabajar con nuestra marca actual?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
-                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a6">Por supuesto. Podemos adaptarnos a tu identidad actual o ayudarte a mejorarla si es necesario, manteniendo coherencia en toda la web.</div></div>
                 </div>
                 <div class="faq__item animate-on-scroll">
                     <button class="faq__question"><span data-i18n="faq.q7">&iquest;Ofrec&eacute;is soporte despu&eacute;s del lanzamiento?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
                     <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a7">S&iacute;. Podemos seguir trabajando contigo para optimizar la web, hacer mejoras o acompa&ntilde;arte en el crecimiento digital de tu negocio.</div></div>
                 </div>
                 <div class="faq__item animate-on-scroll">
-                    <button class="faq__question"><span data-i18n="faq.q8">&iquest;Qu&eacute; necesito para empezar?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
-                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a8">Solo necesitamos entender tu negocio y objetivos. A partir de ah&iacute;, nos encargamos de todo el proceso para que no tengas que preocuparte por nada t&eacute;cnico.</div></div>
-                </div>
-                <div class="faq__item animate-on-scroll">
-                    <button class="faq__question"><span data-i18n="faq.q9">&iquest;Qu&eacute; diferencia vuestro servicio de otras agencias?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
-                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a9">No solo dise&ntilde;amos webs bonitas. Creamos webs pensadas para vender, combinando estrategia, dise&ntilde;o, copywriting y desarrollo en un mismo proceso.</div></div>
-                </div>
-                <div class="faq__item animate-on-scroll">
                     <button class="faq__question"><span data-i18n="faq.q10">&iquest;Cu&aacute;nto cuesta una web?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
                     <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a10">Cada proyecto es diferente, pero trabajamos con presupuestos claros seg&uacute;n objetivos y alcance. Escr&iacute;benos y te damos una propuesta adaptada a tu caso.</div></div>
-                </div>
-                <div class="faq__item animate-on-scroll">
-                    <button class="faq__question"><span data-i18n="faq.q11">&iquest;Y si no estoy seguro de si necesito una web nueva?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
-                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a11">Podemos revisarlo contigo sin compromiso y ver si realmente necesitas una nueva web o mejorar la actual.</div></div>
                 </div>
             </div>
             </div>
@@ -1504,15 +1504,28 @@
             }
         });
 
-        // Service tabs
+        // Service tabs with sliding indicator
         const allTabs = document.querySelectorAll('.services__tab');
         const allPanels = document.querySelectorAll('.services__panel');
+        const tabsContainer = document.getElementById('serviceTabs');
+        const indicator = document.createElement('div');
+        indicator.className = 'services__tabs-indicator';
+        tabsContainer.appendChild(indicator);
+
+        function moveIndicator(tab) {
+            indicator.style.width = tab.offsetWidth + 'px';
+            indicator.style.transform = 'translateX(' + (tab.offsetLeft - 6) + 'px)';
+        }
+        moveIndicator(document.querySelector('.services__tab.active'));
+        window.addEventListener('resize', () => moveIndicator(document.querySelector('.services__tab.active')));
+
         allTabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 allTabs.forEach(t => t.classList.remove('active'));
                 allPanels.forEach(p => p.classList.remove('active'));
                 tab.classList.add('active');
                 document.querySelector('[data-panel="' + tab.dataset.tab + '"]').classList.add('active');
+                moveIndicator(tab);
             });
         });
 
@@ -1644,22 +1657,12 @@
                 "faq.a2": "Most projects are delivered in 2 to 4 weeks, depending on scope. We prioritize speed without sacrificing quality, so you can start generating results as soon as possible.",
                 "faq.q3": "Do you include copywriting or do I need to provide the text?",
                 "faq.a3": "We take care of the copy. We analyze your business and write every section with a commercial focus to attract, convince and convert visits into customers.",
-                "faq.q4": "Do you work with online stores (ecommerce)?",
-                "faq.a4": "Yes. We design both corporate websites and online stores, always focused on making purchasing easy and increasing conversions.",
                 "faq.q5": "Will the website be optimized for SEO?",
                 "faq.a5": "Yes. From the start we structure the website with a solid SEO foundation, optimized to rank on Google and attract quality traffic.",
-                "faq.q6": "Can you work with our existing brand?",
-                "faq.a6": "Of course. We can adapt to your current identity or help you improve it if needed, maintaining consistency across the entire website.",
                 "faq.q7": "Do you offer support after launch?",
                 "faq.a7": "Yes. We can continue working with you to optimize the website, make improvements or support your digital growth.",
-                "faq.q8": "What do I need to get started?",
-                "faq.a8": "We just need to understand your business and goals. From there, we handle the entire process so you don't have to worry about anything technical.",
-                "faq.q9": "What sets your service apart from other agencies?",
-                "faq.a9": "We don't just design pretty websites. We create websites designed to sell, combining strategy, design, copywriting and development in one process.",
                 "faq.q10": "How much does a website cost?",
                 "faq.a10": "Every project is different, but we work with clear budgets based on goals and scope. Write to us and we'll give you a proposal tailored to your case.",
-                "faq.q11": "What if I'm not sure I need a new website?",
-                "faq.a11": "We can review it with you, no strings attached, and see if you really need a new website or just improvements to your current one.",
 
                 // Contact
                 "contact.title": "Start your journey",
@@ -1772,22 +1775,12 @@
                 "faq.a2": "La mayor\u00eda de proyectos se entregan en 2 a 4 semanas, dependiendo del alcance. Priorizamos rapidez sin sacrificar calidad, para que empieces a generar resultados cuanto antes.",
                 "faq.q3": "\u00bfInclu\u00eds el copywriting o tengo que aportar los textos?",
                 "faq.a3": "Nos encargamos de los textos. Analizamos tu negocio y escribimos cada secci\u00f3n con un enfoque comercial para atraer, convencer y convertir visitas en clientes.",
-                "faq.q4": "\u00bfTrabaj\u00e1is con tiendas online (ecommerce)?",
-                "faq.a4": "S\u00ed. Dise\u00f1amos tanto webs corporativas como tiendas online, siempre enfocadas en facilitar la compra y aumentar las conversiones.",
                 "faq.q5": "\u00bfLa web estar\u00e1 optimizada para SEO?",
                 "faq.a5": "S\u00ed. Desde el inicio estructuramos la web con una base SEO s\u00f3lida, optimizada para posicionar en Google y atraer tr\u00e1fico de calidad.",
-                "faq.q6": "\u00bfPod\u00e9is trabajar con nuestra marca actual?",
-                "faq.a6": "Por supuesto. Podemos adaptarnos a tu identidad actual o ayudarte a mejorarla si es necesario, manteniendo coherencia en toda la web.",
                 "faq.q7": "\u00bfOfrec\u00e9is soporte despu\u00e9s del lanzamiento?",
                 "faq.a7": "S\u00ed. Podemos seguir trabajando contigo para optimizar la web, hacer mejoras o acompa\u00f1arte en el crecimiento digital de tu negocio.",
-                "faq.q8": "\u00bfQu\u00e9 necesito para empezar?",
-                "faq.a8": "Solo necesitamos entender tu negocio y objetivos. A partir de ah\u00ed, nos encargamos de todo el proceso para que no tengas que preocuparte por nada t\u00e9cnico.",
-                "faq.q9": "\u00bfQu\u00e9 diferencia vuestro servicio de otras agencias?",
-                "faq.a9": "No solo dise\u00f1amos webs bonitas. Creamos webs pensadas para vender, combinando estrategia, dise\u00f1o, copywriting y desarrollo en un mismo proceso.",
                 "faq.q10": "\u00bfCu\u00e1nto cuesta una web?",
                 "faq.a10": "Cada proyecto es diferente, pero trabajamos con presupuestos claros seg\u00fan objetivos y alcance. Escr\u00edbenos y te damos una propuesta adaptada a tu caso.",
-                "faq.q11": "\u00bfY si no estoy seguro de si necesito una web nueva?",
-                "faq.a11": "Podemos revisarlo contigo sin compromiso y ver si realmente necesitas una nueva web o mejorar la actual.",
 
                 // Contact
                 "contact.title": "Empieza tu proyecto",
