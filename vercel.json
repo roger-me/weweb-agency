@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://www.weweb.studio/$1",
+      "permanent": true
+    }
+  ]
+}
