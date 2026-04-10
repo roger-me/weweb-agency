@@ -315,12 +315,17 @@
             padding: 32px 40px;
         }
         .projects__card-category {
+            display: inline-block;
             font-family: var(--font-mono);
             font-size: 11px;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            color: var(--text-tertiary);
-            margin-bottom: 8px;
+            color: var(--text-secondary);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 5px 14px;
+            margin-bottom: 10px;
         }
         .projects__card h3 {
             font-family: var(--font-body);
@@ -490,7 +495,7 @@
     <section>
         <div class="container">
             <div class="projects__list">
-                <a href="https://genera.video/" target="_blank" rel="noopener" class="projects__card animate-on-scroll">
+                <a href="https://genera.video/" target="_blank" rel="noopener" class="projects__card">
                     <div class="projects__card-image"><img src="/genera.png" alt="Genera Studio"></div>
                     <div class="projects__card-body">
                         <div class="projects__card-category" data-i18n="projects.genera.category">AI Creative Studio</div>
@@ -498,7 +503,7 @@
                         <p data-i18n="projects.genera.desc">Plataforma de IA para crear v&iacute;deos e im&aacute;genes. Web dise&ntilde;ada para convertir visitas en usuarios activos del estudio.</p>
                     </div>
                 </a>
-                <a href="https://tattooverseconvention.com/" target="_blank" rel="noopener" class="projects__card animate-on-scroll">
+                <a href="https://tattooverseconvention.com/" target="_blank" rel="noopener" class="projects__card">
                     <div class="projects__card-image"><img src="/tattooverse.png" alt="Tattooverse"></div>
                     <div class="projects__card-body">
                         <div class="projects__card-category" data-i18n="projects.tattoo.category">Web de eventos</div>
@@ -506,7 +511,7 @@
                         <p data-i18n="projects.tattoo.desc">Plataforma enfocada en atraer tr&aacute;fico, vender entradas y dar visibilidad a artistas y eventos.</p>
                     </div>
                 </a>
-                <a href="https://www.vilaseo.com/" target="_blank" rel="noopener" class="projects__card animate-on-scroll">
+                <a href="https://www.vilaseo.com/" target="_blank" rel="noopener" class="projects__card">
                     <div class="projects__card-image"><img src="/vilaseo.png" alt="VilaSEO"></div>
                     <div class="projects__card-body">
                         <div class="projects__card-category" data-i18n="projects.vilaseo.category">Agencia SEO</div>
@@ -514,7 +519,7 @@
                         <p data-i18n="projects.vilaseo.desc">Web corporativa dise&ntilde;ada para posicionar la agencia y captar nuevos clientes de forma recurrente.</p>
                     </div>
                 </a>
-                <a href="https://dottattoostudio.com/" target="_blank" rel="noopener" class="projects__card animate-on-scroll">
+                <a href="https://dottattoostudio.com/" target="_blank" rel="noopener" class="projects__card">
                     <div class="projects__card-image"><img src="/dot-tattoo.png" alt="DOT Tattoo Studio"></div>
                     <div class="projects__card-body">
                         <div class="projects__card-category" data-i18n="projects.dot.category">Estudio de tatuajes</div>
@@ -522,7 +527,7 @@
                         <p data-i18n="projects.dot.desc">Web para un estudio de tatuajes en Badalona, dise&ntilde;ada para mostrar el espacio, el equipo y facilitar la reserva de citas.</p>
                     </div>
                 </a>
-                <a href="https://www.minkatattoo.com/" target="_blank" rel="noopener" class="projects__card animate-on-scroll">
+                <a href="https://www.minkatattoo.com/" target="_blank" rel="noopener" class="projects__card">
                     <div class="projects__card-image"><img src="/minka.png" alt="Minka Tattoo"></div>
                     <div class="projects__card-body">
                         <div class="projects__card-category" data-i18n="projects.minka.category">Estudio de tatuajes</div>
@@ -530,7 +535,7 @@
                         <p data-i18n="projects.minka.desc">Web para un estudio de tatuajes en la Sagrada Familia, Barcelona. Dise&ntilde;ada para mostrar el equipo, los estilos y captar reservas.</p>
                     </div>
                 </a>
-                <a href="https://studioapp.co/" target="_blank" rel="noopener" class="projects__card animate-on-scroll">
+                <a href="https://studioapp.co/" target="_blank" rel="noopener" class="projects__card">
                     <div class="projects__card-image"><img src="/studioapp.png" alt="StudioApp"></div>
                     <div class="projects__card-body">
                         <div class="projects__card-category" data-i18n="projects.studio.category">SaaS Landing</div>
@@ -538,7 +543,7 @@
                         <p data-i18n="projects.studio.desc">Landing enfocada en explicar el producto y convertir visitas en registros de nuevos usuarios.</p>
                     </div>
                 </a>
-                <a href="https://www.elebeat.com/" target="_blank" rel="noopener" class="projects__card animate-on-scroll">
+                <a href="https://www.elebeat.com/" target="_blank" rel="noopener" class="projects__card">
                     <div class="projects__card-image"><img src="/elebeat.png" alt="Elebeat"></div>
                     <div class="projects__card-body">
                         <div class="projects__card-category" data-i18n="projects.elebeat.category">Plataforma de eventos</div>
@@ -546,7 +551,7 @@
                         <p data-i18n="projects.elebeat.desc">Plataforma para promotores de eventos. Web dise&ntilde;ada para posicionar la marca y atraer nuevos promotores.</p>
                     </div>
                 </a>
-                <a href="https://dev.laserlight.es/" target="_blank" rel="noopener" class="projects__card animate-on-scroll">
+                <a href="https://dev.laserlight.es/" target="_blank" rel="noopener" class="projects__card">
                     <div class="projects__card-image"><img src="/laserlight.png" alt="Laserlight"></div>
                     <div class="projects__card-body">
                         <div class="projects__card-category" data-i18n="projects.laser.category">E-Commerce</div>
@@ -554,7 +559,7 @@
                         <p data-i18n="projects.laser.desc">Web en desarrollo.</p>
                     </div>
                 </a>
-                <a href="https://www.redtempletattoo.com/" target="_blank" rel="noopener" class="projects__card animate-on-scroll">
+                <a href="https://www.redtempletattoo.com/" target="_blank" rel="noopener" class="projects__card">
                     <div class="projects__card-image"><img src="/redtemple.png" alt="Red Temple Tattoo"></div>
                     <div class="projects__card-body">
                         <div class="projects__card-category" data-i18n="projects.redtemple.category">Estudio de tatuajes</div>
@@ -562,7 +567,7 @@
                         <p data-i18n="projects.redtemple.desc">Web para un estudio de tatuajes en Barcelona, enfocada en mostrar el arte, el equipo y generar reservas.</p>
                     </div>
                 </a>
-                <a href="https://nanaweddings.com/" target="_blank" rel="noopener" class="projects__card animate-on-scroll">
+                <a href="https://nanaweddings.com/" target="_blank" rel="noopener" class="projects__card">
                     <div class="projects__card-image"><img src="/nanaweddings.png" alt="Nana Weddings"></div>
                     <div class="projects__card-body">
                         <div class="projects__card-category" data-i18n="projects.nana.category">Wedding Planner</div>
