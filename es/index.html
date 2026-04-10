@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeWeb Studio - Diseñamos Webs Que Impulsan Tu Negocio</title>
+    <meta name="description" content="WeWeb Studio partners with ambitious brands to design and develop high-performance websites that convert visitors into customers.">
+
+    <!-- OG / Social -->
+    <meta property="og:title" content="WeWeb Studio - Diseñamos Webs Que Impulsan Tu Negocio">
+    <meta property="og:description" content="WeWeb Studio se asocia con marcas ambiciosas para diseñar y desarrollar webs de alto rendimiento que convierten visitantes en clientes.">
+    <meta property="og:image" content="https://weweb-agency.vercel.app/og-image.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Fonts -->
+    <link rel="icon" href="/img/logos/logo-white.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Fragment+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========================================
+           CSS VARIABLES
+        ======================================== */
+        :root {
+            --bg: #F3F1EC;
+            --bg-white: #ffffff;
+            --bg-dark: #111111;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-hover: rgba(0, 0, 0, 0.15);
+            --text-primary: #111111;
+            --text-secondary: #555550;
+            --text-tertiary: #999990;
+            --text-light: #ffffff;
+            --font-body: 'Albert Sans', system-ui, sans-serif;
+            --font-mono: 'Fragment Mono', monospace;
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --max-width: 1200px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.1), 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        /* ========================================
+           RESET & BASE
+        ======================================== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        .hidden { display: none; }
+        html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text-primary);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+        /* ========================================
+           UTILITY
+        ======================================== */
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 32px; }
+        .mono-label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+        }
+        .section-gap { padding: 80px 0; }
+        .section-header { text-align: center; margin-bottom: 36px; }
+        .section-header h2 {
+            font-family: var(--font-body);
+            font-size: clamp(28px, 3vw, 40px);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-top: 14px;
+        }
+        .section-header p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 480px;
+            margin: 14px auto 0;
+            font-weight: 300;
+        }
+        .hover-lift {
+            transition: transform 0.4s var(--ease-out), box-shadow 0.4s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ========================================
+           ANIMATIONS
+        ======================================== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========================================
+           NAVIGATION - Floating pill
+        ======================================== */
+        .nav-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 16px 20px;
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 10px 12px 10px 16px;
+            background: var(--bg-white);
+            border-radius: 100px;
+            box-shadow: var(--shadow-lg);
+            max-width: var(--max-width);
+            width: 100%;
+            transition: box-shadow 0.3s ease;
+        }
+        .nav__brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-body);
+            font-size: 22px;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+        .nav__brand img {
+            height: 24px;
+            width: auto;
+        }
+        .nav__links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+            margin: 0 auto;
+        }
+        .nav__links a {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: color 0.2s ease;
+            white-space: nowrap;
+        }
+        .nav__links a:hover { color: var(--text-primary); }
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            background: var(--bg);
+            border-radius: 100px;
+            padding: 3px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .lang-toggle button {
+            padding: 6px 12px;
+            border-radius: 100px;
+            color: var(--text-tertiary);
+            transition: background 0.2s ease, color 0.2s ease;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .lang-toggle button.active {
+            background: var(--bg-white);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-sm);
+        }
+        .nav__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 6px 6px 22px;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 100px;
+            transition: background 0.2s ease, transform 0.2s ease;
+            white-space: nowrap;
+        }
+        .nav__cta:hover { background: #222; transform: translateY(-1px); }
+        .icon-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg-white);
+            color: var(--bg-dark);
+            flex-shrink: 0;
+        }
+        .nav__cta .icon-circle { width: 28px; height: 28px; }
+        .nav__cta svg, .btn-primary svg { transition: transform 0.2s ease; }
+        .nav__cta:hover svg, .btn-primary:hover svg { transform: translateX(2px); }
+        .nav__toggle {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 6px 6px 22px;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+        .nav__toggle .icon-circle {
+            width: 28px;
+            height: 28px;
+        }
+        .nav__toggle .icon-circle svg { width: 14px; height: 14px; }
+        .nav__toggle .icon-open { display: block; }
+        .nav__toggle .icon-close { display: none; }
+        .nav__toggle.active .icon-open { display: none; }
+        .nav__toggle.active .icon-close { display: block; }
+        .nav__mobile {
+            display: none;
+            position: fixed;
+            top: 84px;
+            left: 20px;
+            right: 20px;
+            background: var(--bg-white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
+            z-index: 999;
+            padding: 8px;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .nav__mobile.open { display: flex; }
+        .nav__mobile a {
+            display: block;
+            padding: 16px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-align: center;
+            border-radius: 14px;
+            transition: background 0.2s ease;
+        }
+        .nav__mobile a:hover { background: var(--bg); }
+
+        /* ========================================
+           HERO - Split layout
+        ======================================== */
+        .hero {
+            padding: 160px 0 60px;
+            position: relative;
+        }
+        .hero__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero__text { animation: fadeUp 0.8s var(--ease-out) both; }
+        .hero h1 {
+            font-family: var(--font-body);
+            font-size: clamp(32px, 3.5vw, 46px);
+            line-height: 1.15;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+        .hero__sub {
+            font-size: 17px;
+            color: var(--text-secondary);
+            max-width: 440px;
+            line-height: 1.7;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        .hero__stats {
+            font-size: 14px;
+            color: var(--text-secondary);
+            max-width: 440px;
+            line-height: 1.7;
+            font-weight: 300;
+            margin-bottom: 36px;
+        }
+        .ph-icon {
+            width: 14px;
+            height: 14px;
+            display: inline-block;
+            vertical-align: -1px;
+            color: inherit;
+        }
+        .hero__buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 6px 6px 28px;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            font-size: 15px;
+            height: 48px;
+            font-weight: 500;
+            border-radius: 100px;
+            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-primary:hover {
+            background: #222;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 28px;
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 100px;
+            border: 1px solid var(--border-hover);
+            height: 48px;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+        .btn-secondary:hover {
+            border-color: var(--text-primary);
+            background: rgba(0,0,0,0.02);
+        }
+
+        /* Hero visual - placeholder square */
+        .hero__visual {
+            position: relative;
+            animation: fadeUp 0.8s var(--ease-out) 0.15s both;
+        }
+        .hero__card {
+            background: url('/img/hero/hero-2.webp') center/cover no-repeat;
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
+            width: 100%;
+            aspect-ratio: 1 / 0.9;
+        }
+
+        /* ========================================
+           BRANDS CAROUSEL
+        ======================================== */
+        .brands {
+            padding: 60px 0 40px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .brands::before,
+        .brands::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 120px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .brands::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--bg), transparent);
+        }
+        .brands::after {
+            right: 0;
+            background: linear-gradient(270deg, var(--bg), transparent);
+        }
+        @keyframes scroll-brands {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+        .brands__track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            animation: scroll-brands 20s linear infinite;
+        }
+        .brands__item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            opacity: 0.35;
+            margin-right: 64px;
+            transition: opacity 0.3s ease;
+        }
+        .brands__item:hover { opacity: 0.5; }
+        .brands__item img {
+            height: 24px;
+            width: auto;
+            display: block;
+            filter: grayscale(100%);
+        }
+        .brands__item img[alt="DOT Tattoo Studio"] { height: 16px; }
+        .brands__item img[alt="VilaSEO"] { height: 22px; }
+        .brands__item img[alt="Alta"] { height: 22px; }
+        .brands__item img[alt="Partner"] { height: 38px; }
+        .brands__item img[alt="Minka Tattoo"] { height: 28px; }
+        .brands__item img[alt="Bye Bye Tattoo Removal"] { height: 44px; }
+        .brands__item img[alt="LaserLight"] { height: 18px; filter: grayscale(100%) brightness(0); }
+
+        /* ========================================
+           PROCESS SECTION
+        ======================================== */
+        .process__screenshot {
+            position: relative;
+            margin-bottom: 48px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .process__screenshot-inner {
+            background: url('/img/hero/hero-3.webp') center 40%/120% no-repeat;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+        }
+        .process__screenshot::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to bottom, transparent, var(--bg));
+            pointer-events: none;
+        }
+        .process__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .process__card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 14px;
+        }
+        .process__card-image {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .process__card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s var(--ease-out);
+        }
+        .process__card:hover .process__card-image img {
+            transform: scale(1.05);
+        }
+        .process__card-bottom {
+            padding: 14px 10px 10px;
+        }
+        .process__card h3 {
+            font-family: var(--font-body);
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .process__card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* ========================================
+           SERVICES SECTION - Grid
+        ======================================== */
+        .services__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .services__card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
+        }
+        .services__card-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: clamp(18px, 1.8vw, 22px);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+        .services__card-label svg { width: 24px; height: 24px; flex-shrink: 0; }
+        .services__card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* ========================================
+           PORTFOLIO
+        ======================================== */
+
+        .portfolio__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px 20px;
+        }
+        a.portfolio__card { display: block; cursor: pointer; }
+        .portfolio__card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 14px;
+        }
+        .portfolio__card-image {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .portfolio__card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+        .portfolio__card:nth-child(1) .portfolio__card-image { background: linear-gradient(135deg, #e8e4dc, #d8d4cc); }
+        .portfolio__card:nth-child(2) .portfolio__card-image { background: linear-gradient(135deg, #dde4e8, #ccd4d8); }
+        .portfolio__card:nth-child(3) .portfolio__card-image { background: linear-gradient(135deg, #e4e0d4, #d4d0c4); }
+        .portfolio__card:nth-child(4) .portfolio__card-image { background: linear-gradient(135deg, #e0dce8, #d0ccd8); }
+        .portfolio__card-body { padding: 14px 10px 10px; }
+        .portfolio__card-body p { min-height: 3em; }
+        .portfolio__card-category {
+            display: inline-flex;
+            padding: 6px 16px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            background: var(--bg);
+            border-radius: 100px;
+            margin-bottom: 12px;
+        }
+        .portfolio__card-result {
+            display: inline-flex;
+            padding: 6px 14px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.04em;
+            color: var(--text-light);
+            background: var(--bg-dark);
+            border-radius: 100px;
+            margin-top: 10px;
+        }
+        .portfolio__card h3 {
+            font-family: var(--font-body);
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .portfolio__card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        .portfolio__cta {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        /* ========================================
+           TESTIMONIALS
+        ======================================== */
+
+        .testimonials__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .testimonial-card {
+            padding: 32px 28px;
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .testimonial-card__stars { display: flex; gap: 3px; margin-bottom: 18px; color: #F0B020; }
+        .testimonial-card__text {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 22px;
+        }
+        .testimonial-card__author { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+        .testimonial-card__avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-body);
+            font-size: 15px;
+            color: var(--text-light);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .testimonial-card__avatar--2 { background: #7b68ee; }
+        .testimonial-card__avatar--3 { background: #5aa0e0; }
+        .testimonial-card__avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            border-radius: 50%;
+            transform: scale(1.3);
+        }
+        .testimonial-card__name { font-size: 14px; font-weight: 500; }
+        .testimonial-card__role { font-size: 12px; color: var(--text-tertiary); font-weight: 300; }
+        .testimonials__footer {
+            text-align: center;
+            margin-top: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .testimonials__trust {
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* ========================================
+           FAQ
+        ======================================== */
+
+        .faq__layout {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .faq__left h2 {
+            font-family: var(--font-body);
+            font-size: clamp(28px, 3vw, 40px);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .faq__left p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-weight: 300;
+            max-width: 360px;
+            margin-bottom: 28px;
+        }
+        .faq__list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .faq__item {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        .faq__item:hover { box-shadow: var(--shadow-sm); }
+        .faq__question {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-align: left;
+        }
+        .faq__question svg {
+            flex-shrink: 0;
+            transition: transform 0.3s var(--ease-out);
+            color: var(--text-tertiary);
+        }
+        .faq__item.active .faq__question svg { transform: rotate(45deg); color: var(--text-primary); }
+        .faq__answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s var(--ease-out);
+        }
+        .faq__item.active .faq__answer { max-height: 300px; }
+        .faq__answer-inner {
+            padding: 0 24px 22px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* ========================================
+           CONTACT
+        ======================================== */
+        .contact__inner {
+            border-radius: 28px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #3a3530 0%, #2a2420 30%, #1a1815 60%, #2a1a18 80%, #3a2a28 100%);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 480px;
+        }
+        .contact__inner::before {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 500px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(180, 80, 60, 0.25) 0%, rgba(120, 60, 40, 0.1) 40%, transparent 70%);
+            pointer-events: none;
+        }
+        .contact__inner::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: 20%;
+            width: 400px;
+            height: 300px;
+            background: radial-gradient(ellipse, rgba(200, 120, 80, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .contact__left {
+            padding: 56px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+        .contact__left h2 {
+            font-family: var(--font-body);
+            font-size: clamp(28px, 3vw, 40px);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: var(--text-light);
+            margin-bottom: 12px;
+        }
+        .contact__left p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        .contact__info {
+            margin-top: auto;
+        }
+        .contact__info a {
+            display: block;
+            font-size: 15px;
+            color: rgba(255,255,255,0.6);
+            font-weight: 300;
+            margin-bottom: 4px;
+            transition: color 0.2s ease;
+        }
+        .contact__info a:hover { color: var(--text-light); }
+        .contact__right {
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .contact__form {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            padding: 36px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .contact__field label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        .contact__field input,
+        .contact__field textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--text-primary);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        .contact__field input::placeholder,
+        .contact__field textarea::placeholder {
+            color: var(--text-tertiary);
+        }
+        .contact__field input:focus,
+        .contact__field textarea:focus {
+            border-color: var(--text-primary);
+        }
+        .contact__field textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .contact__submit {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 7px 7px 24px;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 100px;
+            transition: background 0.2s ease;
+            align-self: flex-start;
+        }
+        .contact__submit:hover { background: #222; }
+        .contact__submit:disabled { opacity: 0.6; cursor: not-allowed; }
+        .contact__submit .icon-circle { width: 32px; height: 32px; }
+        .contact__status {
+            font-size: 14px;
+            margin-top: 8px;
+            display: none;
+        }
+        .contact__status.success { display: block; color: #2a7d4f; }
+        .contact__status.error { display: block; color: #c0392b; }
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+        .footer {
+            padding: 72px 0 36px;
+            border-top: 1px solid var(--border);
+        }
+        .footer__grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 56px;
+        }
+        .footer__brand {
+            font-family: var(--font-body);
+            font-size: 22px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer__brand img {
+            width: 24px;
+            height: 24px;
+        }
+        .footer__desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-weight: 300;
+            max-width: 280px;
+        }
+        .footer__col h4 {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 16px;
+        }
+        .footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer__col a {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            transition: color 0.2s ease;
+        }
+        .footer__col a:hover { color: var(--text-primary); }
+        .footer__bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 28px;
+            border-top: 1px solid var(--border);
+        }
+        .footer__copy { font-size: 13px; color: var(--text-tertiary); font-weight: 300; }
+        .footer__email {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 500;
+            padding: 8px 20px 8px 8px;
+            background: var(--bg-dark);
+            border-radius: 100px;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .footer__email svg { background: var(--bg-white); color: var(--bg-dark); border-radius: 50%; padding: 6px; width: 28px; height: 28px; }
+        .footer__email:hover { background: #222; transform: translateY(-1px); }
+
+        /* ========================================
+           RESPONSIVE
+        ======================================== */
+        @media (max-width: 1024px) {
+            .hero__grid { display: flex; flex-direction: column-reverse; gap: 32px; }
+            .hero__visual { max-width: 500px; }
+            .services__grid { grid-template-columns: 1fr 1fr; }
+            .footer__grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .section-gap { padding: 56px 0; }
+            .nav__links { display: none; }
+            .nav__cta { display: none; }
+            .nav__toggle { display: flex; }
+            .nav { padding: 10px 8px 10px 20px; }
+            .nav__toggle { margin-left: auto; }
+            .nav > .lang-toggle { display: none; }
+            .nav__mobile .lang-toggle { margin-top: 8px; align-self: center; }
+            .hero { padding: 100px 0 40px; }
+            .hero__visual {
+                position: relative;
+                width: 100%;
+            }
+            .hero__card {
+                width: 100%;
+                aspect-ratio: 1 / 0.7;
+                border: 1px solid var(--border);
+            }
+            .process__grid { grid-template-columns: 1fr; }
+            .services__grid { grid-template-columns: 1fr; }
+            .services__card { padding: 24px; }
+            .portfolio__grid { grid-template-columns: 1fr; }
+            .testimonials__grid { grid-template-columns: 1fr; }
+            .faq__layout { grid-template-columns: 1fr; gap: 32px; }
+            .contact__inner { grid-template-columns: 1fr; }
+            .contact__left { padding: 32px 24px 24px; }
+            .contact__right { padding: 0 24px 24px; }
+            .contact__info { margin-top: 24px; }
+            .contact__form { padding: 28px 24px; }
+            .footer__grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+            .footer__grid > div:first-child { grid-column: 1 / -1; }
+            .footer__desc { max-width: none; }
+            .footer__col { display: flex; gap: 24px; align-items: start; }
+            .footer__col h4 { margin-bottom: 0; min-width: 70px; padding-top: 2px; }
+            .footer__bottom { flex-direction: column; gap: 14px; text-align: center; }
+            .hero__buttons { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Shared SVG symbols -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+        <symbol id="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+
+        <symbol id="icon-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+        <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+    </svg>
+
+    <!-- NAVIGATION - Floating pill -->
+    <div class="nav-wrap">
+        <nav class="nav" id="nav">
+            <a href="#" class="nav__brand"><img src="/img/logos/weweb-logo-text.svg" alt="WeWeb"></a>
+            <ul class="nav__links">
+                <li><a href="#services" data-i18n="nav.services">Services</a></li>
+                <li><a href="/projects" data-i18n="nav.work">Work</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <div class="lang-toggle" id="langToggle">
+                <button data-lang="es">ES</button>
+                <button class="active" data-lang="en">EN</button>
+            </div>
+            <a href="mailto:hello@weweb.studio" class="nav__cta">
+                <span data-i18n="nav.contact">Contact us</span>
+                <span class="icon-circle"><svg width="14" height="14"><use href="#icon-arrow"/></svg></span>
+            </a>
+            <button class="nav__toggle" id="navToggle" aria-label="Menu">
+                <span data-i18n="nav.menu">Menu</span>
+                <span class="icon-circle">
+                    <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                    <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+            </button>
+        </nav>
+        <div class="nav__mobile" id="navMobile">
+            <a href="#services" data-i18n="nav.services">Services</a>
+            <a href="/projects" data-i18n="nav.work">Work</a>
+            <a href="#faq">FAQ</a>
+            <a href="mailto:hello@weweb.studio" data-i18n="nav.contact">Contact us</a>
+            <div class="lang-toggle" id="langToggleMobile">
+                <button data-lang="es">ES</button>
+                <button class="active" data-lang="en">EN</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO - Split layout -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero__grid">
+                <div class="hero__text">
+                    <h1 data-i18n="hero.title">Creamos webs para negocios que quieren vender m&aacute;s</h1>
+                    <p class="hero__sub" data-i18n="hero.sub">Nos encargamos de todo: dise&ntilde;o, desarrollo y estrategia para que tu web venda.</p>
+                    <p class="hero__stats"><svg class="ph-icon" viewBox="0 0 256 256"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,91l59.46-5.15,23.21-55.36a16.4,16.4,0,0,1,28.5,0l23.21,55.36L224.92,91a16.46,16.46,0,0,1,9.37,23.85Z" fill="currentColor"/></svg> <span data-i18n="hero.stat1">+50 webs entregados</span> <svg class="ph-icon" viewBox="0 0 256 256"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,91l59.46-5.15,23.21-55.36a16.4,16.4,0,0,1,28.5,0l23.21,55.36L224.92,91a16.46,16.46,0,0,1,9.37,23.85Z" fill="currentColor"/></svg> <span data-i18n="hero.stat2">Clientes en Barcelona y toda Espa&ntilde;a</span> <svg class="ph-icon" viewBox="0 0 256 256"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,91l59.46-5.15,23.21-55.36a16.4,16.4,0,0,1,28.5,0l23.21,55.36L224.92,91a16.46,16.46,0,0,1,9.37,23.85Z" fill="currentColor"/></svg> <span data-i18n="hero.stat3">Proceso f&aacute;cil y sin complicaciones</span></p>
+                    <div class="hero__buttons">
+                        <a href="#contact" class="btn-primary">
+                            <span data-i18n="hero.cta">Quiero una web</span>
+                            <span class="icon-circle"><svg width="14" height="14"><use href="#icon-arrow"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="hero__visual">
+                    <div class="hero__card"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRANDS CAROUSEL -->
+    <section class="brands">
+        <div class="brands__track" id="brandsTrack">
+            <div class="brands__item"><img src="/img/logos/brand-vilaseo.svg" alt="VilaSEO"></div>
+            <div class="brands__item"><img src="/img/logos/byebye.webp" alt="Bye Bye Tattoo Removal"></div>
+            <div class="brands__item"><img src="/img/logos/brand-dot.svg" alt="DOT Tattoo Studio"></div>
+            <div class="brands__item"><img src="/img/logos/brand-alta.svg" alt="Alta"></div>
+            <div class="brands__item"><img src="/img/logos/brand-4.avif" alt="Partner"></div>
+            <div class="brands__item"><img src="/img/logos/Frame_1000004536.png" alt="Minka Tattoo"></div>
+            <div class="brands__item"><img src="/img/logos/Logo-Laserlight-2-en-png-2048x281-1.webp" alt="LaserLight"></div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process section-gap" id="process">
+        <div class="container">
+            <div class="process__screenshot animate-on-scroll hidden">
+                <div class="process__screenshot-inner"></div>
+            </div>
+            <div class="process__grid">
+                <div class="process__card hover-lift animate-on-scroll">
+                    <div class="process__card-image"><img src="/img/process/process-strategy.webp" alt="Strategy"></div>
+                    <div class="process__card-bottom">
+                        <h3 data-i18n="process.1.title">Estrategia</h3>
+                        <p data-i18n="process.1.desc">Definimos una web pensada para vender. Analizamos tu negocio, tu cliente y estructuramos la web para convertir visitas en oportunidades reales.</p>
+                    </div>
+                </div>
+                <div class="process__card hover-lift animate-on-scroll">
+                    <div class="process__card-image"><img src="/img/process/process-design.webp" alt="Design"></div>
+                    <div class="process__card-bottom">
+                        <h3 data-i18n="process.2.title">Dise&ntilde;o y desarrollo</h3>
+                        <p data-i18n="process.2.desc">Creamos una web clara, r&aacute;pida y enfocada en acci&oacute;n. Dise&ntilde;amos una experiencia de usuario ideal para conseguir el objetivo del sitio.</p>
+                    </div>
+                </div>
+                <div class="process__card hover-lift animate-on-scroll">
+                    <div class="process__card-image"><img src="/img/process/process-optimization.webp" alt="Optimization"></div>
+                    <div class="process__card-bottom">
+                        <h3 data-i18n="process.3.title">Optimizaci&oacute;n</h3>
+                        <p data-i18n="process.3.desc">Convertimos visitas en clientes. Trabajamos el SEO de la p&aacute;gina para que tu web no solo se vea bien, sino que genere resultados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services section-gap" id="services">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 data-i18n="services.title">No solo dise&ntilde;amos webs "bonitas".</h2>
+                <p data-i18n="services.sub">Dise&ntilde;amos webs que convencen, generan confianza y convierten visitas en clientes.</p>
+            </div>
+            <div class="services__grid">
+                <div class="services__card hover-lift animate-on-scroll">
+                    <div class="services__card-label">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                        <span data-i18n="services.label.web">Dise&ntilde;o web a medida</span>
+                    </div>
+                    <p data-i18n="services.panel.web.desc">Dise&ntilde;amos desde p&aacute;ginas corporativas hasta tiendas online, siempre con un objetivo claro: convertir visitas en clientes. Cada web est&aacute; adaptada a tu negocio, tu cliente y tus objetivos.</p>
+                </div>
+                <div class="services__card hover-lift animate-on-scroll">
+                    <div class="services__card-label">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>
+                        <span data-i18n="services.label.brand">Copywriting comercial</span>
+                    </div>
+                    <p data-i18n="services.panel.brand.desc">No basta con una web bonita. Escribimos cada mensaje de forma estrat&eacute;gica para captar atenci&oacute;n, generar confianza y guiar al usuario hacia la acci&oacute;n.</p>
+                </div>
+                <div class="services__card hover-lift animate-on-scroll">
+                    <div class="services__card-label">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                        <span data-i18n="services.label.seo">SEO y rendimiento</span>
+                    </div>
+                    <p data-i18n="services.panel.seo.desc">Desde el primer momento, tu web se construye con una base SEO s&oacute;lida para que puedas destacar por encima de tu competencia, atraer tr&aacute;fico y convertirlo en clientes.</p>
+                </div>
+                <div class="services__card hover-lift animate-on-scroll">
+                    <div class="services__card-label">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        <span data-i18n="services.label.dev">Desarrollo sin l&iacute;mites</span>
+                    </div>
+                    <p data-i18n="services.panel.dev.desc">Desde webs sencillas hasta plataformas complejas. Nos adaptamos a cualquier necesidad para que tu web no tenga l&iacute;mites a medida que tu negocio crece.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="portfolio section-gap" id="work">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="mono-label" data-i18n="portfolio.label">Resultados reales</span>
+                <h2 data-i18n="portfolio.title">Webs que ya est&aacute;n generando resultados</h2>
+            </div>
+            <div class="portfolio__grid">
+                <a href="https://nanaweddings.com/" target="_blank" rel="noopener" class="portfolio__card hover-lift animate-on-scroll">
+                    <div class="portfolio__card-image"><img src="/img/projects/nanaweddings.webp" alt="Nana Weddings"></div>
+                    <div class="portfolio__card-body">
+                        <div class="portfolio__card-category" data-i18n="portfolio.nana.category">Wedding Planner</div>
+                        <h3>Nana Weddings</h3>
+                        <p data-i18n="portfolio.nana.desc">Web dise&ntilde;ada para posicionar su marca y generar nuevas oportunidades de clientes de forma constante.</p>
+                        <div class="portfolio__card-result" data-i18n="portfolio.nana.result">+35% m&aacute;s solicitudes</div>
+                    </div>
+                </a>
+                <a href="https://studioapp.co/" target="_blank" rel="noopener" class="portfolio__card hover-lift animate-on-scroll">
+                    <div class="portfolio__card-image"><img src="/img/projects/studioapp.webp" alt="StudioApp"></div>
+                    <div class="portfolio__card-body">
+                        <div class="portfolio__card-category" data-i18n="portfolio.studio.category">SaaS Landing</div>
+                        <h3>Studioapp</h3>
+                        <p data-i18n="portfolio.studio.desc">Landing enfocada en explicar el producto y convertir visitas en registros de nuevos usuarios.</p>
+                        <div class="portfolio__card-result" data-i18n="portfolio.studio.result">+220 leads en 2025 vs 2024</div>
+                    </div>
+                </a>
+                <a href="https://dev.laserlight.es/" target="_blank" rel="noopener" class="portfolio__card hover-lift animate-on-scroll">
+                    <div class="portfolio__card-image"><img src="/img/projects/laserlight.webp" alt="Laserlight"></div>
+                    <div class="portfolio__card-body">
+                        <div class="portfolio__card-category" data-i18n="portfolio.laser.category">E-Commerce</div>
+                        <h3>Laserlight</h3>
+                        <p data-i18n="portfolio.laser.desc">Web en desarrollo.</p>
+                        <div class="portfolio__card-result" data-i18n="portfolio.laser.result">+28% de conversi&oacute;n vs anterior web</div>
+                    </div>
+                </a>
+                <a href="https://tattooverseconvention.com/" target="_blank" rel="noopener" class="portfolio__card hover-lift animate-on-scroll">
+                    <div class="portfolio__card-image"><img src="/img/projects/tattooverse.webp" alt="Tattooverse"></div>
+                    <div class="portfolio__card-body">
+                        <div class="portfolio__card-category" data-i18n="portfolio.tattoo.category">Events Website</div>
+                        <h3>Tattooverse</h3>
+                        <p data-i18n="portfolio.tattoo.desc">Plataforma enfocada en atraer tr&aacute;fico, vender entradas y dar visibilidad a artistas y eventos.</p>
+                        <div class="portfolio__card-result" data-i18n="portfolio.tattoo.result">+10.000 usuarios activos durante eventos</div>
+                    </div>
+                </a>
+            </div>
+            <div class="portfolio__cta animate-on-scroll">
+                <a href="/projects" class="btn-secondary" data-i18n="portfolio.viewall">Ver todos los proyectos</a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials section-gap">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="mono-label" data-i18n="testimonials.label">Testimonios</span>
+                <h2 data-i18n="testimonials.title">As&iacute; ha cambiado su negocio despu&eacute;s de lanzar su web</h2>
+            </div>
+            <div class="testimonials__grid">
+                <div class="testimonial-card hover-lift animate-on-scroll">
+                    <div class="testimonial-card__stars">
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                    </div>
+                    <p class="testimonial-card__text" data-i18n="testimonials.1.quote">"Desde el lanzamiento, hemos empezado a recibir solicitudes de clientes cada semana. La web refleja perfectamente nuestra marca y convierte mucho mejor."</p>
+                    <div class="testimonial-card__author">
+                        <div class="testimonial-card__avatar"><img src="/img/people/roger-martinez.webp" alt="Roger Martínez"></div>
+                        <div>
+                            <div class="testimonial-card__name">Roger Martínez</div>
+                            <div class="testimonial-card__role" data-i18n="testimonials.1.role">VilaSEO</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card hover-lift animate-on-scroll">
+                    <div class="testimonial-card__stars">
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                    </div>
+                    <p class="testimonial-card__text" data-i18n="testimonials.2.quote">"La web transmite exactamente el estilo del estudio y desde que la lanzamos no paramos de recibir reservas de nuevos clientes."</p>
+                    <div class="testimonial-card__author">
+                        <div class="testimonial-card__avatar testimonial-card__avatar--2"><img src="/img/people/andrea.webp" alt="Andrea Hasu"></div>
+                        <div>
+                            <div class="testimonial-card__name">Andrea Hasu</div>
+                            <div class="testimonial-card__role" data-i18n="testimonials.2.role">Minka Tattoo</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card hover-lift animate-on-scroll">
+                    <div class="testimonial-card__stars">
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                        <svg width="15" height="15"><use href="#icon-star"/></svg>
+                    </div>
+                    <p class="testimonial-card__text" data-i18n="testimonials.3.quote">"Necesit&aacute;bamos una web que vendiera entradas y diera visibilidad a los artistas. Lo clavaron y las ventas superaron nuestras expectativas."</p>
+                    <div class="testimonial-card__author">
+                        <div class="testimonial-card__avatar testimonial-card__avatar--3"><img src="/img/people/rafa.webp" alt="Rafa"></div>
+                        <div>
+                            <div class="testimonial-card__name">Rafa</div>
+                            <div class="testimonial-card__role" data-i18n="testimonials.3.role">Tattooverse</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonials__footer animate-on-scroll">
+                <p class="testimonials__trust" data-i18n="testimonials.trust"><svg class="ph-icon" viewBox="0 0 256 256"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,91l59.46-5.15,23.21-55.36a16.4,16.4,0,0,1,28.5,0l23.21,55.36L224.92,91a16.46,16.46,0,0,1,9.37,23.85Z" fill="currentColor"/></svg> <span data-i18n="testimonials.trust.text">M&aacute;s de 50 proyectos entregados con alta satisfacci&oacute;n</span></p>
+                <a href="mailto:hello@weweb.studio" class="btn-primary">
+                    <span data-i18n="testimonials.cta">Env&iacute;anos un email</span>
+                    <span class="icon-circle"><svg width="14" height="14"><use href="#icon-arrow"/></svg></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq section-gap" id="faq">
+        <div class="container">
+            <div class="faq__layout">
+                <div class="faq__left animate-on-scroll">
+                    <h2 data-i18n="faq.title">Preguntas frecuentes</h2>
+                    <p data-i18n="faq.desc">Resolvemos tus dudas sobre nuestro proceso, servicios y c&oacute;mo podemos ayudarte.</p>
+                    <a href="mailto:hello@weweb.studio" class="btn-secondary" data-i18n="faq.cta">Env&iacute;anos un email</a>
+                </div>
+            <div class="faq__list">
+                <div class="faq__item animate-on-scroll">
+                    <button class="faq__question"><span data-i18n="faq.q1">&iquest;Con qu&eacute; tipo de empresas trabaj&aacute;is?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a1">Trabajamos con negocios que quieren crecer: desde empresas locales hasta marcas digitales y startups. Si tu objetivo es atraer m&aacute;s clientes o vender m&aacute;s online, podemos ayudarte.</div></div>
+                </div>
+                <div class="faq__item animate-on-scroll">
+                    <button class="faq__question"><span data-i18n="faq.q2">&iquest;Cu&aacute;nto dura un proyecto t&iacute;pico?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a2">La mayor&iacute;a de proyectos se entregan en 2 a 4 semanas, dependiendo del alcance. Priorizamos rapidez sin sacrificar calidad, para que empieces a generar resultados cuanto antes.</div></div>
+                </div>
+                <div class="faq__item animate-on-scroll">
+                    <button class="faq__question"><span data-i18n="faq.q3">&iquest;Inclu&iacute;s el copywriting o tengo que aportar los textos?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a3">Nos encargamos de los textos. Analizamos tu negocio y escribimos cada secci&oacute;n con un enfoque comercial para atraer, convencer y convertir visitas en clientes.</div></div>
+                </div>
+                <div class="faq__item animate-on-scroll">
+                    <button class="faq__question"><span data-i18n="faq.q5">&iquest;La web estar&aacute; optimizada para SEO?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a5">S&iacute;. Desde el inicio estructuramos la web con una base SEO s&oacute;lida, optimizada para posicionar en Google y atraer tr&aacute;fico de calidad.</div></div>
+                </div>
+                <div class="faq__item animate-on-scroll">
+                    <button class="faq__question"><span data-i18n="faq.q7">&iquest;Ofrec&eacute;is soporte despu&eacute;s del lanzamiento?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a7">S&iacute;. Podemos seguir trabajando contigo para optimizar la web, hacer mejoras o acompa&ntilde;arte en el crecimiento digital de tu negocio.</div></div>
+                </div>
+                <div class="faq__item animate-on-scroll">
+                    <button class="faq__question"><span data-i18n="faq.q10">&iquest;Cu&aacute;nto cuesta una web?</span><svg width="18" height="18"><use href="#icon-plus"/></svg></button>
+                    <div class="faq__answer"><div class="faq__answer-inner" data-i18n="faq.a10">Cada proyecto es diferente, pero trabajamos con presupuestos claros seg&uacute;n objetivos y alcance. Escr&iacute;benos y te damos una propuesta adaptada a tu caso.</div></div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section-gap" id="contact">
+        <div class="container">
+        <div class="contact__inner animate-on-scroll">
+            <div class="contact__left">
+                <div>
+                    <h2 data-i18n="contact.title">Start your journey</h2>
+                    <p data-i18n="contact.desc">Let's start building something great together.</p>
+                </div>
+                <div class="contact__info">
+                    <a href="mailto:hello@weweb.studio">hello@weweb.studio</a>
+                </div>
+            </div>
+            <div class="contact__right">
+                <form class="contact__form" id="contactForm">
+                    <input type="hidden" name="access_key" value="40cd7315-d7f0-45ef-9483-0bb6d3661b98">
+                    <input type="hidden" name="subject" value="New contact from weweb.studio">
+                    <input type="checkbox" name="botcheck" style="display:none">
+                    <div class="contact__field">
+                        <label data-i18n="contact.name">Name</label>
+                        <input type="text" name="name" required placeholder="Jane Smith" data-i18n-placeholder="contact.name.placeholder">
+                    </div>
+                    <div class="contact__field">
+                        <label data-i18n="contact.email">Email</label>
+                        <input type="email" name="email" required placeholder="jane@company.com" data-i18n-placeholder="contact.email.placeholder">
+                    </div>
+                    <div class="contact__field">
+                        <label data-i18n="contact.message">Message</label>
+                        <textarea name="message" required placeholder="Enter your message" data-i18n-placeholder="contact.message.placeholder"></textarea>
+                    </div>
+                    <button type="submit" class="contact__submit" id="contactSubmit">
+                        <span data-i18n="contact.submit">Submit</span>
+                        <span class="icon-circle"><svg width="14" height="14"><use href="#icon-arrow"/></svg></span>
+                    </button>
+                    <p class="contact__status" id="contactStatus"></p>
+                </form>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div>
+                    <div class="footer__brand"><img src="/img/logos/logo-black.png" alt="WeWeb">WeWeb</div>
+                    <p class="footer__desc" data-i18n="footer.desc">We design and build websites that help ambitious brands grow faster.</p>
+                </div>
+                <div class="footer__col">
+                    <h4 data-i18n="footer.pages">Pages</h4>
+                    <ul>
+                        <li><a href="#services" data-i18n="footer.services">Services</a></li>
+                        <li><a href="/projects" data-i18n="footer.work">Work</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact" data-i18n="footer.contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col">
+                    <h4 data-i18n="footer.legal">Legal</h4>
+                    <ul>
+                        <li><a href="/privacy" data-i18n="footer.privacy">Privacy</a></li>
+                        <li><a href="/terms" data-i18n="footer.terms">Terms</a></li>
+                        <li><a href="/cookies" data-i18n="footer.cookies">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <div class="footer__copy" data-i18n="footer.copy">&copy; 2026 WeWeb Studio. All rights reserved.</div>
+                <a href="mailto:hello@weweb.studio" class="footer__email">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    hello@weweb.studio
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Brands carousel - duplicate items for seamless CSS loop
+        (function() {
+            const track = document.getElementById('brandsTrack');
+            const items = Array.from(track.children);
+            items.forEach(item => track.appendChild(item.cloneNode(true)));
+        })();
+
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMobile = document.getElementById('navMobile');
+        navToggle.addEventListener('click', () => {
+            navMobile.classList.toggle('open');
+            navToggle.classList.toggle('active');
+        });
+        navMobile.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMobile.classList.remove('open');
+                navToggle.classList.remove('active');
+            });
+        });
+        document.addEventListener('click', (e) => {
+            if (navMobile.classList.contains('open') && !navMobile.contains(e.target) && !navToggle.contains(e.target)) {
+                navMobile.classList.remove('open');
+                navToggle.classList.remove('active');
+            }
+        });
+
+
+        // Scroll animations - pre-build sibling index map
+        const siblingIndexMap = new Map();
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            const siblings = Array.from(el.parentElement.querySelectorAll('.animate-on-scroll'));
+            siblingIndexMap.set(el, siblings.indexOf(el));
+        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const index = siblingIndexMap.get(entry.target) || 0;
+                    entry.target.style.transitionDelay = `${index * 0.08}s`;
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // FAQ accordion
+        document.querySelectorAll('.faq__question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const isOpen = item.classList.contains('active');
+                document.querySelectorAll('.faq__item.active').forEach(i => i.classList.remove('active'));
+                if (!isOpen) item.classList.add('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            const href = anchor.getAttribute('href');
+            if (href === '#') return;
+            const target = document.querySelector(href);
+            if (target) {
+                anchor.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
+        });
+
+        // ========================================
+        // INTERNATIONALIZATION (i18n)
+        // ========================================
+        const translations = {
+            en: {
+                // Nav
+                "nav.services": "Services",
+                "nav.work": "Work",
+                "nav.contact": "Contact us",
+                "nav.menu": "Menu",
+
+                // Hero
+                "hero.title": "We build websites for businesses that want to sell more",
+                "hero.sub": "We take care of everything: design, development and strategy to make your website sell.",
+                "hero.stat1": "+50 websites delivered",
+                "hero.stat2": "Clients in Barcelona and all of Spain",
+                "hero.stat3": "Easy and hassle-free process",
+                "hero.cta": "I want a website",
+                "hero.secondary": "Send us an email",
+
+                // Process
+                "process.1.title": "Strategy",
+                "process.1.desc": "We define a website designed to sell. We analyze your business, your customer and structure the site to turn visits into real opportunities.",
+                "process.2.title": "Design & development",
+                "process.2.desc": "We create a clean, fast website focused on action. We design the ideal user experience to achieve the site's goal.",
+                "process.3.title": "Optimization",
+                "process.3.desc": "We turn visits into customers. We work on the page's SEO so your website not only looks good, but generates results.",
+
+                // Services
+                "services.title": "We don't just design \"pretty\" websites.",
+                "services.sub": "We design websites that convince, build trust and turn visits into customers.",
+                "services.label.web": "Custom web design",
+                "services.label.brand": "Commercial copywriting",
+                "services.label.seo": "SEO & performance",
+                "services.label.dev": "Unlimited development",
+                "services.panel.web.desc": "We design everything from corporate pages to online stores, always with a clear goal: turning visits into customers. Each website is tailored to your business, your customer and your goals.",
+                "services.panel.brand.desc": "A beautiful website isn't enough. We write every message strategically to capture attention, build trust and guide users toward action.",
+                "services.panel.seo.desc": "From day one, your website is built with a solid SEO foundation so you can stand out above your competition, attract traffic and turn it into customers.",
+                "services.panel.dev.desc": "From simple websites to complex platforms. We adapt to any need so your website has no limits as your business grows.",
+
+                // Portfolio
+                "portfolio.label": "Real results",
+                "portfolio.title": "Websites already generating results",
+                "portfolio.nana.category": "Wedding Planner",
+                "portfolio.nana.desc": "Website designed to position her brand and generate new client opportunities consistently.",
+                "portfolio.nana.result": "+35% more inquiries",
+                "portfolio.studio.category": "SaaS Landing",
+                "portfolio.studio.desc": "Landing page focused on explaining the product and converting visits into new user sign-ups.",
+                "portfolio.studio.result": "+220 leads in 2025 vs 2024",
+                "portfolio.laser.category": "E-Commerce",
+                "portfolio.laser.desc": "Website in development.",
+                "portfolio.laser.result": "+28% conversion vs previous website",
+                "portfolio.tattoo.category": "Events Website",
+                "portfolio.tattoo.desc": "Platform focused on attracting traffic, selling tickets and giving visibility to artists and events.",
+                "portfolio.tattoo.result": "+10,000 active users during events",
+                "portfolio.viewall": "View all projects",
+
+                // Testimonials
+                "testimonials.label": "Testimonials",
+                "testimonials.title.line1": "How their business changed",
+                "testimonials.title.line2": "after launching their website",
+                "testimonials.1.quote": "\u201CSince the launch, we've started receiving client inquiries every week. The website perfectly reflects our brand and converts much better.\u201D",
+                "testimonials.1.role": "VilaSEO",
+                "testimonials.2.quote": "\u201CThe website captures the studio\u2019s style perfectly and since we launched we haven\u2019t stopped getting bookings from new clients.\u201D",
+                "testimonials.2.role": "Minka Tattoo",
+                "testimonials.3.quote": "\u201CWe needed a website that sold tickets and gave visibility to the artists. They nailed it and sales exceeded our expectations.\u201D",
+                "testimonials.3.role": "Tattooverse",
+                "testimonials.trust.text": "Over 50 projects delivered with high satisfaction",
+                "testimonials.cta": "Send us an email",
+
+                // FAQ
+                "faq.title": "Frequently asked questions",
+                "faq.desc": "We answer your questions about our process, services and how we can help you.",
+                "faq.cta": "Send us an email",
+                "faq.q1": "What types of businesses do you work with?",
+                "faq.a1": "We work with businesses that want to grow: from local companies to digital brands and startups. If your goal is to attract more clients or sell more online, we can help.",
+                "faq.q2": "How long does a typical project take?",
+                "faq.a2": "Most projects are delivered in 2 to 4 weeks, depending on scope. We prioritize speed without sacrificing quality, so you can start generating results as soon as possible.",
+                "faq.q3": "Do you include copywriting or do I need to provide the text?",
+                "faq.a3": "We take care of the copy. We analyze your business and write every section with a commercial focus to attract, convince and convert visits into customers.",
+                "faq.q5": "Will the website be optimized for SEO?",
+                "faq.a5": "Yes. From the start we structure the website with a solid SEO foundation, optimized to rank on Google and attract quality traffic.",
+                "faq.q7": "Do you offer support after launch?",
+                "faq.a7": "Yes. We can continue working with you to optimize the website, make improvements or support your digital growth.",
+                "faq.q10": "How much does a website cost?",
+                "faq.a10": "Every project is different, but we work with clear budgets based on goals and scope. Write to us and we'll give you a proposal tailored to your case.",
+
+                // Contact
+                "contact.title": "Start your journey",
+                "contact.desc": "Let\u2019s start building something great together.",
+                "contact.name": "Name",
+                "contact.name.placeholder": "Jane Smith",
+                "contact.email": "Email",
+                "contact.email.placeholder": "jane@company.com",
+                "contact.message": "Message",
+                "contact.message.placeholder": "Enter your message",
+                "contact.submit": "Submit",
+
+                // Footer
+                "footer.desc": "We design and build websites that help ambitious brands grow faster.",
+                "footer.pages": "Pages",
+                "footer.process": "Process",
+                "footer.services": "Services",
+                "footer.work": "Work",
+                "footer.company": "Company",
+                "footer.about": "About",
+                "footer.careers": "Careers",
+                "footer.blog": "Blog",
+                "footer.contact": "Contact",
+                "footer.legal": "Legal",
+                "footer.privacy": "Privacy",
+                "footer.terms": "Terms",
+                "footer.cookies": "Cookies",
+                "footer.copy": "\u00A9 2026 WeWeb Studio. All rights reserved."
+            },
+            es: {
+                // Nav
+                "nav.services": "Servicios",
+                "nav.work": "Proyectos",
+                "nav.contact": "Cont\u00e1ctanos",
+                "nav.menu": "Men\u00fa",
+
+                // Hero
+                "hero.title": "Creamos webs para negocios que quieren vender m\u00e1s",
+                "hero.sub": "Nos encargamos de todo: dise\u00f1o, desarrollo y estrategia para que tu web venda.",
+                "hero.stat1": "+50 webs entregados",
+                "hero.stat2": "Clientes en Barcelona y toda Espa\u00f1a",
+                "hero.stat3": "Proceso f\u00e1cil y sin complicaciones",
+                "hero.cta": "Quiero una web",
+                "hero.secondary": "Env\u00edanos un email",
+
+                // Process
+                "process.1.title": "Estrategia",
+                "process.1.desc": "Definimos una web pensada para vender. Analizamos tu negocio, tu cliente y estructuramos la web para convertir visitas en oportunidades reales.",
+                "process.2.title": "Dise\u00f1o y desarrollo",
+                "process.2.desc": "Creamos una web clara, r\u00e1pida y enfocada en acci\u00f3n. Dise\u00f1amos una experiencia de usuario ideal para conseguir el objetivo del sitio.",
+                "process.3.title": "Optimizaci\u00f3n",
+                "process.3.desc": "Convertimos visitas en clientes. Trabajamos el SEO de la p\u00e1gina para que tu web no solo se vea bien, sino que genere resultados.",
+
+                // Services
+                "services.title": "No solo dise\u00f1amos webs \"bonitas\".",
+                "services.sub": "Dise\u00f1amos webs que convencen, generan confianza y convierten visitas en clientes.",
+                "services.label.web": "Dise\u00f1o web a medida",
+                "services.label.brand": "Copywriting comercial",
+                "services.label.seo": "SEO y rendimiento",
+                "services.label.dev": "Desarrollo sin l\u00edmites",
+                "services.panel.web.desc": "Dise\u00f1amos desde p\u00e1ginas corporativas hasta tiendas online, siempre con un objetivo claro: convertir visitas en clientes. Cada web est\u00e1 adaptada a tu negocio, tu cliente y tus objetivos.",
+                "services.panel.brand.desc": "No basta con una web bonita. Escribimos cada mensaje de forma estrat\u00e9gica para captar atenci\u00f3n, generar confianza y guiar al usuario hacia la acci\u00f3n.",
+                "services.panel.seo.desc": "Desde el primer momento, tu web se construye con una base SEO s\u00f3lida para que puedas destacar por encima de tu competencia, atraer tr\u00e1fico y convertirlo en clientes.",
+                "services.panel.dev.desc": "Desde webs sencillas hasta plataformas complejas. Nos adaptamos a cualquier necesidad para que tu web no tenga l\u00edmites a medida que tu negocio crece.",
+
+                // Portfolio
+                "portfolio.label": "Resultados reales",
+                "portfolio.title": "Webs que ya est\u00e1n generando resultados",
+                "portfolio.nana.category": "Wedding Planner",
+                "portfolio.nana.desc": "Web dise\u00f1ada para posicionar su marca y generar nuevas oportunidades de clientes de forma constante.",
+                "portfolio.nana.result": "+35% m\u00e1s solicitudes",
+                "portfolio.studio.category": "SaaS Landing",
+                "portfolio.studio.desc": "Landing enfocada en explicar el producto y convertir visitas en registros de nuevos usuarios.",
+                "portfolio.studio.result": "+220 leads en 2025 vs 2024",
+                "portfolio.laser.category": "E-Commerce",
+                "portfolio.laser.desc": "Web en desarrollo.",
+                "portfolio.laser.result": "+28% de conversi\u00f3n vs anterior web",
+                "portfolio.tattoo.category": "Web de eventos",
+                "portfolio.tattoo.desc": "Plataforma enfocada en atraer tr\u00e1fico, vender entradas y dar visibilidad a artistas y eventos.",
+                "portfolio.tattoo.result": "+10.000 usuarios activos durante eventos",
+                "portfolio.viewall": "Ver todos los proyectos",
+
+                // Testimonials
+                "testimonials.label": "Testimonios",
+                "testimonials.title.line1": "As\u00ed ha cambiado su negocio",
+                "testimonials.title.line2": "despu\u00e9s de lanzar su web",
+                "testimonials.1.quote": "\u201CDesde el lanzamiento, hemos empezado a recibir solicitudes de clientes cada semana. La web refleja perfectamente nuestra marca y convierte mucho mejor.\u201D",
+                "testimonials.1.role": "VilaSEO",
+                "testimonials.2.quote": "\u201CLa web transmite exactamente el estilo del estudio y desde que la lanzamos no paramos de recibir reservas de nuevos clientes.\u201D",
+                "testimonials.2.role": "Minka Tattoo",
+                "testimonials.3.quote": "\u201CNecesit\u00e1bamos una web que vendiera entradas y diera visibilidad a los artistas. Lo clavaron y las ventas superaron nuestras expectativas.\u201D",
+                "testimonials.3.role": "Tattooverse",
+                "testimonials.trust.text": "M\u00e1s de 50 proyectos entregados con alta satisfacci\u00f3n",
+                "testimonials.cta": "Env\u00edanos un email",
+
+                // FAQ
+                "faq.title": "Preguntas frecuentes",
+                "faq.desc": "Resolvemos tus dudas sobre nuestro proceso, servicios y c\u00f3mo podemos ayudarte.",
+                "faq.cta": "Env\u00edanos un email",
+                "faq.q1": "\u00bfCon qu\u00e9 tipo de empresas trabaj\u00e1is?",
+                "faq.a1": "Trabajamos con negocios que quieren crecer: desde empresas locales hasta marcas digitales y startups. Si tu objetivo es atraer m\u00e1s clientes o vender m\u00e1s online, podemos ayudarte.",
+                "faq.q2": "\u00bfCu\u00e1nto dura un proyecto t\u00edpico?",
+                "faq.a2": "La mayor\u00eda de proyectos se entregan en 2 a 4 semanas, dependiendo del alcance. Priorizamos rapidez sin sacrificar calidad, para que empieces a generar resultados cuanto antes.",
+                "faq.q3": "\u00bfInclu\u00eds el copywriting o tengo que aportar los textos?",
+                "faq.a3": "Nos encargamos de los textos. Analizamos tu negocio y escribimos cada secci\u00f3n con un enfoque comercial para atraer, convencer y convertir visitas en clientes.",
+                "faq.q5": "\u00bfLa web estar\u00e1 optimizada para SEO?",
+                "faq.a5": "S\u00ed. Desde el inicio estructuramos la web con una base SEO s\u00f3lida, optimizada para posicionar en Google y atraer tr\u00e1fico de calidad.",
+                "faq.q7": "\u00bfOfrec\u00e9is soporte despu\u00e9s del lanzamiento?",
+                "faq.a7": "S\u00ed. Podemos seguir trabajando contigo para optimizar la web, hacer mejoras o acompa\u00f1arte en el crecimiento digital de tu negocio.",
+                "faq.q10": "\u00bfCu\u00e1nto cuesta una web?",
+                "faq.a10": "Cada proyecto es diferente, pero trabajamos con presupuestos claros seg\u00fan objetivos y alcance. Escr\u00edbenos y te damos una propuesta adaptada a tu caso.",
+
+                // Contact
+                "contact.title": "Empieza tu proyecto",
+                "contact.desc": "Empecemos a construir algo grande juntos.",
+                "contact.name": "Nombre",
+                "contact.name.placeholder": "Mar\u00eda Garc\u00eda",
+                "contact.email": "Correo electr\u00f3nico",
+                "contact.email.placeholder": "maria@empresa.com",
+                "contact.message": "Mensaje",
+                "contact.message.placeholder": "Escribe tu mensaje",
+                "contact.submit": "Enviar",
+
+                // Footer
+                "footer.desc": "Dise\u00f1amos y desarrollamos webs que ayudan a marcas ambiciosas a crecer m\u00e1s r\u00e1pido.",
+                "footer.pages": "P\u00e1ginas",
+                "footer.process": "Proceso",
+                "footer.services": "Servicios",
+                "footer.work": "Proyectos",
+                "footer.company": "Empresa",
+                "footer.about": "Sobre nosotros",
+                "footer.careers": "Empleo",
+                "footer.blog": "Blog",
+                "footer.contact": "Contacto",
+                "footer.legal": "Legal",
+                "footer.privacy": "Privacidad",
+                "footer.terms": "T\u00e9rminos",
+                "footer.cookies": "Cookies",
+                "footer.copy": "\u00A9 2026 WeWeb Studio. Todos los derechos reservados."
+            }
+        };
+
+        function applyTranslations(lang) {
+            var t = translations[lang];
+            if (!t) return;
+
+            document.documentElement.setAttribute('lang', lang);
+
+            // Handle the testimonials title specially (it has a <br> tag)
+            var testimonialsH2 = document.querySelector('[data-i18n="testimonials.title"]');
+            if (testimonialsH2 && t['testimonials.title.line1']) {
+                // Clear existing content safely
+                while (testimonialsH2.firstChild) {
+                    testimonialsH2.removeChild(testimonialsH2.firstChild);
+                }
+                testimonialsH2.appendChild(document.createTextNode(t['testimonials.title.line1']));
+                testimonialsH2.appendChild(document.createElement('br'));
+                testimonialsH2.appendChild(document.createTextNode(t['testimonials.title.line2']));
+            }
+
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n');
+                // Skip testimonials title, handled above
+                if (key === 'testimonials.title') return;
+                if (t[key] !== undefined) {
+                    el.textContent = t[key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n-placeholder');
+                if (t[key] !== undefined) {
+                    el.setAttribute('placeholder', t[key]);
+                }
+            });
+        }
+
+        // Language toggle (both desktop and mobile)
+        var allLangBtns = document.querySelectorAll('.lang-toggle button');
+        var currentLang = 'en';
+        function setActiveLang(lang) {
+            currentLang = lang;
+            allLangBtns.forEach(function(b) {
+                b.classList.toggle('active', b.dataset.lang === lang);
+            });
+            applyTranslations(lang);
+            localStorage.setItem('weweb-lang', lang);
+            // Update internal links with language prefix
+            var prefix = '/' + lang;
+            document.querySelectorAll('a[href]').forEach(function(a) {
+                var href = a.getAttribute('href');
+                if (!href || href.startsWith('mailto:') || href.startsWith('http') || href.startsWith('#')) return;
+                href = href.replace(/^\/(en|es)/, '');
+                a.setAttribute('href', prefix + href);
+            });
+        }
+        allLangBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var newLang = btn.dataset.lang;
+                var path = window.location.pathname.replace(/^\/(en|es)/, '') || '/';
+                window.history.replaceState(null, '', '/' + newLang + path);
+                setActiveLang(newLang);
+            });
+        });
+
+        // Load language: URL prefix > saved > browser detection > default EN
+        (function() {
+            var pathMatch = window.location.pathname.match(/^\/(en|es)(\/|$)/);
+            var lang = pathMatch ? pathMatch[1] : localStorage.getItem('weweb-lang');
+            if (!lang) {
+                var browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+                lang = browserLang.startsWith('es') ? 'es' : 'en';
+            }
+            if (!pathMatch) {
+                var path = window.location.pathname || '/';
+                window.history.replaceState(null, '', '/' + lang + path + window.location.hash);
+            }
+            if (translations[lang]) setActiveLang(lang);
+        })();
+
+        // Contact form submission
+        var contactForm = document.getElementById('contactForm');
+        var contactStatus = document.getElementById('contactStatus');
+        var contactSubmit = document.getElementById('contactSubmit');
+        var submitText = contactSubmit.querySelector('[data-i18n="contact.submit"]');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            contactSubmit.disabled = true;
+            submitText.textContent = currentLang === 'es' ? 'Enviando...' : 'Sending...';
+            contactStatus.className = 'contact__status';
+            contactStatus.textContent = '';
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(new FormData(contactForm)))
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                if (data.success) {
+                    contactStatus.className = 'contact__status success';
+                    contactStatus.textContent = currentLang === 'es'
+                        ? 'Mensaje enviado correctamente. Te responderemos pronto.'
+                        : 'Message sent successfully. We\'ll get back to you soon.';
+                    contactForm.reset();
+                } else {
+                    contactStatus.className = 'contact__status error';
+                    contactStatus.textContent = currentLang === 'es'
+                        ? 'Error al enviar. Int\u00e9ntalo de nuevo.'
+                        : 'Something went wrong. Please try again.';
+                }
+            })
+            .catch(function() {
+                contactStatus.className = 'contact__status error';
+                contactStatus.textContent = currentLang === 'es'
+                    ? 'Error al enviar. Int\u00e9ntalo de nuevo.'
+                    : 'Something went wrong. Please try again.';
+            })
+            .finally(function() {
+                contactSubmit.disabled = false;
+                var t = translations[currentLang];
+                if (t && t['contact.submit']) submitText.textContent = t['contact.submit'];
+            });
+        });
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

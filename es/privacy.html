@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad - WeWeb Studio</title>
+    <meta name="description" content="Privacy policy of WeWeb Studio. Learn how we handle your personal data.">
+    <meta property="og:title" content="Política de Privacidad - WeWeb Studio">
+    <meta property="og:description" content="Política de privacidad de WeWeb Studio. Conoce cómo tratamos tus datos personales.">
+    <meta property="og:image" content="https://weweb-agency.vercel.app/og-image.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="/img/logos/logo-white.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Fragment+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #F3F1EC;
+            --bg-white: #ffffff;
+            --bg-dark: #111111;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-hover: rgba(0, 0, 0, 0.15);
+            --text-primary: #111111;
+            --text-secondary: #555550;
+            --text-tertiary: #999990;
+            --text-light: #ffffff;
+            --font-body: 'Albert Sans', system-ui, sans-serif;
+            --font-mono: 'Fragment Mono', monospace;
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --max-width: 1200px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.1), 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text-primary);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 32px; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* NAVIGATION */
+        .nav-wrap {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            display: flex; justify-content: center; padding: 16px 20px;
+        }
+        .nav {
+            display: flex; align-items: center; gap: 24px;
+            padding: 10px 12px 10px 16px; background: var(--bg-white);
+            border-radius: 100px; box-shadow: var(--shadow-lg);
+            max-width: var(--max-width); width: 100%;
+        }
+        .nav__brand { display: flex; align-items: center; gap: 10px; font-size: 22px; color: var(--text-primary); white-space: nowrap; }
+        .nav__brand img { height: 24px; width: auto; }
+        .nav__links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0 auto; }
+        .nav__links a { font-size: 14px; font-weight: 600; color: var(--text-secondary); transition: color 0.2s ease; white-space: nowrap; }
+        .nav__links a:hover { color: var(--text-primary); }
+        .lang-toggle { display: flex; align-items: center; gap: 0; background: var(--bg); border-radius: 100px; padding: 3px; font-size: 13px; font-weight: 500; }
+        .lang-toggle button { padding: 6px 12px; border-radius: 100px; color: var(--text-tertiary); transition: background 0.2s ease, color 0.2s ease; font-size: 13px; font-weight: 500; }
+        .lang-toggle button.active { background: var(--bg-white); color: var(--text-primary); box-shadow: var(--shadow-sm); }
+        .nav__cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 6px 6px 22px; background: var(--bg-dark); color: var(--text-light);
+            font-size: 14px; font-weight: 500; border-radius: 100px;
+            transition: background 0.2s ease, transform 0.2s ease; white-space: nowrap;
+        }
+        .nav__cta:hover { background: #222; transform: translateY(-1px); }
+        .icon-circle {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 32px; height: 32px; border-radius: 50%;
+            background: var(--bg-white); color: var(--bg-dark); flex-shrink: 0;
+        }
+        .nav__cta .icon-circle { width: 28px; height: 28px; }
+        .nav__cta svg { transition: transform 0.2s ease; }
+        .nav__cta:hover svg { transform: translateX(2px); }
+        .nav__toggle {
+            display: none; align-items: center; gap: 8px;
+            padding: 6px 6px 6px 22px; background: var(--bg-dark); color: var(--text-light);
+            font-size: 14px; font-weight: 500; border-radius: 100px; white-space: nowrap;
+        }
+        .nav__toggle .icon-circle { width: 28px; height: 28px; }
+        .nav__toggle .icon-circle svg { width: 14px; height: 14px; }
+        .nav__toggle .icon-open { display: block; }
+        .nav__toggle .icon-close { display: none; }
+        .nav__toggle.active .icon-open { display: none; }
+        .nav__toggle.active .icon-close { display: block; }
+        .nav__mobile {
+            display: none; position: fixed; top: 84px; left: 20px; right: 20px;
+            background: var(--bg-white); border-radius: 20px; box-shadow: var(--shadow-xl);
+            z-index: 999; padding: 8px; flex-direction: column; gap: 2px;
+        }
+        .nav__mobile.open { display: flex; }
+        .nav__mobile a {
+            display: block; padding: 16px 20px; font-size: 16px; font-weight: 500;
+            color: var(--text-primary); text-align: center; border-radius: 14px;
+            transition: background 0.2s ease;
+        }
+        .nav__mobile a:hover { background: var(--bg); }
+
+        /* PAGE HEADER */
+        .page-header {
+            padding: 140px 0 48px;
+            animation: fadeUp 0.8s var(--ease-out) both;
+        }
+        .page-header h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+        .page-header p {
+            font-size: 17px;
+            color: var(--text-secondary);
+            max-width: 560px;
+        }
+
+        /* LEGAL CONTENT */
+        .legal-content {
+            padding: 0 0 80px;
+            animation: fadeUp 0.8s var(--ease-out) 0.1s both;
+        }
+        .legal-content h2 {
+            font-size: 22px;
+            font-weight: 600;
+            margin: 40px 0 12px;
+            letter-spacing: -0.01em;
+        }
+        .legal-content h2:first-child { margin-top: 0; }
+        .legal-content p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 12px;
+            max-width: 720px;
+        }
+        .legal-content ul {
+            list-style: disc;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            max-width: 720px;
+        }
+        .legal-content li {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 6px;
+        }
+        .legal-content a { text-decoration: underline; }
+
+        /* FOOTER */
+        .footer { background: var(--bg-dark); color: var(--text-light); padding: 64px 0 32px; margin-top: 0; }
+        .footer__grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+        .footer__brand { display: flex; align-items: center; gap: 10px; font-size: 22px; margin-bottom: 12px; }
+        .footer__brand img { height: 24px; width: auto; filter: invert(1); }
+        .footer__desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; max-width: 300px; }
+        .footer__col h4 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+        .footer__col ul { list-style: none; }
+        .footer__col li { margin-bottom: 10px; }
+        .footer__col a { font-size: 14px; color: rgba(255,255,255,0.6); transition: color 0.2s ease; }
+        .footer__col a:hover { color: var(--text-light); }
+        .footer__bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08); }
+        .footer__copy { font-size: 13px; color: rgba(255,255,255,0.3); }
+        .footer__email {
+            display: inline-flex; align-items: center; gap: 10px;
+            color: var(--text-light); font-size: 14px; font-weight: 500;
+            padding: 8px 20px 8px 8px; background: var(--bg-dark);
+            border-radius: 100px; transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .footer__email svg { background: var(--bg-white); color: var(--bg-dark); border-radius: 50%; padding: 6px; width: 28px; height: 28px; }
+        .footer__email:hover { background: #222; transform: translateY(-1px); }
+
+        @media (max-width: 1024px) { .footer__grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .nav__links { display: none; }
+            .nav__cta { display: none; }
+            .nav__toggle { display: flex; }
+            .nav { padding: 10px 8px 10px 20px; }
+            .nav__toggle { margin-left: auto; }
+            .nav > .lang-toggle { display: none; }
+            .nav__mobile .lang-toggle { margin-top: 8px; align-self: center; }
+            .page-header { padding: 110px 0 32px; }
+            .footer__grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+            .footer__grid > div:first-child { grid-column: 1 / -1; }
+            .footer__desc { max-width: none; }
+            .footer__col { display: flex; gap: 24px; align-items: start; }
+            .footer__col h4 { margin-bottom: 0; min-width: 70px; padding-top: 2px; }
+            .footer__bottom { flex-direction: column; gap: 14px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+        <symbol id="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    </svg>
+
+    <div class="nav-wrap">
+        <nav class="nav" id="nav">
+            <a href="/" class="nav__brand"><img src="/img/logos/weweb-logo-text.svg" alt="WeWeb"></a>
+            <ul class="nav__links">
+                <li><a href="/#services" data-i18n="nav.services">Services</a></li>
+                <li><a href="/projects" data-i18n="nav.work">Work</a></li>
+                <li><a href="/#faq">FAQ</a></li>
+            </ul>
+            <div class="lang-toggle" id="langToggle">
+                <button data-lang="es">ES</button>
+                <button class="active" data-lang="en">EN</button>
+            </div>
+            <a href="mailto:hello@weweb.studio" class="nav__cta">
+                <span data-i18n="nav.contact">Contact us</span>
+                <span class="icon-circle"><svg width="14" height="14"><use href="#icon-arrow"/></svg></span>
+            </a>
+            <button class="nav__toggle" id="navToggle" aria-label="Menu">
+                <span data-i18n="nav.menu">Menu</span>
+                <span class="icon-circle">
+                    <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                    <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+            </button>
+        </nav>
+        <div class="nav__mobile" id="navMobile">
+            <a href="/#services" data-i18n="nav.services">Services</a>
+            <a href="/projects" data-i18n="nav.work">Work</a>
+            <a href="/#faq">FAQ</a>
+            <a href="mailto:hello@weweb.studio" data-i18n="nav.contact">Contact us</a>
+            <div class="lang-toggle" id="langToggleMobile">
+                <button data-lang="es">ES</button>
+                <button class="active" data-lang="en">EN</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 data-i18n="privacy.title">Privacy Policy</h1>
+            <p data-i18n="privacy.updated">Last updated: April 2026</p>
+        </div>
+    </section>
+
+    <section class="legal-content">
+        <div class="container">
+            <h2 data-i18n="privacy.h1">1. Data Controller</h2>
+            <p data-i18n="privacy.p1">WeWeb Studio, based in Barcelona, Spain. Contact: <a href="mailto:hello@weweb.studio">hello@weweb.studio</a></p>
+
+            <h2 data-i18n="privacy.h2">2. What data we collect</h2>
+            <p data-i18n="privacy.p2">We may collect the following information when you use our website or contact us:</p>
+            <ul>
+                <li data-i18n="privacy.li1">Name and email address (when you contact us via the contact form)</li>
+                <li data-i18n="privacy.li2">Browsing data (IP address, browser type, pages visited) collected through cookies</li>
+                <li data-i18n="privacy.li3">Any additional information you voluntarily provide</li>
+            </ul>
+
+            <h2 data-i18n="privacy.h3">3. Purpose of data processing</h2>
+            <p data-i18n="privacy.p3">We use your data to respond to your inquiries, provide our services, improve our website, and comply with legal obligations. We will never sell your personal data to third parties.</p>
+
+            <h2 data-i18n="privacy.h4">4. Legal basis</h2>
+            <p data-i18n="privacy.p4">We process your data based on your consent (contact form submissions), our legitimate interest (website analytics), and compliance with legal obligations where applicable.</p>
+
+            <h2 data-i18n="privacy.h5">5. Data retention</h2>
+            <p data-i18n="privacy.p5">We retain your personal data only for as long as necessary to fulfill the purposes described above, or as required by law. Contact form data is kept for a maximum of 12 months.</p>
+
+            <h2 data-i18n="privacy.h6">6. Your rights</h2>
+            <p data-i18n="privacy.p6">Under the GDPR and Spanish data protection law (LOPDGDD), you have the right to access, rectify, delete, restrict processing, and port your data. You can exercise these rights by emailing us at <a href="mailto:hello@weweb.studio">hello@weweb.studio</a>.</p>
+
+            <h2 data-i18n="privacy.h7">7. Third-party services</h2>
+            <p data-i18n="privacy.p7">We may use third-party services such as hosting providers and analytics tools. These services may process your data in accordance with their own privacy policies.</p>
+
+            <h2 data-i18n="privacy.h8">8. Changes to this policy</h2>
+            <p data-i18n="privacy.p8">We may update this privacy policy from time to time. Any changes will be posted on this page with an updated revision date.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div>
+                    <div class="footer__brand"><img src="/img/logos/logo-black.png" alt="WeWeb">WeWeb</div>
+                    <p class="footer__desc" data-i18n="footer.desc">We design and build websites that help ambitious brands grow faster.</p>
+                </div>
+                <div class="footer__col">
+                    <h4 data-i18n="footer.pages">Pages</h4>
+                    <ul>
+                        <li><a href="/#services" data-i18n="footer.services">Services</a></li>
+                        <li><a href="/projects" data-i18n="footer.work">Work</a></li>
+                        <li><a href="/#faq">FAQ</a></li>
+                        <li><a href="/#contact" data-i18n="footer.contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col">
+                    <h4 data-i18n="footer.legal">Legal</h4>
+                    <ul>
+                        <li><a href="/privacy" data-i18n="footer.privacy">Privacy</a></li>
+                        <li><a href="/terms" data-i18n="footer.terms">Terms</a></li>
+                        <li><a href="/cookies" data-i18n="footer.cookies">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <div class="footer__copy" data-i18n="footer.copy">&copy; 2026 WeWeb Studio. All rights reserved.</div>
+                <a href="mailto:hello@weweb.studio" class="footer__email">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    hello@weweb.studio
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navToggle = document.getElementById('navToggle');
+        const navMobile = document.getElementById('navMobile');
+        navToggle.addEventListener('click', () => { navMobile.classList.toggle('open'); navToggle.classList.toggle('active'); });
+        navMobile.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { navMobile.classList.remove('open'); navToggle.classList.remove('active'); }); });
+        document.addEventListener('click', (e) => { if (navMobile.classList.contains('open') && !navMobile.contains(e.target) && !navToggle.contains(e.target)) { navMobile.classList.remove('open'); navToggle.classList.remove('active'); } });
+
+        const translations = {
+            en: {
+                "nav.services": "Services",
+                "nav.work": "Work",
+                "nav.contact": "Contact us",
+                "nav.menu": "Menu",
+                "privacy.title": "Privacy Policy",
+                "privacy.updated": "Last updated: April 2026",
+                "privacy.h1": "1. Data Controller",
+                "privacy.p1": "WeWeb Studio, based in Barcelona, Spain. Contact: hello@weweb.studio",
+                "privacy.h2": "2. What data we collect",
+                "privacy.p2": "We may collect the following information when you use our website or contact us:",
+                "privacy.li1": "Name and email address (when you contact us via the contact form)",
+                "privacy.li2": "Browsing data (IP address, browser type, pages visited) collected through cookies",
+                "privacy.li3": "Any additional information you voluntarily provide",
+                "privacy.h3": "3. Purpose of data processing",
+                "privacy.p3": "We use your data to respond to your inquiries, provide our services, improve our website, and comply with legal obligations. We will never sell your personal data to third parties.",
+                "privacy.h4": "4. Legal basis",
+                "privacy.p4": "We process your data based on your consent (contact form submissions), our legitimate interest (website analytics), and compliance with legal obligations where applicable.",
+                "privacy.h5": "5. Data retention",
+                "privacy.p5": "We retain your personal data only for as long as necessary to fulfill the purposes described above, or as required by law. Contact form data is kept for a maximum of 12 months.",
+                "privacy.h6": "6. Your rights",
+                "privacy.p6": "Under the GDPR and Spanish data protection law (LOPDGDD), you have the right to access, rectify, delete, restrict processing, and port your data. You can exercise these rights by emailing us at hello@weweb.studio.",
+                "privacy.h7": "7. Third-party services",
+                "privacy.p7": "We may use third-party services such as hosting providers and analytics tools. These services may process your data in accordance with their own privacy policies.",
+                "privacy.h8": "8. Changes to this policy",
+                "privacy.p8": "We may update this privacy policy from time to time. Any changes will be posted on this page with an updated revision date.",
+                "footer.desc": "We design and build websites that help ambitious brands grow faster.",
+                "footer.pages": "Pages",
+                "footer.services": "Services",
+                "footer.work": "Work",
+                "footer.contact": "Contact",
+                "footer.legal": "Legal",
+                "footer.privacy": "Privacy",
+                "footer.terms": "Terms",
+                "footer.cookies": "Cookies",
+                "footer.copy": "\u00a9 2026 WeWeb Studio. All rights reserved."
+            },
+            es: {
+                "nav.services": "Servicios",
+                "nav.work": "Proyectos",
+                "nav.contact": "Cont\u00e1ctanos",
+                "nav.menu": "Men\u00fa",
+                "privacy.title": "Pol\u00edtica de Privacidad",
+                "privacy.updated": "\u00daltima actualizaci\u00f3n: abril 2026",
+                "privacy.h1": "1. Responsable del tratamiento",
+                "privacy.p1": "WeWeb Studio, con sede en Barcelona, Espa\u00f1a. Contacto: hello@weweb.studio",
+                "privacy.h2": "2. Datos que recogemos",
+                "privacy.p2": "Podemos recopilar la siguiente informaci\u00f3n cuando utilizas nuestro sitio web o contactas con nosotros:",
+                "privacy.li1": "Nombre y correo electr\u00f3nico (cuando nos contactas a trav\u00e9s del formulario)",
+                "privacy.li2": "Datos de navegaci\u00f3n (direcci\u00f3n IP, tipo de navegador, p\u00e1ginas visitadas) recogidos mediante cookies",
+                "privacy.li3": "Cualquier informaci\u00f3n adicional que proporciones voluntariamente",
+                "privacy.h3": "3. Finalidad del tratamiento",
+                "privacy.p3": "Utilizamos tus datos para responder a tus consultas, prestar nuestros servicios, mejorar nuestro sitio web y cumplir con obligaciones legales. Nunca venderemos tus datos personales a terceros.",
+                "privacy.h4": "4. Base legal",
+                "privacy.p4": "Tratamos tus datos en base a tu consentimiento (env\u00edo del formulario de contacto), nuestro inter\u00e9s leg\u00edtimo (anal\u00edtica web) y el cumplimiento de obligaciones legales cuando corresponda.",
+                "privacy.h5": "5. Conservaci\u00f3n de datos",
+                "privacy.p5": "Conservamos tus datos personales solo durante el tiempo necesario para cumplir los fines descritos, o seg\u00fan lo exija la ley. Los datos del formulario de contacto se conservan un m\u00e1ximo de 12 meses.",
+                "privacy.h6": "6. Tus derechos",
+                "privacy.p6": "Seg\u00fan el RGPD y la LOPDGDD, tienes derecho a acceder, rectificar, suprimir, limitar el tratamiento y portar tus datos. Puedes ejercer estos derechos escribi\u00e9ndonos a hello@weweb.studio.",
+                "privacy.h7": "7. Servicios de terceros",
+                "privacy.p7": "Podemos utilizar servicios de terceros como proveedores de alojamiento y herramientas de anal\u00edtica. Estos servicios pueden tratar tus datos conforme a sus propias pol\u00edticas de privacidad.",
+                "privacy.h8": "8. Cambios en esta pol\u00edtica",
+                "privacy.p8": "Podemos actualizar esta pol\u00edtica de privacidad peri\u00f3dicamente. Cualquier cambio se publicar\u00e1 en esta p\u00e1gina con una fecha de revisi\u00f3n actualizada.",
+                "footer.desc": "Dise\u00f1amos y desarrollamos webs que ayudan a marcas ambiciosas a crecer m\u00e1s r\u00e1pido.",
+                "footer.pages": "P\u00e1ginas",
+                "footer.services": "Servicios",
+                "footer.work": "Proyectos",
+                "footer.contact": "Contacto",
+                "footer.legal": "Legal",
+                "footer.privacy": "Privacidad",
+                "footer.terms": "T\u00e9rminos",
+                "footer.cookies": "Cookies",
+                "footer.copy": "\u00a9 2026 WeWeb Studio. Todos los derechos reservados."
+            }
+        };
+
+        function applyTranslations(lang) {
+            var t = translations[lang];
+            if (!t) return;
+            document.documentElement.setAttribute('lang', lang);
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) el.textContent = t[key];
+            });
+        }
+
+        var allLangBtns = document.querySelectorAll('.lang-toggle button');
+        var currentLang = 'en';
+        function setActiveLang(lang) {
+            currentLang = lang;
+            allLangBtns.forEach(function(b) { b.classList.toggle('active', b.dataset.lang === lang); });
+            applyTranslations(lang);
+            localStorage.setItem('weweb-lang', lang);
+            var prefix = '/' + lang;
+            document.querySelectorAll('a[href]').forEach(function(a) {
+                var href = a.getAttribute('href');
+                if (!href || href.startsWith('mailto:') || href.startsWith('http') || href.startsWith('#')) return;
+                href = href.replace(/^\/(en|es)/, '');
+                a.setAttribute('href', prefix + href);
+            });
+        }
+        allLangBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var newLang = btn.dataset.lang;
+                var path = window.location.pathname.replace(/^\/(en|es)/, '') || '/';
+                window.history.replaceState(null, '', '/' + newLang + path);
+                setActiveLang(newLang);
+            });
+        });
+
+        (function() {
+            var pathMatch = window.location.pathname.match(/^\/(en|es)(\/|$)/);
+            var lang = pathMatch ? pathMatch[1] : localStorage.getItem('weweb-lang');
+            if (!lang) {
+                var browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+                lang = browserLang.startsWith('es') ? 'es' : 'en';
+            }
+            if (!pathMatch) {
+                var path = window.location.pathname || '/';
+                window.history.replaceState(null, '', '/' + lang + path + window.location.hash);
+            }
+            if (translations[lang]) setActiveLang(lang);
+        })();
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
