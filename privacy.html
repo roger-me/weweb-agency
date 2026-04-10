@@ -449,6 +449,10 @@
                 var browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
                 lang = browserLang.startsWith('es') ? 'es' : 'en';
             }
+            if (!pathMatch) {
+                var path = window.location.pathname || '/';
+                window.history.replaceState(null, '', '/' + lang + path + window.location.hash);
+            }
             if (translations[lang]) setActiveLang(lang);
         })();
     </script>
