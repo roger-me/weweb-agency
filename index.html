@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WeWeb Agency - We Build Websites That Drive Growth</title>
-    <meta name="description" content="WeWeb Agency partners with ambitious brands to design and develop high-performance websites that convert visitors into customers.">
+    <title>WeWeb Studio - We Build Websites That Drive Growth</title>
+    <meta name="description" content="WeWeb Studio partners with ambitious brands to design and develop high-performance websites that convert visitors into customers.">
 
     <!-- OG / Social -->
-    <meta property="og:title" content="WeWeb Agency - We Build Websites That Drive Growth">
-    <meta property="og:description" content="WeWeb Agency partners with ambitious brands to design and develop high-performance websites that convert visitors into customers.">
+    <meta property="og:title" content="WeWeb Studio - We Build Websites That Drive Growth">
+    <meta property="og:description" content="WeWeb Studio partners with ambitious brands to design and develop high-performance websites that convert visitors into customers.">
     <meta property="og:image" content="https://weweb-agency.vercel.app/og-image.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
@@ -871,7 +871,15 @@
             align-self: flex-start;
         }
         .contact__submit:hover { background: #222; }
+        .contact__submit:disabled { opacity: 0.6; cursor: not-allowed; }
         .contact__submit .icon-circle { width: 32px; height: 32px; }
+        .contact__status {
+            font-size: 14px;
+            margin-top: 8px;
+            display: none;
+        }
+        .contact__status.success { display: block; color: #2a7d4f; }
+        .contact__status.error { display: block; color: #c0392b; }
 
         /* ========================================
            FOOTER
@@ -1016,7 +1024,7 @@
                 <button data-lang="es">ES</button>
                 <button class="active" data-lang="en">EN</button>
             </div>
-            <a href="#contact" class="nav__cta">
+            <a href="mailto:hello@weweb.studio" class="nav__cta">
                 <span data-i18n="nav.contact">Contact us</span>
                 <span class="icon-circle"><svg width="14" height="14"><use href="#icon-arrow"/></svg></span>
             </a>
@@ -1032,7 +1040,7 @@
             <a href="#services" data-i18n="nav.services">Services</a>
             <a href="/projects" data-i18n="nav.work">Work</a>
             <a href="#faq">FAQ</a>
-            <a href="#contact" data-i18n="nav.contact">Contact us</a>
+            <a href="mailto:hello@weweb.studio" data-i18n="nav.contact">Contact us</a>
             <div class="lang-toggle" id="langToggleMobile">
                 <button data-lang="es">ES</button>
                 <button class="active" data-lang="en">EN</button>
@@ -1053,7 +1061,7 @@
                             <span data-i18n="hero.cta">Quiero una web</span>
                             <span class="icon-circle"><svg width="14" height="14"><use href="#icon-arrow"/></svg></span>
                         </a>
-                        <a href="#contact" class="btn-secondary" data-i18n="hero.secondary">Programar llamada</a>
+
                     </div>
                 </div>
                 <div class="hero__visual">
@@ -1263,8 +1271,8 @@
             </div>
             <div class="testimonials__footer animate-on-scroll">
                 <p class="testimonials__trust" data-i18n="testimonials.trust"><svg class="ph-icon" viewBox="0 0 256 256"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,91l59.46-5.15,23.21-55.36a16.4,16.4,0,0,1,28.5,0l23.21,55.36L224.92,91a16.46,16.46,0,0,1,9.37,23.85Z" fill="currentColor"/></svg> <span data-i18n="testimonials.trust.text">M&aacute;s de 50 proyectos entregados con alta satisfacci&oacute;n</span></p>
-                <a href="#contact" class="btn-primary">
-                    <span data-i18n="testimonials.cta">Programar una llamada</span>
+                <a href="mailto:hello@weweb.studio" class="btn-primary">
+                    <span data-i18n="testimonials.cta">Env&iacute;anos un email</span>
                     <span class="icon-circle"><svg width="14" height="14"><use href="#icon-arrow"/></svg></span>
                 </a>
             </div>
@@ -1278,7 +1286,7 @@
                 <div class="faq__left animate-on-scroll">
                     <h2 data-i18n="faq.title">Preguntas frecuentes</h2>
                     <p data-i18n="faq.desc">Resolvemos tus dudas sobre nuestro proceso, servicios y c&oacute;mo podemos ayudarte.</p>
-                    <a href="#contact" class="btn-secondary" data-i18n="faq.cta">Programar una llamada</a>
+                    <a href="mailto:hello@weweb.studio" class="btn-secondary" data-i18n="faq.cta">Env&iacute;anos un email</a>
                 </div>
             <div class="faq__list">
                 <div class="faq__item animate-on-scroll">
@@ -1320,27 +1328,31 @@
                     <p data-i18n="contact.desc">Let's start building something great together.</p>
                 </div>
                 <div class="contact__info">
-                    <a href="mailto:hello@weweb.agency">hello@weweb.agency</a>
+                    <a href="mailto:hello@weweb.studio">hello@weweb.studio</a>
                 </div>
             </div>
             <div class="contact__right">
-                <form class="contact__form">
+                <form class="contact__form" id="contactForm">
+                    <input type="hidden" name="access_key" value="40cd7315-d7f0-45ef-9483-0bb6d3661b98">
+                    <input type="hidden" name="subject" value="New contact from weweb.studio">
+                    <input type="checkbox" name="botcheck" style="display:none">
                     <div class="contact__field">
                         <label data-i18n="contact.name">Name</label>
-                        <input type="text" placeholder="Jane Smith" data-i18n-placeholder="contact.name.placeholder">
+                        <input type="text" name="name" required placeholder="Jane Smith" data-i18n-placeholder="contact.name.placeholder">
                     </div>
                     <div class="contact__field">
                         <label data-i18n="contact.email">Email</label>
-                        <input type="email" placeholder="jane@company.com" data-i18n-placeholder="contact.email.placeholder">
+                        <input type="email" name="email" required placeholder="jane@company.com" data-i18n-placeholder="contact.email.placeholder">
                     </div>
                     <div class="contact__field">
                         <label data-i18n="contact.message">Message</label>
-                        <textarea placeholder="Enter your message" data-i18n-placeholder="contact.message.placeholder"></textarea>
+                        <textarea name="message" required placeholder="Enter your message" data-i18n-placeholder="contact.message.placeholder"></textarea>
                     </div>
-                    <button type="submit" class="contact__submit">
+                    <button type="submit" class="contact__submit" id="contactSubmit">
                         <span data-i18n="contact.submit">Submit</span>
                         <span class="icon-circle"><svg width="14" height="14"><use href="#icon-arrow"/></svg></span>
                     </button>
+                    <p class="contact__status" id="contactStatus"></p>
                 </form>
             </div>
         </div>
@@ -1367,17 +1379,17 @@
                 <div class="footer__col">
                     <h4 data-i18n="footer.legal">Legal</h4>
                     <ul>
-                        <li><a href="#" data-i18n="footer.privacy">Privacy</a></li>
-                        <li><a href="#" data-i18n="footer.terms">Terms</a></li>
-                        <li><a href="#" data-i18n="footer.cookies">Cookies</a></li>
+                        <li><a href="/privacy" data-i18n="footer.privacy">Privacy</a></li>
+                        <li><a href="/terms" data-i18n="footer.terms">Terms</a></li>
+                        <li><a href="/cookies" data-i18n="footer.cookies">Cookies</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer__bottom">
-                <div class="footer__copy" data-i18n="footer.copy">&copy; 2026 WeWeb Agency. All rights reserved.</div>
-                <a href="mailto:hello@weweb.agency" class="footer__email">
+                <div class="footer__copy" data-i18n="footer.copy">&copy; 2026 WeWeb Studio. All rights reserved.</div>
+                <a href="mailto:hello@weweb.studio" class="footer__email">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    hello@weweb.agency
+                    hello@weweb.studio
                 </a>
             </div>
         </div>
@@ -1471,7 +1483,7 @@
                 "hero.stat2": "Clients in Barcelona and all of Spain",
                 "hero.stat3": "Easy and hassle-free process",
                 "hero.cta": "I want a website",
-                "hero.secondary": "Schedule a call",
+                "hero.secondary": "Send us an email",
 
                 // Process
                 "process.1.title": "Strategy",
@@ -1521,12 +1533,12 @@
                 "testimonials.3.quote": "\u201CIn just 3 weeks we had a website ready that is already generating contacts and business opportunities.\u201D",
                 "testimonials.3.role": "Tattooverse",
                 "testimonials.trust.text": "Over 50 projects delivered with high satisfaction",
-                "testimonials.cta": "Schedule a call",
+                "testimonials.cta": "Send us an email",
 
                 // FAQ
                 "faq.title": "Frequently asked questions",
                 "faq.desc": "We answer your questions about our process, services and how we can help you.",
-                "faq.cta": "Schedule a call",
+                "faq.cta": "Send us an email",
                 "faq.q1": "What types of businesses do you work with?",
                 "faq.a1": "We work with businesses that want to grow: from local companies to digital brands and startups. If your goal is to attract more clients or sell more online, we can help.",
                 "faq.q2": "How long does a typical project take?",
@@ -1566,7 +1578,7 @@
                 "footer.privacy": "Privacy",
                 "footer.terms": "Terms",
                 "footer.cookies": "Cookies",
-                "footer.copy": "\u00A9 2026 WeWeb Agency. All rights reserved."
+                "footer.copy": "\u00A9 2026 WeWeb Studio. All rights reserved."
             },
             es: {
                 // Nav
@@ -1582,7 +1594,7 @@
                 "hero.stat2": "Clientes en Barcelona y toda Espa\u00f1a",
                 "hero.stat3": "Proceso f\u00e1cil y sin complicaciones",
                 "hero.cta": "Quiero una web",
-                "hero.secondary": "Programar llamada",
+                "hero.secondary": "Env\u00edanos un email",
 
                 // Process
                 "process.1.title": "Estrategia",
@@ -1632,12 +1644,12 @@
                 "testimonials.3.quote": "\u201CEn solo 3 semanas ten\u00edamos una web lista que ya est\u00e1 generando contactos y oportunidades de negocio.\u201D",
                 "testimonials.3.role": "Tattooverse",
                 "testimonials.trust.text": "M\u00e1s de 50 proyectos entregados con alta satisfacci\u00f3n",
-                "testimonials.cta": "Programar una llamada",
+                "testimonials.cta": "Env\u00edanos un email",
 
                 // FAQ
                 "faq.title": "Preguntas frecuentes",
                 "faq.desc": "Resolvemos tus dudas sobre nuestro proceso, servicios y c\u00f3mo podemos ayudarte.",
-                "faq.cta": "Programar una llamada",
+                "faq.cta": "Env\u00edanos un email",
                 "faq.q1": "\u00bfCon qu\u00e9 tipo de empresas trabaj\u00e1is?",
                 "faq.a1": "Trabajamos con negocios que quieren crecer: desde empresas locales hasta marcas digitales y startups. Si tu objetivo es atraer m\u00e1s clientes o vender m\u00e1s online, podemos ayudarte.",
                 "faq.q2": "\u00bfCu\u00e1nto dura un proyecto t\u00edpico?",
@@ -1677,7 +1689,7 @@
                 "footer.privacy": "Privacidad",
                 "footer.terms": "T\u00e9rminos",
                 "footer.cookies": "Cookies",
-                "footer.copy": "\u00A9 2026 WeWeb Agency. Todos los derechos reservados."
+                "footer.copy": "\u00A9 2026 WeWeb Studio. Todos los derechos reservados."
             }
         };
 
@@ -1718,7 +1730,9 @@
 
         // Language toggle (both desktop and mobile)
         var allLangBtns = document.querySelectorAll('.lang-toggle button');
+        var currentLang = 'en';
         function setActiveLang(lang) {
+            currentLang = lang;
             allLangBtns.forEach(function(b) {
                 b.classList.toggle('active', b.dataset.lang === lang);
             });
@@ -1742,6 +1756,52 @@
                 setActiveLang(saved);
             }
         })();
+
+        // Contact form submission
+        var contactForm = document.getElementById('contactForm');
+        var contactStatus = document.getElementById('contactStatus');
+        var contactSubmit = document.getElementById('contactSubmit');
+        var submitText = contactSubmit.querySelector('[data-i18n="contact.submit"]');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            contactSubmit.disabled = true;
+            submitText.textContent = currentLang === 'es' ? 'Enviando...' : 'Sending...';
+            contactStatus.className = 'contact__status';
+            contactStatus.textContent = '';
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(new FormData(contactForm)))
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                if (data.success) {
+                    contactStatus.className = 'contact__status success';
+                    contactStatus.textContent = currentLang === 'es'
+                        ? 'Mensaje enviado correctamente. Te responderemos pronto.'
+                        : 'Message sent successfully. We\'ll get back to you soon.';
+                    contactForm.reset();
+                } else {
+                    contactStatus.className = 'contact__status error';
+                    contactStatus.textContent = currentLang === 'es'
+                        ? 'Error al enviar. Int\u00e9ntalo de nuevo.'
+                        : 'Something went wrong. Please try again.';
+                }
+            })
+            .catch(function() {
+                contactStatus.className = 'contact__status error';
+                contactStatus.textContent = currentLang === 'es'
+                    ? 'Error al enviar. Int\u00e9ntalo de nuevo.'
+                    : 'Something went wrong. Please try again.';
+            })
+            .finally(function() {
+                contactSubmit.disabled = false;
+                var t = translations[currentLang];
+                if (t && t['contact.submit']) submitText.textContent = t['contact.submit'];
+            });
+        });
     </script>
 </body>
 </html>
