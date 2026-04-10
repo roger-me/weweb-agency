@@ -879,8 +879,30 @@
             margin-top: 8px;
             display: none;
         }
-        .contact__status.success { display: block; color: #2a7d4f; }
         .contact__status.error { display: block; color: #c0392b; }
+        .contact__success {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 48px 24px;
+            gap: 16px;
+        }
+        .contact__success.visible { display: flex; }
+        .contact__success-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #2a7d4f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeUp 0.4s var(--ease-out) both;
+        }
+        .contact__success-icon svg { width: 28px; height: 28px; stroke: white; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+        .contact__success-title { font-size: 20px; font-weight: 600; animation: fadeUp 0.4s var(--ease-out) 0.1s both; }
+        .contact__success-text { font-size: 15px; color: var(--text-secondary); animation: fadeUp 0.4s var(--ease-out) 0.15s both; }
 
         /* ========================================
            FOOTER
@@ -893,7 +915,7 @@
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
             gap: 40px;
-            margin-bottom: 56px;
+            margin-bottom: 32px;
         }
         .footer__brand {
             font-family: var(--font-body);
@@ -934,8 +956,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding-top: 28px;
-            border-top: 1px solid var(--border);
+            padding-top: 0;
         }
         .footer__copy { font-size: 13px; color: var(--text-tertiary); font-weight: 300; }
         .footer__email {
@@ -1355,6 +1376,11 @@
                     </button>
                     <p class="contact__status" id="contactStatus"></p>
                 </form>
+                <div class="contact__success" id="contactSuccess">
+                    <div class="contact__success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                    <div class="contact__success-title" data-i18n="contact.success.title">Message sent!</div>
+                    <div class="contact__success-text" data-i18n="contact.success.text">We'll get back to you soon.</div>
+                </div>
             </div>
         </div>
         </div>
@@ -1563,6 +1589,8 @@
                 "contact.message": "Message",
                 "contact.message.placeholder": "Enter your message",
                 "contact.submit": "Submit",
+                "contact.success.title": "Message sent!",
+                "contact.success.text": "We'll get back to you soon.",
 
                 // Footer
                 "footer.desc": "We design and build websites that help ambitious brands grow faster.",
@@ -1674,6 +1702,8 @@
                 "contact.message": "Mensaje",
                 "contact.message.placeholder": "Escribe tu mensaje",
                 "contact.submit": "Enviar",
+                "contact.success.title": "\u00a1Mensaje enviado!",
+                "contact.success.text": "Te responderemos lo antes posible.",
 
                 // Footer
                 "footer.desc": "Dise\u00f1amos y desarrollamos webs que ayudan a marcas ambiciosas a crecer m\u00e1s r\u00e1pido.",
@@ -1793,10 +1823,8 @@
             .then(function(res) { return res.json(); })
             .then(function(data) {
                 if (data.success) {
-                    contactStatus.className = 'contact__status success';
-                    contactStatus.textContent = currentLang === 'es'
-                        ? 'Mensaje enviado correctamente. Te responderemos pronto.'
-                        : 'Message sent successfully. We\'ll get back to you soon.';
+                    contactForm.style.display = 'none';
+                    document.getElementById('contactSuccess').classList.add('visible');
                     contactForm.reset();
                 } else {
                     contactStatus.className = 'contact__status error';
