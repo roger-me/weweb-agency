@@ -1,6 +1,15 @@
 {
-  "cleanUrls": true,
+  "redirects": [
+    { "source": "/projects.html", "destination": "/projects", "permanent": true },
+    { "source": "/privacy.html", "destination": "/privacy", "permanent": true },
+    { "source": "/terms.html", "destination": "/terms", "permanent": true },
+    { "source": "/cookies.html", "destination": "/cookies", "permanent": true }
+  ],
   "rewrites": [
+    { "source": "/projects", "destination": "/projects.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/cookies", "destination": "/cookies.html" },
     { "source": "/en", "destination": "/index.html" },
     { "source": "/en/", "destination": "/index.html" },
     { "source": "/es", "destination": "/index.html" },
