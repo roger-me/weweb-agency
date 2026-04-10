@@ -1,3 +1,9 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/en", "destination": "/" },
+    { "source": "/es", "destination": "/" },
+    { "source": "/en/:path*", "destination": "/:path*" },
+    { "source": "/es/:path*", "destination": "/:path*" }
+  ]
 }

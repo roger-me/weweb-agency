@@ -1738,23 +1738,33 @@
             });
             applyTranslations(lang);
             localStorage.setItem('weweb-lang', lang);
+            // Update internal links with language prefix
+            var prefix = '/' + lang;
+            document.querySelectorAll('a[href]').forEach(function(a) {
+                var href = a.getAttribute('href');
+                if (!href || href.startsWith('mailto:') || href.startsWith('http') || href.startsWith('#')) return;
+                href = href.replace(/^\/(en|es)/, '');
+                a.setAttribute('href', prefix + href);
+            });
         }
         allLangBtns.forEach(function(btn) {
             btn.addEventListener('click', function() {
-                setActiveLang(btn.dataset.lang);
+                var newLang = btn.dataset.lang;
+                var path = window.location.pathname.replace(/^\/(en|es)/, '') || '/';
+                window.history.replaceState(null, '', '/' + newLang + path);
+                setActiveLang(newLang);
             });
         });
 
-        // Load language: saved > browser detection > default EN
+        // Load language: URL prefix > saved > browser detection > default EN
         (function() {
-            var saved = localStorage.getItem('weweb-lang');
-            if (!saved) {
+            var pathMatch = window.location.pathname.match(/^\/(en|es)(\/|$)/);
+            var lang = pathMatch ? pathMatch[1] : localStorage.getItem('weweb-lang');
+            if (!lang) {
                 var browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-                saved = browserLang.startsWith('es') ? 'es' : 'en';
+                lang = browserLang.startsWith('es') ? 'es' : 'en';
             }
-            if (translations[saved]) {
-                setActiveLang(saved);
-            }
+            if (translations[lang]) setActiveLang(lang);
         })();
 
         // Contact form submission
