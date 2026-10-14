@@ -1,0 +1,62 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare static site
+        shell: bash
+        run: |
+          site="${RUNNER_TEMP}/site"
+          mkdir -p "$site"
+          rsync -a \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='.claude/' \
+            --exclude='vercel.json' \
+            ./ "$site/"
+
+          mkdir -p \
+            "$site/en" \
+            "$site/projects" "$site/privacy" "$site/terms" "$site/cookies" \
+            "$site/en/projects" "$site/en/privacy" "$site/en/terms" "$site/en/cookies" \
+            "$site/es/projects" "$site/es/privacy" "$site/es/terms" "$site/es/cookies"
+
+          cp index.html "$site/en/index.html"
+          for page in projects privacy terms cookies; do
+            cp "${page}.html" "$site/${page}/index.html"
+            cp "${page}.html" "$site/en/${page}/index.html"
+            cp "es/${page}.html" "$site/es/${page}/index.html"
+          done
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
